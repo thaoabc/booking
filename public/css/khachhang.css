@@ -1,0 +1,7 @@
+.customer__img {
+	border: 1px solid #ccc;
+}
+
+.customer__block-img .customer__img {
+	margin-bottom: 3rem;
+}
