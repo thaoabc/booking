@@ -17,15 +17,23 @@
 
 Auth::routes();
 
-route::get('/',function(){
-	view('customer.layer.welcome');
-});
-route::get('logins',function(){
-	view('customer.layer.login');
-});
-route::get('dang_ky',function(){
-	view('customer.layer.dang_ky');
-});
+route::get('','Template@welcome')->name('index');
+route::get('category_room','Template@category_room')->name('category_room');
+route::get('detail_room','Template@detail_room')->name('detail_room');
+
+route::get('blog','Template@blog')->name('blog');
+
+route::get('detail_blog','Template@detail_blog')->name('detail_blog');
+
+route::get('contact','Template@contact')->name('contact');
+
+route::get('about_us','Template@about_us')->name('about_us');
+
+route::post('process_dang_nhap','khachhangcontroller@process_dang_nhap')->name('process_dang_nhap');
+
+route::get('dang_xuat','khachhangcontroller@process_dang_xuat')->name('dang_xuat');
+
+route::post('process_dang_ky','khachhangcontroller@process_dang_ky')->name('process_dang_ky');
 
 
 Route::group(['prefix' => 'admin'],function(){
@@ -58,6 +66,15 @@ Route::group(['prefix' => 'admin','middleware' => 'CheckAdmin'],function(){
 		Route::get('view_one_admin/{id}','HomeController@view_one')->name('view_one_admin');
 		Route::post('process_update_admin/{id}','HomeController@update')->name('process_update_admin');
 	
+	Route::group(['prefix'=>'users'],function(){
+		Route::get('view_all_user','UserController@view_all')->name('view_all_user');
+		Route::get('view_insert_user','UserController@view_insert')->name('view_insert_user');
+		Route::post('process_insert_user','UserController@process_insert')->name('process_insert_user');
+		//Route::get('delete_user/{id}','HomeController@delete')->name('delete_admin');
+		Route::get('view_one_user/{id}','UserController@view_one')->name('view_one_user');
+		Route::post('process_update_user/{id}','UserController@update')->name('process_update_user');
+	});
+	
 	Route::group(['prefix'=>'loai_phong'],function(){
 		Route::get('','CateRoomController@view_all');
 		Route::get('view_all_loai_phong','CateRoomController@view_all')->name('view_all_loai_phong');
@@ -77,7 +94,7 @@ Route::group(['prefix' => 'admin','middleware' => 'CheckAdmin'],function(){
 	});
 
 	Route::group(['prefix'=>'dat_phong'],function(){
-		Route::get('view_dat_phong','BookingController@view_dat_phong')->name('view_dat_phong');
+		Route::get('view_dat_phong/{id}','BookingController@view_dat_phong')->name('view_dat_phong');
 		Route::post('view_phong','BookingController@view_phong')->name('view_phong');
 		Route::post('dat_phong','BookingController@dat_phong')->name('dat_phong');
 	});

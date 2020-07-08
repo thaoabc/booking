@@ -8,6 +8,7 @@ use Response;
 use Carbon\Carbon;
 use DateTime;
 use DB;
+use Session;
 use App\Model\dat_phong;
 use App\Model\loai_phong;
 use App\Model\khach_hang;
@@ -18,24 +19,31 @@ use App\Model\room;
 
 class BookingController extends Controller
 {
-    public function view_dat_phong()
+    public function view_dat_phong($user_id)
 	{	
-		$array_loai_phong['cate_room']=DB::table('cate_room')->get();
-		return view('admins.page.booking.view_booking',$array_loai_phong);
+		if($user_id==0){
+			Session::flash('error', 'Hãy chọn khách hàng trước khi đặt phòng!');
+			return redirect('admin/users/view_all_user');
+		}
+		else{
+			Session::put('user_id',$user_id);
+			$array_loai_phong['cate_room']=DB::table('cate_room')->get();
+			return view('admins.page.booking.view_booking',$array_loai_phong);
+		}
 	}
 
 	public function view_phong(Request $request)
 	{	
 		$bill=new bill();
-		$dt = Carbon::now();
-		$day=$dt->addDay(1)->toDateString();
+		$dt = Carbon::now('Asia/Ho_Chi_Minh');
+		$day=$dt->subDay(1)->toDateString();
 		$rules = [
             'check_in' =>'date|after:'.$day,
             'check_out' =>'required|after:check_in'
         ];
         $messages = [
             'check_in.required' => 'Ngày nhận phòng là trường bắt buộc',
-            'check_in.after' => 'Ngày nhận phòng phải sau ngày hiện tại',
+            'check_in.after' => 'Ngày nhận phòng phải từ ngày hiện tại',
             'check_out.required' => 'Ngày trả phòng là trường bắt buộc',
             'check_out.after' => 'Ngày trả phòng phải sau ngày đặt phòng',
         ];
@@ -63,6 +71,7 @@ class BookingController extends Controller
 					->where('cate_id',$cate_id)
 					->where('status',1)
 					->get();
+					
 				// return  redirect()->route('view_phong',
 				// 	['array_phong'=>$array_phong]
 				// );
@@ -81,10 +90,11 @@ class BookingController extends Controller
 
 						->first();
 					$room_id=$a->room_id;
-					$room=DB::table('room')->whereNotIn('id',['$room_id'])
+					$room=DB::table('room')->whereNotIn('id',[$room_id])
 											->pluck('id');
+											
 				}
-				
+				//dd($room);
 				$array_room['room']=DB::table('room')->where('cate_id',$cate_id)
 									->whereIn('id',$room)
 									->where('status',1)
@@ -119,9 +129,10 @@ class BookingController extends Controller
 		$price=DB::table('cate_room')->where('id',$cate_id)
 							->first()->price;
 		$bill_id = DB::table('bill')->insertGetId([
-            'user_id' => '1',
+            'user_id' => Session('user_id'),
             'check_in' => $check_in,
-            'check_out' => $check_out,
+			'check_out' => $check_out,
+			'day' => ($interval->d),
             'status'=> '1',
             'total_billed'=>$price*($interval->d)
         ]);
@@ -134,7 +145,9 @@ class BookingController extends Controller
         DB::table('detailed_invoice')->insert([
             'bill_id' => $bill_id,
             'room_id' => $room_id,
-        ]);
+		]);
+		
+		$request->session()->forget('user_id');
 
         return redirect()->to('admin/hoa_don/chua_nhan_phong');
 	}

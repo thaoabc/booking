@@ -22,6 +22,7 @@ class CreateBillTable extends Migration
                 ->onDelete('cascade');
             $table->date('check_in');
             $table->date('check_out');
+            $table->integer('day');
             $table->integer('status');
             $table->integer('total_billed');
         });

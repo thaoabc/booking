@@ -14,17 +14,8 @@ class BillController extends Controller
 {   
     public function getDay($status)
     {
-        $bill=new bill();
-        //getdate
-        $check_in=bill::first()->check_in;
-        $check_out=bill::first()->check_out;
-        $now=Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
-        $date1 = new DateTime($check_in);
-        $date2 = new DateTime($check_out);
-        $interval = ($date1->diff($date2))->d;
-
+        //dd($interval);
         $array_date=array(
-            "day"  => $interval,
             "status" => $status,
         );
 
@@ -35,8 +26,8 @@ class BillController extends Controller
         $bill=new bill();
         //getdate
         $interval = $this->getDay('1');
+        
         $array_bill=$bill->chua_nhan_phong();
-
         return view('admins.page.bill.list',['array_bill'=>$array_bill],['day'=>$interval]);
     }
     public function dang_su_dung()

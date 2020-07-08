@@ -46,7 +46,12 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Mô tả(*)</label>
                             <textarea name="describe" rows="10" placeholder="Nhập nội dung"
-                                      class="form-control">{{ old('describe') }}</textarea>
+                                        class="form-control">{{ old('content') }}</textarea>
+                             @if ($errors->has('describe'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('describe') }}</strong>
+                                </span>
+                            @endif
                         </div>
                         <div class="form-group">
                             <label for="exampleInputFile">Ảnh nền</label>
@@ -67,14 +72,14 @@
             </div>
 
             <script>
-                CKEDITOR.replace('describe', {
+                {{--  CKEDITOR.replace('describe', {
                     filebrowserBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html',
                     filebrowserImageBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html?type=Images',
                     filebrowserFlashBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html?type=Flash',
                     filebrowserUploadUrl: '{{asset("")}}ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
                     filebrowserImageUploadUrl: '{{asset("")}}ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
                     filebrowserFlashUploadUrl: '{{asset("")}}ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
-                });
+                });  --}}
 
 
                 function showIMG() {

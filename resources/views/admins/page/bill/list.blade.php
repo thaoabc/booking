@@ -53,9 +53,7 @@
                                         <th>Tên khách hàng</th>
                                         <th>Ngày nhận phòng</th>
                                         <th>Ngày trả phòng</th>
-                                        @if(!empty($day))
-                                            <th>Số ngày</th>
-                                        @endif
+                                        <th>Số ngày</th>
                                         <th>Thành tiền</th>
                                         @if($day['status']==1)
                                             <th>Nhận phòng</th>
@@ -73,9 +71,7 @@
                                            <td>{{$value->name}}</td>
                                         <td>{{$value->check_in}}</td>
                                         <td>{{$value->check_out}}</td>
-                                        @if(!empty($day))
-                                            <th>{{$day['day']}}</th>
-                                        @endif
+                                        <td>{{$value->day}}</td>
                                         <td>{{$value->total_billed}}</td>
                                         @if($day['status']==1)
                                             <td><a href="{{route('xac_nhan',['id'=>$value->bill_id])}}" class="btn btn-primary a-btn-slide-text">
