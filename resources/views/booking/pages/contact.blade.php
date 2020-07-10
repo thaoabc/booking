@@ -14,19 +14,19 @@
                             <tbody>
                                 <tr>
                                     <td class="c-o">Address:</td>
-                                    <td>856 Cordia Extension Apt. 356, Lake, US</td>
+                                    <td>{{$contact->address}}</td>
                                 </tr>
                                 <tr>
                                     <td class="c-o">Phone:</td>
-                                    <td>(12) 345 67890</td>
+                                    <td>{{$contact->phone}}</td>
                                 </tr>
                                 <tr>
                                     <td class="c-o">Email:</td>
-                                    <td>info.colorlib@gmail.com</td>
+                                    <td>{{$contact->email}}</td>
                                 </tr>
                                 <tr>
-                                    <td class="c-o">Fax:</td>
-                                    <td>+(12) 345 67890</td>
+                                    <td class="c-o">Mã số thuế:</td>
+                                    <td>{{$contact->masothue}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -50,10 +50,7 @@
                 </div>
             </div>
             <div class="map">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.0606825994123!2d-72.8735845851828!3d40.760690042573295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e85b24c9274c91%3A0xf310d41b791bcb71!2sWilliam%20Floyd%20Pkwy%2C%20Mastic%20Beach%2C%20NY%2C%20USA!5e0!3m2!1sen!2sbd!4v1578582744646!5m2!1sen!2sbd"
-                    height="470" style="border:0;" allowfullscreen=""></iframe>
-            </div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.8608087413927!2d105.79189341493274!3d21.038254685993156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab3829364ab7%3A0x3034d069a38bef5b!2zVOG7lSBo4bujcCBuaMOgIMSRYSBuxINuZywgNzIgVHLhuqduIMSQxINuZyBOaW5oLCBE4buLY2ggVuG7jW5nLCBD4bqndSBHaeG6pXksIEjDoCBO4buZaQ!5e0!3m2!1sfr!2s!4v1594290606606!5m2!1sfr!2s" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>            </div>
         </div>
     </section>
     <!-- Contact Section End -->

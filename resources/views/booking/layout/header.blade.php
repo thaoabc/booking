@@ -27,7 +27,7 @@
         </div>
         <nav class="mainmenu mobile-menu">
             <ul>
-                <li class="active"><a href="./index.html">Home</a></li>
+                <li class="active"><a href="{{route('index')}}">Home</a></li>
                 <li><a href="./rooms.html">Rooms</a></li>
                 <li><a href="./about-us.html">About Us</a></li>
                 <li><a href="./pages.html">Pages</a>
@@ -38,8 +38,8 @@
                         <li><a href="#">Premium Room</a></li>
                     </ul>
                 </li>
-                <li><a href="./blog.html">News</a></li>
-                <li><a href="./contact.html">Contact</a></li>
+                <li><a href="{{route('blog')}}">News</a></li>
+                <li><a href="{{route('contact')}}">Contact</a></li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
@@ -78,8 +78,8 @@
                                 <span>EN <i class="fa fa-angle-down"></i></span>
                                 <div class="flag-dropdown">
                                     <ul>
-                                        <li><a href="#">Zi</a></li>
-                                        <li><a href="#">Fr</a></li>
+                                        <li><a href="{!! route('user.change-language', ['en']) !!}">English</a></li>
+                                        <li><a href="{!! route('user.change-language', ['vi']) !!}">Vietnam</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -93,8 +93,9 @@
                 <div class="row">
                     <div class="col-lg-2">
                         <div class="logo">
-                            <a href="./index.html">
+                            <a href="{{route('index')}}">
                                 <img src="assets/sona/img/logo.png" alt="">
+                                {{ trans('home.welcome') }}
                             </a>
                         </div>
                     </div>
@@ -102,19 +103,18 @@
                         <div class="nav-menu">
                             <nav class="mainmenu">
                                 <ul>
-                                    <li class="active"><a href="./index.html">Home</a></li>
-                                    <li><a href="./rooms.html">Rooms</a></li>
-                                    <li><a href="./about-us.html">About Us</a></li>
-                                    <li><a href="./pages.html">Pages</a>
+                                    <li class="active"><a href="{{route('index')}}">Home</a></li>
+                                    <li><a href="{{route('category_room')}}">Rooms</a></li>
+                                    <li><a href="{{route('about_us')}}">About Us</a></li>
+                                    <li><a >Pages</a>
                                         <ul class="dropdown">
-                                            <li><a href="./room-details.html">Room Details</a></li>
-                                            <li><a href="./blog-details.html">Blog Details</a></li>
+                                            <li><a href="{{route('detail_blog')}}">Blog Details</a></li>
                                             <li><a href="#">Family Room</a></li>
                                             <li><a href="#">Premium Room</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="./blog.html">News</a></li>
-                                    <li><a href="./contact.html">Contact</a></li>
+                                    <li><a href="{{route('blog')}}">News</a></li>
+                                    <li><a href="{{route('contact')}}">Contact</a></li>
                                 </ul>
                             </nav>
                             <div class="nav-right search-switch">

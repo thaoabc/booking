@@ -17,15 +17,21 @@
 
 Auth::routes();
 
+Route::group(['middleware' => 'locale'], function() {
+    Route::get('change-language/{language}', 'Template\HomeController@changeLanguage')
+        ->name('user.change-language');
+});
+
 route::get('','Template@welcome')->name('index');
-route::get('category_room','Template@category_room')->name('category_room');
-route::get('detail_room','Template@detail_room')->name('detail_room');
+route::get('category_room','Template\RoomController@category_room')->name('category_room');
+route::get('detail_room/{id}','Template\RoomController@detail_room')->name('room.detail_room');
+
+route::get('contact','Template\ContactController@view')->name('contact');
 
 route::get('blog','Template@blog')->name('blog');
 
 route::get('detail_blog','Template@detail_blog')->name('detail_blog');
 
-route::get('contact','Template@contact')->name('contact');
 
 route::get('about_us','Template@about_us')->name('about_us');
 
@@ -107,6 +113,15 @@ Route::group(['prefix' => 'admin','middleware' => 'CheckAdmin'],function(){
 		Route::get('xac_nhan/{bill_id}','BillController@xac_nhan')->name('xac_nhan');
 		Route::get('dung_thue/{bill_id}','BillController@dung_thue')->name('dung_thue');
 		Route::get('thanh_toan/{bill_id}','BillController@thanh_toan')->name('thanh_toan');
+	});
+
+	Route::group(['prefix'=>'contact'],function(){
+		Route::get('view_all','ContactController@view_all')->name('contact.list');
+		Route::get('view_insert_contact','ContactController@view_insert')->name('contact.add');
+		Route::post('process_insert_contact','ContactController@process_insert')->name('process_insert_contact');
+		Route::get('delete_contact/{id}','ContactController@delete')->name('delete_contact');
+		Route::get('view_one_contact/{id}','ContactController@view_one')->name('view_one_contact');
+		Route::post('process_update_contact/{id}','ContactController@update')->name('process_update_contact');
 	});
 
 	Route::group(['prefix'=>'thong_ke'],function(){

@@ -1,0 +1,38 @@
+#map {
+	margin-bottom: 1rem;
+}
+
+.contact__box {
+	background-color: #f2f2f2;
+	border: 1px solid #ccc;
+	padding: 1rem;
+
+}
+
+.contact__company-title {
+	color: #0aa246;
+	font-size: 2.5rem;
+	text-transform: uppercase;
+	font-weight: 700;
+	margin-bottom: 1rem;
+}
+
+.contact__company-desc {
+	color: #0aa246;
+	font-size: 1.8rem;
+	text-transform: uppercase;
+	margin-bottom: 0.5rem;
+}
+
+.contact__company-name {
+	font-style: italic;
+	margin-bottom: 0.5rem;
+}
+
+.contact__company .col-md-5 {
+	padding-left: 0;
+}
+
+.contact__company .col-md-5 {
+	margin-right: 0;
+}

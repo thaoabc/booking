@@ -3,19 +3,87 @@
    License: none (public domain)
 */
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
     margin: 0;
     padding: 0;
     border: 0;
@@ -23,29 +91,51 @@ time, mark, audio, video {
     font: inherit;
     vertical-align: baseline;
 }
+
+
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
     display: block;
 }
+
 body {
     line-height: 1;
 }
-ol, ul {
+
+ol,
+ul {
     list-style: none;
 }
-blockquote, q {
+
+blockquote,
+q {
     quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
     content: '';
     content: none;
 }
+
 table {
     border-collapse: collapse;
     border-spacing: 0;
 }
+
 
 /*-------Setup basics CSS---------*/
 
@@ -63,7 +153,8 @@ html {
 }
 
 html {
-    font-size: 62.5%;/* 1rem = 10px */
+    font-size: 62.5%;
+    /* 1rem = 10px */
     /*overflow-x: hidden;*/
 }
 
@@ -94,7 +185,9 @@ button {
     font-family: 'Roboto Condensed', sans-serif;
 }
 
+
 /*------------Style Here-------------*/
+
 
 /*---Header---*/
 
@@ -121,7 +214,7 @@ button {
     height: 100%;
 }
 
-.sb-slider li a > img {
+.sb-slider li a>img {
     width: 100%;
     height: 100%;
 }
@@ -134,7 +227,7 @@ button {
 
 .icon-animation {
     position: absolute;
-    z-index: 99;  
+    z-index: 99;
 }
 
 .icon-animation-1 {
@@ -174,7 +267,7 @@ button {
 
 .slide-text .slide-text--title {
     color: #fff;
-    display: block; 
+    display: block;
     font-size: 6rem;
     font-family: 'Lobster', cursive;
     letter-spacing: 1rem;
@@ -206,25 +299,25 @@ button {
     transition: 0.5s;
     transform: translateY(100px);
     font-family: 'Lobster', cursive;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
 }
 
 .slide-text .slide-text--desc span {
     display: inline-block;
     position: relative;
     opacity: 0;
-    transition: 0.5s;   
+    transition: 0.5s;
     transition-delay: 2.5s;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 .slide-text .slide-text--desc2 span {
     display: inline-block;
     position: relative;
     opacity: 0;
-    transition: 0.5s;   
+    transition: 0.5s;
     transition-delay: 5s;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 .sb-slider .talent {
@@ -240,7 +333,9 @@ button {
     letter-spacing: 0.2px;
 }
 
+
 /*---Content----*/
+
 
 /*--Service Index--*/
 
@@ -254,7 +349,6 @@ button {
     background: rgba(0, 0, 0, 0) url('http://thietkewebnhanh247.com/wp-content/themes/thietkewebsite/img/bg_h2.png') no-repeat scroll center bottom;
     padding-bottom: 2.5rem;
 }
-
 
 .content {
     font-size: 1.6rem;
@@ -278,13 +372,10 @@ button {
     box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.08);
     z-index: 2;
     transform: scale(1.11);
-
 }
 
-
-
 .list__services-stt:nth-child(2) {
-    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.08) ;
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.08);
     z-index: 2;
     border-radius: 2px;
     padding: 1rem;
@@ -309,7 +400,7 @@ button {
 .list__services-stt .list__services-link:hover,
 .list__services-title a:hover,
 .list__services-desc a:hover {
-    color:#ffc10e;
+    color: #ffc10e;
 }
 
 .list__services-title a {
@@ -317,7 +408,6 @@ button {
     font-weight: 700;
     font-size: 2rem;
     padding-bottom: 1rem;
-
 }
 
 .list__services-stt .list__services-link {
@@ -334,6 +424,7 @@ button {
     transition: all 0.4s;
 }
 
+
 /*.list__services-stt:nth-child(2) {
     background-image: url('http://thietkewebnhanh247.com/wp-content/themes/thietkewebsite/img/webdesign.png');
     background-size: cover;
@@ -348,6 +439,7 @@ button {
     transform: scale(0.89);
     transition: all 0.4s;
 }
+
 
 /*.list__services-stt:hover:first-child .list__services-stt:nth-child(2),
 .list__services-stt:hover:last-child .list__services-stt:nth-child(2) {
@@ -379,6 +471,7 @@ button {
     position: relative;
 }
 
+
 /*.group__services:after {
     content: "";
     background-color: #137cc0;
@@ -399,6 +492,7 @@ button {
     display: block;
     margin: 3rem auto 0;
 }
+
 
 /*--Services Block--*/
 
@@ -437,6 +531,7 @@ i.fas.fa-globe-americas {
 .services__block-stt a:hover i.fas.fa-globe-americas {
     border-color: #01923e;
 }
+
 .services__block-stt a i.fas.fa-book,
 .services__block-stt a i.far.fa-list-alt,
 .services__block-stt a i.fas.fa-pencil-alt,
@@ -453,7 +548,7 @@ i.fas.fa-globe-americas {
     background-color: #F2F2F2;
     padding: 2.5rem 0 1.5rem;
     margin-bottom: 1rem;
-} 
+}
 
 .welcome__massage-wrap {
     text-align: center;
@@ -480,6 +575,7 @@ i.fas.fa-globe-americas {
     margin-bottom: 20px;
 }
 
+
 /*--List Category--*/
 
 .list__category {
@@ -492,10 +588,12 @@ i.fas.fa-globe-americas {
     justify-content: space-between;
     /*align-items: center;*/
 }
+
 .list__category-item div a img {
     width: 30px;
     height: 30px;
 }
+
 
 /* .list__category-item li {
     padding: 0px 1rem;
@@ -514,6 +612,7 @@ i.fas.fa-globe-americas {
 .list__category-item li a img {
     margin: 0 auto;
 } */
+
 
 /*--WooCommerce--*/
 
@@ -546,6 +645,7 @@ i.fas.fa-globe-americas {
     color: #333;
 }
 
+
 /*--More info---*/
 
 .more__info {
@@ -562,12 +662,12 @@ i.fas.fa-globe-americas {
 
 .more__info-wrap {
     color: white;
-    text-align: center;   
+    text-align: center;
     margin: auto;
 }
 
 .more__info-wrap--p {
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     padding: 2rem;
 }
 
@@ -587,6 +687,7 @@ i.fas.fa-globe-americas {
 .more__info-wrap--btn .btn.btn-success {
     margin-left: 1rem;
 }
+
 
 /*--Customer--*/
 
@@ -609,6 +710,7 @@ i.fas.fa-globe-americas {
     border: none;
 }
 
+
 /*--Contact--*/
 
 .contact {
@@ -621,6 +723,7 @@ i.fas.fa-globe-americas {
     text-align: center;
     padding: 0 7rem;
 }
+
 .contact__wrap-text {
     font-weight: 700;
     font-size: 2.6rem;
@@ -652,10 +755,11 @@ i.fas.fa-globe-americas {
     color: #969696;
 }
 
-.contact__wrap-detail--text > a {
+.contact__wrap-detail--text>a {
     color: #333;
     font-weight: 700;
 }
+
 
 /*---Footer---*/
 
@@ -675,17 +779,18 @@ i.fas.fa-globe-americas {
     margin-bottom: 1%;
     /*display: inline-block;*/
 }
+
 .footer__wrap-info li a:hover,
 .footer__detail-service--text li a:hover,
 .footer__detail-support--text li a:hover,
-.footer__detail-design--text li a:hover
-{
-    color:#01923e; 
+.footer__detail-design--text li a:hover {
+    color: #01923e;
 }
+
 .footer__wrap-info li i.check,
 .footer__detail-service--text li i.check,
 .footer__detail-support--text li i.check,
-.footer__detail-design--text li i.check{
+.footer__detail-design--text li i.check {
     color: #333;
     margin-right: 2%;
 }
@@ -693,7 +798,7 @@ i.fas.fa-globe-americas {
 .footer__wrap-info li i.check,
 .footer__detail-service--text li i,
 .footer__detail-support--text li i,
-.footer__detail-design--text li i{
+.footer__detail-design--text li i {
     padding-right: 0.5rem;
 }
 
@@ -705,6 +810,7 @@ i.fas.fa-globe-americas {
     font-weight: 700;
     padding-bottom: 1rem;
 }
+
 
 /*--Copy-right--*/
 
@@ -721,7 +827,6 @@ i.fas.fa-globe-americas {
     display: flex;
     align-items: center;
     line-height: 44px;
-
 }
 
 .copy__right--text i {
@@ -742,27 +847,28 @@ i.fas.fa-globe-americas {
     /*color: #fff;*/
 }
 
+
 /**/
 
-.box{
-  background-color: #000;
-  transition: ease-in-out 3s;
-  background-position: top;
-  background-size: cover;
-  max-width: 100%;
-  padding-left: 10px;
-  height: 400px;
-  border: #767676 solid 1px;
-  margin-bottom: 100px!important;
-}
-.box:hover{
-  background-position: bottom;
-  cursor: pointer;
-  /*box-shadow: 1px -1px 10px 3px #8c8c8c;*/
+.box {
+    background-color: #000;
+    transition: ease-in-out 3s;
+    background-position: top;
+    background-size: cover;
+    max-width: 100%;
+    padding-left: 10px;
+    height: 400px;
+    border: #767676 solid 1px;
+    margin-bottom: 100px!important;
 }
 
+.box:hover {
+    background-position: bottom;
+    cursor: pointer;
+    /*box-shadow: 1px -1px 10px 3px #8c8c8c;*/
+}
 
-.modal{
+.modal {
     z-index: 999999999;
 }
 
@@ -774,7 +880,7 @@ i.fas.fa-globe-americas {
     margin-left: 2rem;
 }
 
-tbody  {
+tbody {
     text-align: left;
 }
 
@@ -785,7 +891,8 @@ tbody  {
     align-items: flex-start;
 }
 
-.media-body p a, .big-title {
+.media-body p a,
+.big-title {
     font-weight: 700;
 }
 
@@ -793,23 +900,23 @@ tbody  {
     margin-right: 2rem;
 }
 
-#id01 .justify-content-start
-{
+#id01 .justify-content-start {
     display: flex;
 }
-#id01 .justify-content-start i
-{
+
+#id01 .justify-content-start i {
     margin-right: 1rem;
 }
-#id01 .justify-content-start span
-{
+
+#id01 .justify-content-start span {
     line-height: 2rem;
 }
 
-.bang-gia{
+.bang-gia {
     border: #767676 solid 1px;
 }
-.bang-gia tr td{
+
+.bang-gia tr td {
     border: #767676 solid 1px;
     font-weight: bold;
     font-family: inherit;

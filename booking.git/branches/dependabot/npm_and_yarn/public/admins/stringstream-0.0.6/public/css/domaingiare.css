@@ -1,0 +1,64 @@
+.time {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.far.fa-calendar-alt {
+	padding-right: 1rem;
+}
+
+.domain__title {
+	font-size: 2rem;
+	font-weight: 700;
+	padding-bottom: 1rem;
+}
+
+table {
+    width: 100%;
+}
+
+.sstable table th {
+    background: #F2F2F2;
+    border-bottom: 1px solid #ccc;
+    border-left: 1px solid #145c92;
+    border-right: 1px solid #145c92;
+    box-shadow: 0 -11px 15px rgba(0, 0, 0, 0.05) inset;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 6px 12px;
+    text-shadow: 0 1px 0 #fff;
+    text-align: center;
+}
+
+.sstable table tbody td {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    box-shadow: 0 0 2px #f4f4f4 inset;
+    font-size: 16px;
+    vertical-align: middle !important;
+}
+
+.sstable table td {
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    padding: 9px 12px;
+}
+.entry_content_page ol li::before, .entry_content_page ul li::before {
+    color: #01923e;
+    content: "";
+    font-family: FontAwesome;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: normal;
+    left: 0;
+    padding-right: 0.5em;
+    position: absolute;
+    text-decoration: inherit;
+    top: 0;
+}
+:after, :before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}

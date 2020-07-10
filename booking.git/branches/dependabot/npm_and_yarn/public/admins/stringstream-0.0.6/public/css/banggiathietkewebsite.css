@@ -1,0 +1,69 @@
+.time {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.far.fa-calendar-alt {
+	padding-right: 1rem;
+}
+
+.block__title {
+	padding-top: 3rem;
+	font-size: 2.3rem;
+	font-weight: 700;
+	padding-bottom: 2rem;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.price-list .box_price {
+    margin: 0 auto 30px;
+    max-width: 300px;
+    box-shadow: 3px 3px 3px #ccc;
+    border: 1px solid #f2f2f2;
+}
+
+.price-list .lbl {
+    background: #0f66a0;
+    text-align: center;
+    color: #fff;
+    padding: 10px;
+}
+
+.lbl span, .price span {
+	font-size: 2rem;
+	font-weight: 700;
+}
+
+.price {
+	padding: 10px;
+}
+
+.price-list .price {
+    background: #8cc63e;
+    text-align: center;
+    color: #fff;
+}
+
+.price-list .box_price .content__price {
+    padding: 15px;
+}
+
+.content__price ol li, .content__price ul li {
+    color: #333;
+    display: block;
+    font-size: 15px;
+    padding-bottom: 5px;
+    position: relative;
+    text-align: left;
+    /*font-family: RR;*/
+}
+
+.price-list .content__price .text-center a {
+    display: block;
+    padding: 10px 0;
+    background: #8cc63e;
+    color: #fff;
+}

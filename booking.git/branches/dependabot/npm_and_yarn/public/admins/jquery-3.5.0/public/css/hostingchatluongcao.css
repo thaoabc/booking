@@ -1,0 +1,74 @@
+.time {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.far.fa-calendar-alt {
+	padding-right: 1rem;
+}
+
+.hosting__title {
+	font-size: 2rem;
+	font-weight: 700;
+	padding-bottom: 1rem;
+    padding-top: 3rem;
+}
+
+.container_hosting_page .panel {
+    border: 1px solid #CCC;
+}
+
+.panel.price, .panel.price>.panel-heading {
+    border-radius: 0px;
+    -moz-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    -webkit-transition: all .3s ease;
+    border: 1px solid #CCC;
+}
+
+.panel {
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+
+.price.panel-red>.panel-heading {
+    color: #fff;
+    background-color: #D04E50;
+    border-color: #FF6062;
+    border-bottom: 1px solid #FF6062;
+}
+
+.panel.price>.panel-heading {
+    box-shadow: 0px 5px 0px rgba(50,50,50, .2) inset;
+    text-shadow: 0px 3px 0px rgba(50,50,50, .6);
+}
+
+.panel-body {
+    padding: 15px;
+}
+
+.price .panel-footer {
+    color: #fff;
+    border-bottom: 0px;
+    background-color: rgba(0,0,0, .1);
+    box-shadow: 0px 3px 0px rgba(0,0,0, .3);
+}
+
+.panel.price:hover {
+    box-shadow: 0px 0px 30px rgba(0,0,0,.2);
+}
+
+.price.panel-red>.panel-body {
+    color: #fff;
+    background-color: #EF5A5C;
+}
+
+.panel-body {
+    padding: 15px;
+}

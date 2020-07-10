@@ -25,10 +25,10 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="room-details-item">
-                        <img src="assets/sona/img/room/room-details.jpg" alt="">
+                        <img width="750px" height="430px" src="{{asset('assets/cate_room').'/'.$cate_room->image}}" alt="">
                         <div class="rd-text">
                             <div class="rd-title">
-                                <h3>Premium King Room</h3>
+                                <h3>{{$cate_room->name}}</h3>
                                 <div class="rdt-right">
                                     <div class="rating">
                                         <i class="icon_star"></i>
@@ -40,7 +40,7 @@
                                     <a href="#">Booking Now</a>
                                 </div>
                             </div>
-                            <h2>159$<span>/Pernight</span></h2>
+                            <h2>{{$cate_room->price}}VND<span>/Pernight</span></h2>
                             <table>
                                 <tbody>
                                     <tr>
@@ -61,13 +61,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <p class="f-para">Motorhome or Trailer that is the question for you. Here are some of the
-                                advantages and disadvantages of both, so you will be confident when purchasing an RV.
-                                When comparing Rvs, a motorhome or a travel trailer, should you buy a motorhome or fifth
-                                wheeler? The advantages and disadvantages of both are studied so that you can make your
-                                choice wisely when purchasing an RV. Possessing a motorhome or fifth wheel is an
-                                achievement of a lifetime. It can be similar to sojourning with your residence as you
-                                search the various sites of our great land, America.</p>
+                            <p class="f-para">{{$cate_room->describe}}</p>
                             <p>The two commonly known recreational vehicle classes are the motorized and towable.
                                 Towable rvs are the travel trailers and the fifth wheel. The rv travel trailer or fifth
                                 wheel has the attraction of getting towed by a pickup or a car, thus giving the
