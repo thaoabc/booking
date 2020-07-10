@@ -18,14 +18,14 @@
 Auth::routes();
 
 route::get('','Template@welcome')->name('index');
-route::get('category_room','Template@category_room')->name('category_room');
-route::get('detail_room','Template@detail_room')->name('detail_room');
+route::get('category_room','Template\RoomController@category_room')->name('category_room');
+route::get('detail_room','Template\RoomController@detail_room')->name('detail_room');
 
 route::get('blog','Template@blog')->name('blog');
 
 route::get('detail_blog','Template@detail_blog')->name('detail_blog');
 
-route::get('contact','Template@contact')->name('contact');
+route::get('contact','Template\ContactController@view')->name('contact');
 
 route::get('about_us','Template@about_us')->name('about_us');
 
