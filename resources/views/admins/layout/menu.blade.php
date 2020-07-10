@@ -93,6 +93,18 @@
                     
                 </ul>
             </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-tty"></i> <span>Liên hệ</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{Route('contact.list')}}"><i class="fa fa-list"></i> Danh sách liên hệ</a></li>
+                    <li><a href="{{Route('contact.add')}}"><i class="fa fa-plus"></i> Thêm liên hệ</a></li>
+                </ul>
+            </li>
             {{--  <li class="treeview">
                 <a href="#">
                     <i class="fa fa-address-book"></i> <span>Thống kê</span>

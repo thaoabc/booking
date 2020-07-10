@@ -27,7 +27,7 @@
                     @foreach($cate_room as $value)
                     <div class="col-lg-4 col-md-6">
                         <div class="room-item">
-                        <img width="100px" src="{{asset('assets/cate_room').'/'.$value->image }}">
+                        <img width="360px" height="234px" src="{{asset('assets/cate_room').'/'.$value->image }}">
                             <div class="ri-text">
                                 <h4>{{$value->name}}</h4>
                                 <h3>{{$value->price}}<span>/Pernight</span></h3>

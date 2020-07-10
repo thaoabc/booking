@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="room-details-item">
-                        <img src="{{asset('assets/cate_room').'/'.$cate_room->image}}" alt="">
+                        <img width="750px" height="430px" src="{{asset('assets/cate_room').'/'.$cate_room->image}}" alt="">
                         <div class="rd-text">
                             <div class="rd-title">
                                 <h3>{{$cate_room->name}}</h3>

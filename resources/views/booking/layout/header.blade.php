@@ -78,8 +78,8 @@
                                 <span>EN <i class="fa fa-angle-down"></i></span>
                                 <div class="flag-dropdown">
                                     <ul>
-                                        {{--  <li><a href="{!! route('user.change-language', ['en']) !!}">English</a></li>
-                                        <li><a href="{!! route('user.change-language', ['vi']) !!}">Vietnam</a></li>  --}}
+                                        <li><a href="{!! route('user.change-language', ['en']) !!}">English</a></li>
+                                        <li><a href="{!! route('user.change-language', ['vi']) !!}">Vietnam</a></li>
                                     </ul>
                                 </div>
                             </div>
