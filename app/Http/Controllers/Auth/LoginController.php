@@ -40,10 +40,6 @@ class LoginController extends Controller
     {
         $this->middleware('guest:admin')->except('logout');
     }
-    public function FunctionName(Type $var = null)
-    {
-        # code...
-    }
 
     public function getLogin() {
         return view('auth.login');
