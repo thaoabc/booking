@@ -161,11 +161,12 @@
         <div class="container-fluid">
             <div class="hp-room-items">
                 <div class="row">
+                @foreach($cate_room as $value)
                     <div class="col-lg-3 col-md-6">
-                        <div class="hp-room-item set-bg" data-setbg="assets/sona/img/room/room-b1.jpg">
+                    <div class="hp-room-item set-bg" width="360px" height="234px" data-setbg="{{asset('assets/cate_room').'/'.$value->image }}">
                             <div class="hr-text">
-                                <h3>Double Room</h3>
-                                <h2>199$<span>/Pernight</span></h2>
+                                <h4>{{$value->name}}</h4>
+                                <h3>{{$value->price}}<span>/Pernight</span></h3>
                                 <table>
                                     <tbody>
                                         <tr>
@@ -174,7 +175,7 @@
                                         </tr>
                                         <tr>
                                             <td class="r-o">Capacity:</td>
-                                            <td>Max persion 5</td>
+                                            <td>Max persion 3</td>
                                         </tr>
                                         <tr>
                                             <td class="r-o">Bed:</td>
@@ -186,97 +187,11 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <a href="#" class="primary-btn">More Details</a>
+                                <a href="{{ url('detail_cateroom/'. $value->id) }}" class="primary-btn">More Details</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="hp-room-item set-bg" data-setbg="assets/sona/img/room/room-b2.jpg">
-                            <div class="hr-text">
-                                <h3>Premium King Room</h3>
-                                <h2>159$<span>/Pernight</span></h2>
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td class="r-o">Size:</td>
-                                            <td>30 ft</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="r-o">Capacity:</td>
-                                            <td>Max persion 5</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="r-o">Bed:</td>
-                                            <td>King Beds</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="r-o">Services:</td>
-                                            <td>Wifi, Television, Bathroom,...</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <a href="#" class="primary-btn">More Details</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="hp-room-item set-bg" data-setbg="assets/sona/img/room/room-b3.jpg">
-                            <div class="hr-text">
-                                <h3>Deluxe Room</h3>
-                                <h2>198$<span>/Pernight</span></h2>
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td class="r-o">Size:</td>
-                                            <td>30 ft</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="r-o">Capacity:</td>
-                                            <td>Max persion 5</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="r-o">Bed:</td>
-                                            <td>King Beds</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="r-o">Services:</td>
-                                            <td>Wifi, Television, Bathroom,...</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <a href="#" class="primary-btn">More Details</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="hp-room-item set-bg" data-setbg="assets/sona/img/room/room-b4.jpg">
-                            <div class="hr-text">
-                                <h3>Family Room</h3>
-                                <h2>299$<span>/Pernight</span></h2>
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td class="r-o">Size:</td>
-                                            <td>30 ft</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="r-o">Capacity:</td>
-                                            <td>Max persion 5</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="r-o">Bed:</td>
-                                            <td>King Beds</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="r-o">Services:</td>
-                                            <td>Wifi, Television, Bathroom,...</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <a href="#" class="primary-btn">More Details</a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

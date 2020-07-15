@@ -19,7 +19,7 @@
             <section class="content">
             <div class="box box-primary">
 
-                <form role="form" method="POST" action="{{route('view_phong')}}" enctype="multipart/form-data">
+                <form role="form" method="POST" action="{{ route('view_phong') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="box-body">
                         <div class="form-group">

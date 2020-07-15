@@ -38,9 +38,10 @@ Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail'
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset.token');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
-route::get('', 'Template@welcome')->name('index');
+route::get('', 'Template\HomeController@welcome')->name('index');
 route::get('category_room', 'Template\RoomController@category_room')->name('category_room');
-route::get('detail_room/{id}', 'Template\RoomController@detail_room')->name('room.detail_room');
+route::get('detail_cateroom/{id}', 'Template\RoomController@detail_cateroom')->name('room.detail_cateroom');
+route::post('detail_cateroom/{id}','Template\BookingController@check_room')->name('room.check_room');
 
 route::get('contact', 'Template\ContactController@view')->name('contact');
 
@@ -117,7 +118,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'CheckAdmin'], function () {
 
 	Route::group(['prefix' => 'dat_phong'], function () {
 		Route::get('view_dat_phong/{id}', 'BookingController@view_dat_phong')->name('view_dat_phong');
-		Route::post('view_phong', 'BookingController@view_phong')->name('view_phong');
+		Route::post('view_phong', 'BookingController@check_phong')->name('view_phong');
 		Route::post('dat_phong', 'BookingController@dat_phong')->name('dat_phong');
 	});
 

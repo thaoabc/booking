@@ -14,9 +14,14 @@ use Session;
 class HomeController extends Controller
 {
     public function changeLanguage($language)
-{
-    Session::put('website_language', $language);
+    {
+        Session::put('website_language', $language);
 
-    return redirect()->back();
-}
+        return redirect()->back();
+    }
+    public function welcome()
+    {
+        $array['cate_room'] = DB::table('cate_room')->paginate(4);
+        return view('booking.index',$array);
+    }
 }

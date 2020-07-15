@@ -2744,7 +2744,7 @@ ol {
 }
 
 @media (min-width: 992px) {
-    .col-lg-12 {
+    .rooms-section .col-lg-12 {
         left: 35%;
     }
 }

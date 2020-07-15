@@ -15,7 +15,7 @@ use App\Model\khach_hang;
 use App\Model\bill;
 use App\Model\bill_chi_tiet;
 use App\Model\room;
-
+use Symfony\Component\HttpFoundation\Session\Session as SessionSession;
 
 class BookingController extends Controller
 {
@@ -28,17 +28,18 @@ class BookingController extends Controller
 		else{
 			Session::put('user_id',$user_id);
 			$array_loai_phong['cate_room']=DB::table('cate_room')->get();
-			return view('admins.page.booking.view_booking',$array_loai_phong);
+			$var_user_id['user_id']=$user_id;
+			return view('admins.page.booking.view_booking',$array_loai_phong,$var_user_id);
 		}
 	}
 
-	public function view_phong(Request $request)
+	public function check_phong(Request $request)
 	{	
 		$bill=new bill();
 		$dt = Carbon::now('Asia/Ho_Chi_Minh');
 		$day=$dt->subDay(1)->toDateString();
 		$rules = [
-            'check_in' =>'date|after:'.$day,
+            'check_in' =>'required|after:'.$day,
             'check_out' =>'required|after:check_in'
         ];
         $messages = [
@@ -49,10 +50,9 @@ class BookingController extends Controller
         ];
         $validator = Validator::make($request->all(), $rules, $messages);
         
-        
         if ($validator->fails()) {
             // Điều kiện dữ liệu không hợp lệ sẽ chuyển về trang đăng nhập và thông báo lỗi
-            return redirect('admin/dat_phong/view_dat_phong')->withErrors($validator)->withInput();
+            return redirect()->route('view_dat_phong',Session('user_id'))->withErrors($validator)->withInput();
         } else {
 			$give_inf =  $request->all();
 			$cate_id=$request->input('cate_id');
