@@ -54,7 +54,7 @@
                                     <i class="icon_star"></i>
                                     <i class="icon_star-half_alt"></i>
                                 </div>
-                                <a href="#">Booking Now</a>
+                                <a href="#">Review</a>
                             </div>
                         </div>
                         <h2>{{$cate_room->price}}VND<span>/Pernight</span></h2>
@@ -79,11 +79,6 @@
                             </tbody>
                         </table>
                         <p class="f-para">{{$cate_room->describe}}</p>
-                        <p>The two commonly known recreational vehicle classes are the motorized and towable.
-                            Towable rvs are the travel trailers and the fifth wheel. The rv travel trailer or fifth
-                            wheel has the attraction of getting towed by a pickup or a car, thus giving the
-                            adaptability of possessing transportation for you when you are parked at your campsite.
-                        </p>
                     </div>
                 </div>
                 <div class="rd-reviews">
@@ -181,18 +176,14 @@
                         </span>
                         @endif
                         <div class="select-option">
-                            <label for="guest">Guests:</label>
-                            <select id="guest">
-                                <option value="">3 Adults</option>
-                            </select>
-                        </div>
-                        <div class="select-option">
                             <label for="room">Room:</label>
-                            <select id="room">
-                                <option value="">1 Room</option>
+                            <select name="amount_room">
+                                @for($i=1;$i<=$amount_room;$i++)
+                                    <option value="{{ $i }}">{{ $i }} Room</option>
+                                @endfor
                             </select>
                         </div>
-                        <button type="submit">Check Availability</button>
+                        <button type="submit">Booking Now</button>
                     </form>
                 </div>
             </div>

@@ -67,12 +67,9 @@
                     <div class="col-lg-6">
                         <div class="tn-right">
                             <div class="top-social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-tripadvisor"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
+                                <a href="#">Login</a>
+                                <a href="#">Register</a>
                             </div>
-                            <a href="#" class="bk-btn">Booking Now</a>
                             <div class="language-option">
                                 <img src="assets/sona/img/flag.jpg" alt="">
                                 <span>EN <i class="fa fa-angle-down"></i></span>
@@ -106,7 +103,7 @@
                                     <li class="active"><a href="{{route('index')}}">Home</a></li>
                                     <li><a href="{{route('category_room')}}">Rooms</a></li>
                                     <li><a href="{{route('about_us')}}">About Us</a></li>
-                                    <li><a >Pages</a>
+                                    <li><a>Pages</a>
                                         <ul class="dropdown">
                                             <li><a href="{{route('detail_blog')}}">Blog Details</a></li>
                                             <li><a href="#">Family Room</a></li>

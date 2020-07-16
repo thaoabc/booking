@@ -373,7 +373,6 @@ ol {
 
 .top-nav .tn-right .top-social {
     display: inline-block;
-    margin-right: 35px;
     padding: 13px 0;
 }
 
@@ -381,7 +380,16 @@ ol {
     display: inline-block;
     font-size: 16px;
     color: #19191a;
-    margin-left: 15px;
+    margin-left: 25px;
+}
+
+.top-nav .tn-right .top-social a::after {
+    position: absolute;
+    right: 190px;
+    width: 1px;
+    height: 20px;
+    background: #e5e5e5;
+    content: "";
 }
 
 .top-nav .tn-right .bk-btn {

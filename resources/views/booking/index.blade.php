@@ -14,7 +14,7 @@
                         <a href="#" class="primary-btn">Discover Now</a>
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1">
+                <!-- <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1">
                     <div class="booking-form">
                         <h3>Booking Your Hotel</h3>
                         <form action="#">
@@ -29,13 +29,6 @@
                                 <i class="icon_calendar"></i>
                             </div>
                             <div class="select-option">
-                                <label for="guest">Guests:</label>
-                                <select id="guest">
-                                    <option value="">2 Adults</option>
-                                    <option value="">3 Adults</option>
-                                </select>
-                            </div>
-                            <div class="select-option">
                                 <label for="room">Room:</label>
                                 <select id="room">
                                     <option value="">1 Room</option>
@@ -45,7 +38,7 @@
                             <button type="submit">Check Availability</button>
                         </form>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="hero-slider owl-carousel">

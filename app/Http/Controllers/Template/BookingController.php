@@ -36,7 +36,7 @@ class BookingController extends BaseController
     {
         $bill = new bill();
         $dt = Carbon::now('Asia/Ho_Chi_Minh');
-        $day = $dt->subDay(1)->toDateString();
+        $day = $dt->toDateString();
         $rules = [
             'check_in' => 'required|after:' . $day,
             'check_out' => 'required|after:check_in'
@@ -55,37 +55,53 @@ class BookingController extends BaseController
             return redirect()->route('room.detail_cateroom', $cate_id)->withErrors($validator)->withInput();
         } else {
             $give_inf =  $request->all();
+            $amount = $give_inf['amount_room'];
             $check_in = $give_inf['check_in'];
             $check_out = $give_inf['check_out'];
             $date1 = new DateTime($check_in);
             $date2 = new DateTime($check_out);
-            $bill = bill::whereDate('check_in', '<=', $date1)
+            $interval = $date1->diff($date2);
+            $price = DB::table('cate_room')->where('id', $cate_id)
+                ->first()->price;
+            $value_bill = array(
+                'user_id' => 1,
+                'check_in' => $date1,
+                'check_out' => $date2,
+                'day' => ($interval->d),
+                'total_billed' => $price * ($interval->d) * $amount,
+                'amount' => $amount,
+                'status' => 1
+            );
+            $bill = bill::select('bill_id')
+                ->whereDate('check_in', '<=', $date1)
                 ->whereDate('check_out', '>=', $date2)
                 ->whereIn('status', [1, 2])
+                ->get();
+            echo ($bill->pluck('bill_id')->all());
+            dd(2);
+            $bill_1 = bill::whereDate('check_in', '<=', $date2)
+                ->whereDate('check_in', '>', $date1)
+                ->whereIn('status', [1, 2])
                 ->pluck('bill_id');
+            $bill->push($bill_1->all());
+            $bill_2 = bill::whereDate('check_out', '>=', $date1)
+                ->whereDate('check_out', '<', $date2)
+                ->whereIn('status', [1, 2])
+                ->pluck('bill_id');
+            $bill->push($bill_2);
+            echo ($bill);
+            dd(1);
             if (($bill->count()) == 0) {
-                dd($bill->count());
                 $array_room['room'] = DB::table('room')
                     ->where('cate_id', $cate_id)
                     ->where('status', 1)
-                    ->get();
-
-                $interval = $date1->diff($date2);
-                $room_id = $array_room['room']->random()->id;
-                $price = DB::table('cate_room')->where('id', $cate_id)
-                    ->first()->price;
-                $value = array(
-                    'user_id' => 1,
-                    'check_in' => $date1,
-                    'check_out' => $date2,
-                    'day' => ($interval->d),
-                    'total_billed' => $price * ($interval->d),
-                    'room_id' => $room_id
-                );
+                    ->pluck('id');
+                $room_id = $array_room['room']->random($amount);
                 $dat_phong = new BookingController();
-                $dat_phong->dat_phong($value);
+                $dat_phong->dat_phong($value_bill, $room_id);
+                Session::flash('success', 'Bạn đã đặt phòng thành công! Truy cập tài khoản và lịch sử để thấy');
+                return redirect()->back();
             } else {
-                $room = array();
                 foreach ($bill as $bill) {
                     $a = DB::table('bill')
 
@@ -96,63 +112,39 @@ class BookingController extends BaseController
                         ->where('detailed_invoice.bill_id', $bill)
 
                         ->first();
-                    $room_id = $a->room_id;
-                    $room = DB::table('room')->whereNotIn('id', [$room_id])
-                        ->pluck('id');
+                    $room_id_selected[] = $a->room_id;
                 }
-                $array_room['room'] = DB::table('room')->where('cate_id', $cate_id)
-                    ->whereIn('id', $room)
+                $array_room['room'] = DB::table('room')->whereNotIn('id', $room_id_selected)
+                    ->where('cate_id', $cate_id)
                     ->where('status', 1)
-                    ->get();
+                    ->pluck('id');
                 if ($array_room['room']->count() != 0) {
-                    dd($array_room['room']);
-                    $interval = $date1->diff($date2);
-                    $room_id = $array_room['room']->random()->id;
-                    $price = DB::table('cate_room')->where('id', $cate_id)
-                        ->first()->price;
-                    $value = array(
-                        'user_id' => 1,
-                        'check_in' => $date1,
-                        'check_out' => $date2,
-                        'day' => ($interval->d),
-                        'total_billed' => $price * ($interval->d),
-                        'room_id' => $room_id
-                    );
-                    $dat_phong = new BookingController();
-                    $dat_phong->dat_phong($value);
+                    if ($array_room['room']->count() < $amount) {
+                        Session::flash('error', 'Chỉ còn ' . $array_room['room']->count() . ' phòng cho ngày mà bạn chọn!');
+                        return redirect()->back();
+                    } else {
+                        $room_id = $array_room['room']->random($amount);
+                        $dat_phong = new BookingController();
+                        $dat_phong->dat_phong($value_bill, $room_id);
+
+                        Session::flash('success', 'Bạn đã đặt phòng thành công! Truy cập tài khoản và lịch sử để thấy');
+                        return redirect()->back();
+                    }
                 } else {
                     Session::flash('error', 'Phòng loại này cho ngày bạn chọn đã kín!');
                     return redirect()->back();
                 }
             }
         }
-
-
-        // $comment = bill::find(1);
-        // $ma_phong=$comment->bill_chi_tiet->ma_phong;
-
-
-        // $bill->ngay_nhan_phong=$request->input('ngay_nhan_phong');
-        // $loai_phong->ngay_tra_phong=$request->input('ngay_tra_phong');
-        // $loai_phong->loai_phong=$request->input('loai_phong');
     }
-    public function dat_phong($value)
+    public function dat_phong($value_bill, $room_id)
     {
-        $bill_id = DB::table('bill')->insertGetId([
-            'user_id' => $value['user_id'],
-            'check_in' =>  $value['check_in'],
-            'check_out' =>  $value['check_out'],
-            'day' =>  $value['day'],
-            'status' => '1',
-            'total_billed' =>  $value['total_billed']
-        ]);
-
-
-        DB::table('detailed_invoice')->insert([
-            'bill_id' => $bill_id,
-            'room_id' => $value['room_id'],
-        ]);
-        Session::flash('success', 'Bạn đã đặt phòng thành công! Truy cập tài khoản và lịch sử để thấy');
-        return redirect()->back();
+        $bill_id = DB::table('bill')->insertGetId($value_bill);
+        for ($i = 0; $i < $room_id->count(); $i++) {
+            DB::table('detailed_invoice')->insert([
+                'bill_id' => $bill_id,
+                'room_id' => $room_id[$i],
+            ]);
+        }
     }
 }
