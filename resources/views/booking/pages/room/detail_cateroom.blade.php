@@ -157,7 +157,7 @@
                         @csrf
                         <div class="check-date">
                             <label for="check_in">Check In:</label>
-                            <input type="text" class="date-input" name="check_in" id="date-in">
+                            <input type="text" class="date-input" name="check_in" id="date-in" autocomplete="off">
                             <i class="icon_calendar"></i>
                         </div>
                         @if ($errors->has('check_in'))
@@ -167,7 +167,7 @@
                         @endif
                         <div class="check-date">
                             <label for="check_out">Check Out:</label>
-                            <input type="text" class="date-input" name="check_out" id="date-out">
+                            <input type="text" class="date-input" name="check_out" id="date-out" autocomplete="off">
                             <i class="icon_calendar"></i>
                         </div>
                         @if ($errors->has('check_out'))

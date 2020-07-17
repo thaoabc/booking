@@ -72,47 +72,56 @@ class BookingController extends BaseController
                 'amount' => $amount,
                 'status' => 1
             );
-            $bill = bill::select('bill_id')
-                ->whereDate('check_in', '<=', $date1)
+            $bill_0 = bill::whereDate('check_in', '<=', $date1)
                 ->whereDate('check_out', '>=', $date2)
                 ->whereIn('status', [1, 2])
-                ->get();
-            echo ($bill->pluck('bill_id')->all());
-            dd(2);
+                ->pluck('bill_id')
+                ->all();
             $bill_1 = bill::whereDate('check_in', '<=', $date2)
-                ->whereDate('check_in', '>', $date1)
+                ->whereDate('check_in', '>=', $date1)
                 ->whereIn('status', [1, 2])
-                ->pluck('bill_id');
-            $bill->push($bill_1->all());
+                ->pluck('bill_id')
+                ->all();
+            $bill = array_merge($bill_0, $bill_1);
             $bill_2 = bill::whereDate('check_out', '>=', $date1)
-                ->whereDate('check_out', '<', $date2)
+                ->whereDate('check_out', '<=', $date2)
                 ->whereIn('status', [1, 2])
-                ->pluck('bill_id');
-            $bill->push($bill_2);
-            echo ($bill);
-            dd(1);
-            if (($bill->count()) == 0) {
+                ->pluck('bill_id')
+                ->all();
+            $bill = array_merge($bill, $bill_2);
+            if (count($bill) == 0) {
                 $array_room['room'] = DB::table('room')
                     ->where('cate_id', $cate_id)
                     ->where('status', 1)
                     ->pluck('id');
                 $room_id = $array_room['room']->random($amount);
-                $dat_phong = new BookingController();
-                $dat_phong->dat_phong($value_bill, $room_id);
-                Session::flash('success', 'Bạn đã đặt phòng thành công! Truy cập tài khoản và lịch sử để thấy');
-                return redirect()->back();
+                if ($array_room['room']->count() < $amount) {
+                    Session::flash('error', 'Chỉ còn ' . $array_room['room']->count() . ' phòng cho ngày mà bạn chọn!');
+                    return redirect()->back();
+                } else {
+                    $dat_phong = new BookingController();
+                    $dat_phong->dat_phong($value_bill, $room_id);
+                    Session::flash('success', 'Bạn đã đặt phòng thành công! Truy cập tài khoản và lịch sử để thấy');
+                    return redirect()->back();
+                }
             } else {
+                $room_id_selected=array();
                 foreach ($bill as $bill) {
-                    $a = DB::table('bill')
+                    if (empty($bill) || $bill == null || $bill == "") {
+                    } else {
+                        $a = DB::table('bill')
 
-                        ->select("detailed_invoice.room_id")
+                            ->select("detailed_invoice.room_id")
 
-                        ->join("detailed_invoice", "detailed_invoice.bill_id", "=", "bill.bill_id")
+                            ->join("detailed_invoice", "detailed_invoice.bill_id", "=", "bill.bill_id")
 
-                        ->where('detailed_invoice.bill_id', $bill)
+                            ->where('detailed_invoice.bill_id', $bill)
 
-                        ->first();
-                    $room_id_selected[] = $a->room_id;
+                            ->pluck('detailed_invoice.room_id')
+                            
+                            ->all();
+                        $room_id_selected=array_merge($room_id_selected,$a);
+                    }
                 }
                 $array_room['room'] = DB::table('room')->whereNotIn('id', $room_id_selected)
                     ->where('cate_id', $cate_id)
