@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Template;
-
+use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
@@ -11,7 +11,7 @@ use DB;
 use App\Http\Controllers\Controller;
 use Session;
 
-class HomeController extends Controller
+class HomeController extends BaseController
 {
     public function changeLanguage($language)
     {

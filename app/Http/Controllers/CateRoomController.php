@@ -17,7 +17,11 @@ class CateRoomController extends Controller
 {
     public function view_all()
     {   
-
+        // app()->setLocale('en');
+        //  $list = cate_room::all()->toArray();
+        //  echo '<pre>';
+        //  print_r($list);
+        //  dd();
         $array['cate_room']=DB::table('cate_room')->get();
 
         return view('admins.page.cate_room.list',$array);
