@@ -1,5 +1,5 @@
 <?php
-namespace App;
+namespace App\Model;
 use Illuminate\Database\Eloquent\Model;
  
 class cate_roomTranslation extends Model
@@ -12,6 +12,6 @@ class cate_roomTranslation extends Model
      * @var array
      */
     protected $fillable = [
-        'name','price', 'discribe',
+        'name','price', 'describe',
     ];
 }

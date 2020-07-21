@@ -1,6 +1,5 @@
 <?php
 
-declare(strict_types=1);
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,23 +20,6 @@ Auth::routes();
 Route::group(['middleware' => 'locale'], function () {
 	Route::get('change-language/{language}', 'Template\HomeController@changeLanguage')
 		->name('user.change-language');
-});
-
-$config = array_merge(config('translation-manager.route'), ['namespace' => 'Barryvdh\TranslationManager']);
-Route::group($config, function($router)
-{
-    $router->get('view/{groupKey?}', 'Controller@getView')->where('groupKey', '.*');
-    $router->get('/{groupKey?}', 'Controller@getIndex')->where('groupKey', '.*');
-    $router->post('/add/{groupKey}', 'Controller@postAdd')->where('groupKey', '.*');
-    $router->post('/edit/{groupKey}', 'Controller@postEdit')->where('groupKey', '.*');
-    $router->post('/groups/add', 'Controller@postAddGroup');
-    $router->post('/delete/{groupKey}/{translationKey}', 'Controller@postDelete')->where('groupKey', '.*');
-    $router->post('/import', 'Controller@postImport');
-    $router->post('/find', 'Controller@postFind');
-    $router->post('/locales/add', 'Controller@postAddLocale');
-    $router->post('/locales/remove', 'Controller@postRemoveLocale');
-    $router->post('/publish/{groupKey}', 'Controller@postPublish')->where('groupKey', '.*');
-    $router->post('/translate-missing', 'Controller@postTranslateMissing');
 });
 /*
      * user đăng nhập
@@ -106,6 +88,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'CheckAdmin'], function () {
 	Route::get('view_one_admin/{id}', 'HomeController@view_one')->name('view_one_admin');
 	Route::post('process_update_admin/{id}', 'HomeController@update')->name('process_update_admin');
 
+	Route::group(['middleware' => 'locale'], function() {
+		Route::get('change-language/{language}', 'HomeController@changeLanguage')
+			->name('admin.change-language');
+	});
+
 	Route::group(['prefix' => 'users'], function () {
 		Route::get('view_all_user', 'UserController@view_all')->name('view_all_user');
 		Route::get('view_insert_user', 'UserController@view_insert')->name('view_insert_user');
@@ -159,6 +146,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'CheckAdmin'], function () {
 	});
 
 	Route::group(['prefix' => 'thong_ke'], function () {
+		Route::get('bill_chart', 'BillChartController@index')->name('bill_chart');
 		Route::get('view_year', 'ChartController@orderYear')->name('view_year');
 		Route::get('view_month', 'ChartController@orderMonth')->name('view_month');
 	});

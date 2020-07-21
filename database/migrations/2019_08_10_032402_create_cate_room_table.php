@@ -15,10 +15,7 @@ class CreateCateRoomTable extends Migration
     {
         Schema::create('cate_room',function (Blueprint $table){
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->integer('price');
             $table->string('image');
-            $table->text('describe');
             $table->string('slug');
             $table->timestamps();
         });

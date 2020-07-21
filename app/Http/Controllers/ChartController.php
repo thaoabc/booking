@@ -31,9 +31,11 @@ class ChartController extends BaseController
 
 	public function orderYear()
     {
+        $range = \Carbon\Carbon::now()->subYears(5);
         $orderYear = DB::table('bill')
                     ->select(DB::raw('year(check_in) as getYear'), DB::raw('SUM(total_billed) as price'))
                     ->where('status',3)
+                    ->where('check_in','>=',$range)
                     ->groupBy('getYear')
                     ->orderBy('getYear', 'ASC')
                     ->get();

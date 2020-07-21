@@ -15,8 +15,23 @@
 
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
-                <!-- Messages: style can be found in dropdown.less-->
-                
+                <!-- Language-->
+                <li class="dropdown user user-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="assets/sona/img/flag.jpg" alt="">
+                        <span>EN <i class="fa fa-angle-down"></i></span>
+                    </a>
+                    <ul class="dropdown-menu" style="right: auto; width: 100%;">
+                        <!-- Menu Body -->
+                        <li class="user-body">
+                            <a href="{!! route('admin.change-language', ['en']) !!}">English</a>
+                        </li>
+                        <!-- Menu Footer-->
+                        <li class="user-footer">
+                            <a href="{!! route('admin.change-language', ['vi']) !!}">Vietnam</a>
+                        </li>
+                    </ul>
+                </li>
                 <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown user user-menu">
 

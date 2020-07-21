@@ -165,7 +165,8 @@ return [
         /*
          * Package Service Providers...
          */
-        Barryvdh\TranslationManager\ManagerServiceProvider::class,
+        Dimsav\Translatable\TranslatableServiceProvider::class,
+        ConsoleTVs\Charts\ChartsServiceProvider::class,
         /*
          * Application Service Providers...
          */

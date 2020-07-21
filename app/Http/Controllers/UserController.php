@@ -35,7 +35,8 @@ class UserController extends Controller
     }
 
     public function view_all()
-    {     
+    {      
+
         $array['users']=users::all();
         return view('admins.page.users.list',$array);
     }

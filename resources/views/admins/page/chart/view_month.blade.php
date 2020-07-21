@@ -1,8 +1,4 @@
 @extends('admins.layout.master-layout')
-	{{--  {!! Html::script(asset('js/jquery-3.1.1.min.js')) !!}
-    {!! Html::script(asset('js/highcharts.js')) !!}
-    {!! Html::script(asset('js/modules/exporting.js')) !!}
-    {!! Html::script(asset('js/export-data.js')) !!}  --}}
     <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
     <script src="{{ asset('js/highcharts.js') }}"></script>
     <script src="{{ asset('js/modules/exporting.js') }}"></script>
@@ -36,7 +32,6 @@
                     <div class="col-xs-12">
                         <div class="box">
                             <div id="container" data-order="{{ $orderYear }}"></div>
-                        /div>
                         <!-- /.box -->
                         <!-- /.box -->
                     </div>
@@ -61,7 +56,7 @@
     var chart = Highcharts.chart('container', {
 
         title: {
-            text: 'Orders by years'
+            text: 'Orders by Month'
         },
 
         subtitle: {

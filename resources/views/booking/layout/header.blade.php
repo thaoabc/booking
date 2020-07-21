@@ -18,28 +18,25 @@
                 <span>EN <i class="fa fa-angle-down"></i></span>
                 <div class="flag-dropdown">
                     <ul>
-                        <li><a href="#">Zi</a></li>
-                        <li><a href="#">Fr</a></li>
+                        <li><a href="{!! route('user.change-language', ['en']) !!}">English</a></li>
+                        <li><a href="{!! route('user.change-language', ['vi']) !!}">Vietnam</a></li>
                     </ul>
                 </div>
             </div>
-            <a href="#" class="bk-btn">Booking Now</a>
         </div>
         <nav class="mainmenu mobile-menu">
             <ul>
-                <li class="active"><a href="{{route('index')}}">Home</a></li>
-                <li><a href="./rooms.html">Rooms</a></li>
-                <li><a href="./about-us.html">About Us</a></li>
-                <li><a href="./pages.html">Pages</a>
+                <li class="active"><a href="{{route('index')}}"> {{ __('home') }}</a></li>
+                <li><a href="./rooms.html">{{ __('room') }}</a>
                     <ul class="dropdown">
-                        <li><a href="./room-details.html">Room Details</a></li>
                         <li><a href="#">Deluxe Room</a></li>
                         <li><a href="#">Family Room</a></li>
                         <li><a href="#">Premium Room</a></li>
                     </ul>
                 </li>
-                <li><a href="{{route('blog')}}">News</a></li>
-                <li><a href="{{route('contact')}}">Contact</a></li>
+                <li><a href="./about-us.html">{{ __('about_us') }}</a></li>
+                <li><a href="{{route('blog')}}">{{ __('news') }}</a></li>
+                <li><a href="{{route('contact')}}">{{ __('contact') }}</a></li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
@@ -92,7 +89,6 @@
                         <div class="logo">
                             <a href="{{route('index')}}">
                                 <img src="assets/sona/img/logo.png" alt="">
-                                {{ trans('home.welcome') }}
                             </a>
                         </div>
                     </div>
@@ -100,18 +96,16 @@
                         <div class="nav-menu">
                             <nav class="mainmenu">
                                 <ul>
-                                    <li class="active"><a href="{{route('index')}}">Home</a></li>
-                                    <li><a href="{{route('category_room')}}">Rooms</a></li>
-                                    <li><a href="{{route('about_us')}}">About Us</a></li>
-                                    <li><a>Pages</a>
+                                    <li class="active"><a href="{{route('index')}}"> {{ __('home') }}</a></li>
+                                    <li><a href="{{route('category_room')}}"> {{ __('room') }}</a>
                                         <ul class="dropdown">
-                                            <li><a href="{{route('detail_blog')}}">Blog Details</a></li>
                                             <li><a href="#">Family Room</a></li>
                                             <li><a href="#">Premium Room</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="{{route('blog')}}">News</a></li>
-                                    <li><a href="{{route('contact')}}">Contact</a></li>
+                                    <li><a href="{{route('about_us')}}">{{ __('about_us') }}</a></li>
+                                    <li><a href="{{route('blog')}}">{{ __('news') }}</a></li>
+                                    <li><a href="{{route('contact')}}">{{ __('contact') }}</a></li>
                                 </ul>
                             </nav>
                             <div class="nav-right search-switch">

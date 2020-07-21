@@ -13,8 +13,6 @@ class RoomController extends Controller
 {
     public function view_all()
     {
-       // $phong=new Phong();
-        //$array_phong= $phong->view_all();
         $array['room']=DB::table('room')->get();
     	return view('admins.page.room.list',$array);
     }
@@ -22,7 +20,7 @@ class RoomController extends Controller
     public function view_insert()
     {	
         if(Gate::allows('insert')){
-            $array['cate_room']=DB::table('cate_room')->get();
+            $array['cate_room']=cate_room::all();
     	return view('admins.page.room.add',$array);
         }
         else{

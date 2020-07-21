@@ -21,12 +21,7 @@ class HomeController extends BaseController
     }
     public function welcome()
     {
-        $amount_room['amount_room']=DB::table('room')
-        ->join('cate_room','cate_room.id','=','room.cate_id')
-        ->where('status',1)
-        ->orderBy('room.cate_id')
-        ->get();
-        $array['cate_room'] = DB::table('cate_room')->paginate(4);
+        $array['cate_room'] = cate_room::all();
         return view('booking.index',$array);
     }
 }

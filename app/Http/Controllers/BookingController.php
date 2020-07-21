@@ -4,18 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Response;
 use Carbon\Carbon;
 use DateTime;
 use DB;
 use Session;
-use App\Model\dat_phong;
-use App\Model\loai_phong;
-use App\Model\khach_hang;
 use App\Model\bill;
-use App\Model\bill_chi_tiet;
-use App\Model\room;
-use Symfony\Component\HttpFoundation\Session\Session as SessionSession;
+use App\Model\cate_room;
 
 class BookingController extends Controller
 {
@@ -26,7 +20,7 @@ class BookingController extends Controller
 			return redirect('admin/users/view_all_user');
 		} else {
 			Session::put('user_id', $user_id);
-			$array_loai_phong['cate_room'] = DB::table('cate_room')->get();
+			$array_loai_phong['cate_room'] = cate_room::all();
 			$var_user_id['user_id'] = $user_id;
 			return view('admins.page.booking.view_booking', $array_loai_phong, $var_user_id);
 		}
@@ -55,14 +49,14 @@ class BookingController extends Controller
 			return redirect()->route('view_dat_phong',Session('user_id'))->withErrors($validator)->withInput();
 		} else {
 			$give_inf =  $request->all();
-			$amount = $give_inf['amount_room'];
+			$amount = $give_inf['amount'];
 			$cate_id=$give_inf['cate_id'];
 			$check_in = $give_inf['check_in'];
 			$check_out = $give_inf['check_out'];
 			$date1 = new DateTime($check_in);
 			$date2 = new DateTime($check_out);
 			$interval = $date1->diff($date2);
-			$price = DB::table('cate_room')->where('id', $cate_id)
+			$price = cate_room::where('id', $cate_id)
 				->first()->price;
 			$value_bill = array(
 				'user_id' => Session('user_id'),
