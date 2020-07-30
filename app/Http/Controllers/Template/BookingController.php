@@ -5,17 +5,16 @@ namespace App\Http\Controllers\Template;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Response;
 use Carbon\Carbon;
 use DateTime;
 use DB;
 use Session;
-use App\Model\dat_phong;
-use App\Model\loai_phong;
-use App\Model\khach_hang;
+use Illuminate\Support\Facades\Auth;
+use App\Model\cate_room;
 use App\Model\bill;
-use App\Model\bill_chi_tiet;
+use App\Model\detailed_invoice;
 use App\Model\room;
+use App;
 
 
 class BookingController extends BaseController
@@ -61,14 +60,28 @@ class BookingController extends BaseController
             $date1 = new DateTime($check_in);
             $date2 = new DateTime($check_out);
             $interval = $date1->diff($date2);
-            $price = DB::table('cate_room')->where('id', $cate_id)
-                ->first()->price;
-            $value_bill = array(
-                'user_id' => 1,
+            if (app()->getLocale() == "vi") {
+                $price_vi = cate_room::where('id', $cate_id)
+                    ->first()->price;
+                App::setLocale("en");
+                $price_en = cate_room::where('id', $cate_id)
+                    ->first()->price;
+                App::setLocale("vi");
+            } else {
+                $price_en = cate_room::where('id', $cate_id)
+                    ->first()->price;
+                App::setLocale("vi");
+                $price_vi = cate_room::where('id', $cate_id)
+                    ->first()->price;
+                App::setLocale("en");
+            }
+            $value_bill_origin = array(
+                'user_id' => Auth::user()->id,
                 'check_in' => $date1,
                 'check_out' => $date2,
                 'day' => ($interval->d),
-                'total_billed' => $price * ($interval->d) * $amount,
+                'total_billed_vi' => $price_vi * ($interval->d) * $amount,
+                'total_billed_en' => $price_en * ($interval->d) * $amount,
                 'amount' => $amount,
                 'status' => 1
             );
@@ -90,8 +103,7 @@ class BookingController extends BaseController
                 ->all();
             $bill = array_merge($bill, $bill_2);
             if (count($bill) == 0) {
-                $array_room['room'] = DB::table('room')
-                    ->where('cate_id', $cate_id)
+                $array_room['room'] = room::where('cate_id', $cate_id)
                     ->where('status', 1)
                     ->pluck('id');
                 $room_id = $array_room['room']->random($amount);
@@ -100,30 +112,28 @@ class BookingController extends BaseController
                     return redirect()->back();
                 } else {
                     $dat_phong = new BookingController();
-                    $dat_phong->dat_phong($value_bill, $room_id);
+                    $dat_phong->dat_phong($value_bill_origin, $room_id);
                     Session::flash('success', 'Bạn đã đặt phòng thành công! Truy cập tài khoản và lịch sử để thấy');
                     return redirect()->back();
                 }
             } else {
-                $room_id_selected=array();
+                $room_id_selected = array();
                 foreach ($bill as $bill) {
                     if (empty($bill) || $bill == null || $bill == "") {
                     } else {
-                        $a = DB::table('bill')
-
-                            ->select("detailed_invoice.room_id")
+                        $a = bill::select("detailed_invoice.room_id")
 
                             ->join("detailed_invoice", "detailed_invoice.bill_id", "=", "bill.bill_id")
 
                             ->where('detailed_invoice.bill_id', $bill)
 
                             ->pluck('detailed_invoice.room_id')
-                            
+
                             ->all();
-                        $room_id_selected=array_merge($room_id_selected,$a);
+                        $room_id_selected = array_merge($room_id_selected, $a);
                     }
                 }
-                $array_room['room'] = DB::table('room')->whereNotIn('id', $room_id_selected)
+                $array_room['room'] = room::whereNotIn('id', $room_id_selected)
                     ->where('cate_id', $cate_id)
                     ->where('status', 1)
                     ->pluck('id');
@@ -134,7 +144,7 @@ class BookingController extends BaseController
                     } else {
                         $room_id = $array_room['room']->random($amount);
                         $dat_phong = new BookingController();
-                        $dat_phong->dat_phong($value_bill, $room_id);
+                        $dat_phong->dat_phong($value_bill_origin, $room_id);
 
                         Session::flash('success', 'Bạn đã đặt phòng thành công! Truy cập tài khoản và lịch sử để thấy');
                         return redirect()->back();
@@ -146,11 +156,11 @@ class BookingController extends BaseController
             }
         }
     }
-    public function dat_phong($value_bill, $room_id)
+    public function dat_phong($value_bill_origin, $room_id)
     {
-        $bill_id = DB::table('bill')->insertGetId($value_bill);
+        $bill_id = bill::insertGetId($value_bill_origin);
         for ($i = 0; $i < $room_id->count(); $i++) {
-            DB::table('detailed_invoice')->insert([
+            detailed_invoice::insert([
                 'bill_id' => $bill_id,
                 'room_id' => $room_id[$i],
             ]);

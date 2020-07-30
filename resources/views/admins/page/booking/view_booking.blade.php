@@ -66,6 +66,7 @@
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary">Tìm phòng</button>
                         </div>
+                    </div>
                 </form>
             </div>
         </section>

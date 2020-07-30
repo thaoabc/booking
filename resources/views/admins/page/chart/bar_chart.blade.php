@@ -20,11 +20,11 @@ Thống kê theo năm
 
         <section class="content-header">
             <h1>
-                Thống kê theo tháng {{$selectedMonth}} năm {{$selectedYear}}
+                Thống kê theo năm {{$selectedYear}}
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Thống kê</li>
+                <li class="active">Hóa đơn</li>
             </ol>
         </section>
         <section class="content">
@@ -42,7 +42,7 @@ Thống kê theo năm
                     <div class="row">
                         <div class="col-md-6">
 
-                            <form role="form" method="get" action="{{ route('view_month') }}" enctype="multipart/form-data">
+                            <form role="form" method="get" action="{{ route('bar_chart') }}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
                                     <select class="form-control select2" name="select_year" style="width: 100%;">
@@ -54,18 +54,6 @@ Thống kê theo năm
                                         <option value="{{$value->getYear}}">{{$value->getYear}}</option>
                                         @endif
                                         @endforeach
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <select class="form-control select2" name="select_month" style="width: 100%;">
-                                        @for ($i=1;$i<=12;$i++)
-
-                                        @if ($i == $selectedMonth)
-                                        <option value="{{$i}}" selected="selected">{{$i}}</option>
-                                        @else
-                                        <option value="{{$i}}">{{$i}}</option>
-                                        @endif
-                                        @endfor
                                     </select>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Chọn năm</button>
@@ -111,7 +99,7 @@ Thống kê theo năm
         console.log(order);
         order.forEach(function(element) {
             $data.push([
-                'Ngày ' + element.getDayIn + ' - ' + element.getDayOut + ' : ' + element.value,
+                'Tháng ' + (element.getMonth) + ' - ' + element.value,
                 element.value
             ]);
         });

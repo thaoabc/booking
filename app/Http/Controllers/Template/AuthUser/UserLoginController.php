@@ -1,53 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
-
-use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+namespace App\Http\Controllers\Template\AuthUser;
+use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use DB;
 use Session;
 
-class LoginController extends Controller
+class UserLoginController extends BaseController
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
-
-    use AuthenticatesUsers;
-
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/admin';
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public  function postLogin(Request $request)
     {
-        $this->middleware('guest:admin')->except('logout');
-    }
-
-    public function getLogin() {
-        return view('auth.login');
-    }
-
-    public function postLogin(Request $request) {
         // Kiểm tra dữ liệu nhập vào
         $rules = [
-            'email' =>'required|email',
+            'email' => 'required|email',
             'password' => 'required'
         ];
         $messages = [
@@ -56,26 +24,27 @@ class LoginController extends Controller
             'password.required' => 'Mật khẩu là trường bắt buộc',
         ];
         $validator = Validator::make($request->all(), $rules, $messages);
-        
-        
+
+
         if ($validator->fails()) {
             // Điều kiện dữ liệu không hợp lệ sẽ chuyển về trang đăng nhập và thông báo lỗi
-            return redirect('admin/login')->withErrors($validator)->withInput();
+            return redirect()->route('index')->withErrors($validator)->withInput();
         } else {
             // Nếu dữ liệu hợp lệ sẽ kiểm tra trong csdl
             $email = $request->input('email');
             $password = $request->input('password');
-        
             if( Auth::attempt(['email' => $email, 'password' =>$password])) {
                 // Kiểm tra đúng email và mật khẩu sẽ chuyển trang
                 $user = Auth::user()->id;
                 Session::put('id',$user);
+                Session::put('status_login',1);
+                Session::flash('succes', 'Đăng nhập thành công!');
                // Session::put('cap_do',Auth::user()->cap_do);
-                return redirect()->route('admin.dashboard');
+                return redirect()->route('index');
             } else {
                 // Kiểm tra không đúng sẽ hiển thị thông báo lỗi
                 Session::flash('error', 'Email hoặc mật khẩu không đúng!');
-                return redirect('admin/login');
+                return redirect()->route('index');
             }
         }
     }

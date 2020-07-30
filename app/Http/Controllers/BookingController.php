@@ -10,6 +10,7 @@ use DB;
 use Session;
 use App\Model\bill;
 use App\Model\cate_room;
+use App\Model\detailed_invoice;
 
 class BookingController extends Controller
 {
@@ -85,8 +86,7 @@ class BookingController extends Controller
                 ->all();
             $bill = array_merge($bill, $bill_2);
 			if (count($bill) == 0) {
-				$array_room['room'] = DB::table('room')
-					->where('cate_id', $cate_id)
+				$array_room['room'] = room::where('cate_id', $cate_id)
 					->where('status', 1)
 					->pluck('id');
 				if ($array_room['room']->count() < $amount) {
@@ -107,9 +107,7 @@ class BookingController extends Controller
                 foreach ($bill as $bill) {
                     if (empty($bill) || $bill == null || $bill == "") {
                     } else {
-                        $a = DB::table('bill')
-
-                            ->select("detailed_invoice.room_id")
+                        $a = bill::select("detailed_invoice.room_id")
 
                             ->join("detailed_invoice", "detailed_invoice.bill_id", "=", "bill.bill_id")
 
@@ -121,7 +119,7 @@ class BookingController extends Controller
                         $room_id_selected=array_merge($room_id_selected,$a);
                     }
                 }
-				$array_room['room'] = DB::table('room')->whereNotIn('id', $room_id_selected)
+				$array_room['room'] = room::whereNotIn('id', $room_id_selected)
 					->where('cate_id', $cate_id)
 					->where('status', 1)
 					->pluck('id');
@@ -148,9 +146,9 @@ class BookingController extends Controller
 	}
 	public function dat_phong($value_bill, $room_id)
 	{
-		$bill_id = DB::table('bill')->insertGetId($value_bill);
+		$bill_id = bill::insertGetId($value_bill);
 		for ($i = 0; $i < $room_id->count(); $i++) {
-			DB::table('detailed_invoice')->insert([
+			detailed_invoice::insert([
 				'bill_id' => $bill_id,
 				'room_id' => $room_id[$i],
 			]);

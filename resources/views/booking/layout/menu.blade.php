@@ -33,12 +33,12 @@
                 </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{route('view_all_admin')}}"><i class="fa fa-list"></i> Danh sách admin</a></li>
-                    <li><a href="{{route('view_insert_admin')}}"><i class="fa fa-plus"></i> Thêm admin </a></li>
+                    <li><a href=""><i class="fa fa-list"></i> Danh sách admin</a></li>
+                    <li><a href=""><i class="fa fa-plus"></i> Thêm admin </a></li>
                 </ul>
             </li>
              <li>
-                <a href="{{route('view_all_user')}}">
+                <a href="">
                     <i class="fa fa-address-book"></i> <span>User</span>
                     <span class="pull-right-container">
                 <small class="label pull-right bg-green">new</small>
@@ -53,8 +53,8 @@
                 </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{route('view_all_loai_phong')}}"><i class="fa fa-list"></i> Danh sách loại phòng</a></li>
-                    <li><a href="{{route('view_insert_loai_phong')}}"><i class="fa fa-plus"></i> Thêm loại phòng </a></li>
+                    <li><a href=""><i class="fa fa-list"></i> Danh sách loại phòng</a></li>
+                    <li><a href=""><i class="fa fa-plus"></i> Thêm loại phòng </a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -65,8 +65,8 @@
                 </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{route('view_all_phong')}}"><i class="fa fa-list"></i> Danh sách phòng</a></li>
-                    <li><a href="{{route('view_insert_phong')}}"><i class="fa fa-plus"></i> Thêm phòng </a></li>
+                    <li><a href=""><i class="fa fa-list"></i> Danh sách phòng</a></li>
+                    <li><a href=""><i class="fa fa-plus"></i> Thêm phòng </a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -77,7 +77,7 @@
                 </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{route('view_dat_phong',0)}}"><i class="fa fa-list"></i> Đặt phòng</a></li>
+                    <li><a href=""><i class="fa fa-list"></i> Đặt phòng</a></li>
                     
                 </ul>
             </li>
@@ -89,7 +89,7 @@
                 </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{route('chua_nhan_phong')}}"><i class="fa fa-list"></i>Hóa đơn</a></li>
+                    <li><a href=""><i class="fa fa-list"></i>Hóa đơn</a></li>
                     
                 </ul>
             </li>
@@ -101,8 +101,8 @@
                 </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{route('view_month')}}"><i class="fa fa-list"></i>Thống kê</a></li>
-                    <li><a href="{{route('view_year')}}"><i class="fa fa-plus"></i> Theo năm </a></li>
+                    <li><a href=""><i class="fa fa-list"></i>Thống kê</a></li>
+                    <li><a href=""><i class="fa fa-plus"></i> Theo năm </a></li>
                 </ul>
             </li>  --}}
             

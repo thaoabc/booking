@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Template;
+
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -22,6 +23,9 @@ class HomeController extends BaseController
     public function welcome()
     {
         $array['cate_room'] = cate_room::all();
-        return view('booking.index',$array);
+        if (empty(Session::has('status_login'))) {
+            Session::put('status_login', 0);
+        }
+        return view('booking.index', $array);
     }
 }

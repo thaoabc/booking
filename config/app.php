@@ -166,7 +166,6 @@ return [
          * Package Service Providers...
          */
         Dimsav\Translatable\TranslatableServiceProvider::class,
-        ConsoleTVs\Charts\ChartsServiceProvider::class,
         /*
          * Application Service Providers...
          */

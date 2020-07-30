@@ -48,7 +48,7 @@
                                     <tbody>
                                     @foreach($room as $value)
                                         <tr class="odd gradeX" align="center">
-                                            <td>{{$value->name}}</td>
+                                            <td>{{$value->name_room}}</td>
                                             @if($value->status==1)
                                                 <td>Đang hoạt động</td>
                                             @else

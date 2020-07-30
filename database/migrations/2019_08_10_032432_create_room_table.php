@@ -16,7 +16,7 @@ class CreateRoomTable extends Migration
         Schema::create('room',function (Blueprint $table)
         {
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->string('name_room');
             $table->string('slug');
             $table->bigInteger('cate_id')->unsigned();
             $table->foreign('cate_id')

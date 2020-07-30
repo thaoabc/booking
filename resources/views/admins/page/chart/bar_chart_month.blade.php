@@ -20,11 +20,11 @@ Thống kê theo năm
 
         <section class="content-header">
             <h1>
-                Thống kê theo tháng {{$selectedMonth}} năm {{$selectedYear}}
+                Thống kê theo năm {{$selectedYear}}
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Thống kê</li>
+                <li class="active">Hóa đơn</li>
             </ol>
         </section>
         <section class="content">
@@ -42,7 +42,7 @@ Thống kê theo năm
                     <div class="row">
                         <div class="col-md-6">
 
-                            <form role="form" method="get" action="{{ route('view_month') }}" enctype="multipart/form-data">
+                            <form role="form" method="get" action="{{ route('bar_chart_month') }}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
                                     <select class="form-control select2" name="select_year" style="width: 100%;">

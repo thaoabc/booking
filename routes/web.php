@@ -15,7 +15,7 @@
 //     return view('auth.login');
 // });
 
-Auth::routes();
+// Auth::routes();
 
 Route::group(['middleware' => 'locale'], function () {
 	Route::get('change-language/{language}', 'Template\HomeController@changeLanguage')
@@ -24,23 +24,28 @@ Route::group(['middleware' => 'locale'], function () {
 /*
      * user đăng nhập
      */
-Route::get('login', 'Auth\LoginController@getLogin')->name('user.showFormLogin');
-Route::post('login', 'Auth\LoginController@postLogin')->name('user.login_post');
+Route::post('signin', 'Template\AuthUser\UserLoginController@postLogin')->name('user.login_post');
 /*
      * user đăng xuất
      */
-Route::get('logout', 'Auth\LogoutController@logout')->name('user.logout');
+Route::get('logout', 'Template\AuthUser\LogoutController@logout')->name('user.logout');
 
 //Quên mật khẩu
-Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
-Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset.token');
-Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+Route::get('password/reset', 'Template\AuthUser\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
+Route::post('password/email', 'Template\AuthUser\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('password/reset/{token}', 'Template\AuthUser\ResetPasswordController@showResetForm')->name('password.reset.token');
+Route::post('password/reset', 'Template\AuthUser\ResetPasswordController@reset');
+
+// user đăng kí
+
+Route::post('process_insert_user', 'Template\UserController@process_insert')->name('user.register');
+Route::get('profile', 'Template\UserController@profile')->name('user.show_profile');
+Route::post('process_update_user', 'Template\UserController@update')->name('user.process_update');
 
 route::get('', 'Template\HomeController@welcome')->name('index');
 route::get('category_room', 'Template\RoomController@category_room')->name('category_room');
 route::get('detail_cateroom/{id}', 'Template\RoomController@detail_cateroom')->name('room.detail_cateroom');
-route::post('detail_cateroom/{id}','Template\BookingController@check_room')->name('room.check_room');
+route::post('detail_cateroom/{id}', 'Template\BookingController@check_room')->name('room.check_room');
 
 route::get('contact', 'Template\ContactController@view')->name('contact');
 
@@ -88,7 +93,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'CheckAdmin'], function () {
 	Route::get('view_one_admin/{id}', 'HomeController@view_one')->name('view_one_admin');
 	Route::post('process_update_admin/{id}', 'HomeController@update')->name('process_update_admin');
 
-	Route::group(['middleware' => 'locale'], function() {
+	Route::group(['middleware' => 'locale'], function () {
 		Route::get('change-language/{language}', 'HomeController@changeLanguage')
 			->name('admin.change-language');
 	});
@@ -146,8 +151,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'CheckAdmin'], function () {
 	});
 
 	Route::group(['prefix' => 'thong_ke'], function () {
-		Route::get('bill_chart', 'BillChartController@index')->name('bill_chart');
 		Route::get('view_year', 'ChartController@orderYear')->name('view_year');
 		Route::get('view_month', 'ChartController@orderMonth')->name('view_month');
+		Route::get('line_chart', 'ChartController@line_chart')->name('line_chart');
+		Route::get('bar_chart', 'ChartController@bar_chart')->name('bar_chart');
+		Route::get('bar_chart_month', 'ChartController@bar_chart_month')->name('bar_chart_month');
 	});
 });

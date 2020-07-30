@@ -103,7 +103,6 @@ a:hover,
 a:focus {
     text-decoration: none;
     outline: none;
-    color: #fff;
 }
 
 ul,
@@ -2260,7 +2259,7 @@ ol {
 
 .contact-text table tbody tr td.c-o {
     color: #707079;
-    width: 75px;
+    width: 50%;
 }
 
 .contact-form input {
@@ -2755,4 +2754,84 @@ ol {
     .rooms-section .col-lg-12 {
         left: 35%;
     }
+}
+
+
+/* profile */
+
+.nav-tabs {
+    border-bottom: 1px solid #ddd;
+}
+
+.nav {
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.nav-tabs>li {
+    float: left;
+    margin-bottom: -1px;
+}
+
+.nav>li {
+    position: relative;
+    display: block;
+}
+
+.nav-tabs>li>a {
+    margin-right: 2px;
+    line-height: 1.42857143;
+    border: 1px solid transparent;
+    border-radius: 4px 4px 0 0;
+}
+
+.nav>li>a {
+    text-decoration: none;
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+}
+
+.nav-tabs>li.active>a,
+.nav-tabs>li.active>a:focus,
+.nav-tabs>li.active>a:hover {
+    color: #555;
+    cursor: default;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+}
+
+a {
+    color: #337ab7;
+    text-decoration: none;
+}
+
+li {
+    text-align: -webkit-match-parent;
+}
+
+.tab-content>.active {
+    display: block;
+}
+
+.tab-content>.tab-pane {
+    padding-top: 100px;
+}
+
+.fade.in {
+    opacity: 1;
+}
+
+.book_history {
+    display: inline-flex;
+    margin: 50px;
+    flex: 40%;
+    width: 40%;
+    border: 1px outset;
+}
+
+.book_history>table {
+    width: 80%;
 }

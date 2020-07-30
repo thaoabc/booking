@@ -63,7 +63,7 @@
                         </div>
                         <div class="form-group">
                             <lable for="phone">Phone:</lable>
-                            <input type="tel" name="phone" class="form-control" placeholder="Số điện thoại" value="{{ old('phone') }}">
+                            <input type="text" name="phone" class="form-control" placeholder="Số điện thoại" value="{{ old('phone') }}">
                             {{--  @if ($errors->has('phone'))  --}}
                                 <span class="help-block">
                                     <strong>{{ $errors->first('phone') }}</strong>

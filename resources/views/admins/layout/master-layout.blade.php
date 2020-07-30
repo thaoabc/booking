@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="{{ asset('') }}/admins/bower_components/Ionicons/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('') }}/admins/dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="{{ asset('') }}/admins/dist/css/AdminLTE.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{{ asset('') }}/admins/dist/css/skins/_all-skins.min.css">
@@ -45,10 +46,6 @@
 
     <!-- Google Font -->
     <link rel="stylesheet" <href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-    {{-- ChartScript --}}
-    @if($billsChart)
-    {!! $billsChart->script() !!}
-    @endif
     {{-- ck --}}
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <script src="https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>
@@ -322,6 +319,10 @@
     {{--EndTag--}}
     <!-- Bootstrap 3.3.7 -->
     <script src="{{ asset('') }}admins/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script src="{{asset('')}}admins/bower_components/Flot/jquery.flot.js"></script>
+    <script src="{{asset('')}}admins/bower_components/Flot/jquery.flot.categories.js"></script>
+    
     <!-- Morris.js charts -->
     <script src="{{ asset('') }}admins/bower_components/raphael/raphael.min.js"></script>
     <script src="{{ asset('') }}admins/bower_components/morris.js/morris.min.js"></script>
