@@ -141,15 +141,26 @@
                 <div class="col-lg-4">
                     <div class="room-booking">
                         <h3>Your Reservation</h3>
-                        <form action="#">
+                        <form role="form" method="POST" action="{{route('view_phong')}}" enctype="multipart/form-data">
+                    @csrf
                             <div class="check-date">
                                 <label for="date-in">Check In:</label>
-                                <input type="text" class="date-input" id="date-in">
+                                <input type="text" name="check_in" class="date-input" id="date-in">
+                                 @if ($errors->has('check_in'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('check_in') }}</strong>
+                                </span>
+                            @endif
                                 <i class="icon_calendar"></i>
                             </div>
                             <div class="check-date">
                                 <label for="date-out">Check Out:</label>
-                                <input type="text" class="date-input" id="date-out">
+                                <input type="text" name="check_out" class="date-input" id="date-out">
+                                @if ($errors->has('check_out'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('check_out') }}</strong>
+                                </span>
+                            @endif
                                 <i class="icon_calendar"></i>
                             </div>
                             <div class="select-option">
@@ -162,6 +173,9 @@
                                 <label for="room">Room:</label>
                                 <select id="room">
                                     <option value="">1 Room</option>
+                                    <option value="">2 Room</option>
+                                    <option value="">3 Room</option>
+                                    <option value="">4 Room</option>
                                 </select>
                             </div>
                             <button type="submit">Check Availability</button>
