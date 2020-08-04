@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRoomTable extends Migration
+class CreateCateRoomTranslationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,19 @@ class CreateRoomTable extends Migration
      */
     public function up()
     {
-        Schema::create('room',function (Blueprint $table)
-        {
+        Schema::create('cate_room_translations', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name_room');
-            $table->string('slug');
-            $table->bigInteger('cate_id')->unsigned();
-            $table->foreign('cate_id')
+            $table->string('name');
+            $table->integer('price');
+            $table->text('describe');
+            $table->string('locale')->index();
+ 
+            $table->unique(['cate_room_id','locale']);
+            $table->bigInteger('cate_room_id')->unsigned();
+            $table->foreign('cate_room_id')
                 ->references('id')
                 ->on('cate_room')
                 ->onDelete('cascade');
-            $table->integer('status');
-            $table->timestamps();
         });
     }
 
@@ -35,6 +36,6 @@ class CreateRoomTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('room');
+        Schema::dropIfExists('cate_room_translations');
     }
 }

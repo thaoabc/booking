@@ -51,7 +51,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <a href="{{ url('detail_room/'. $value->id) }}" class="primary-btn">More Details</a>
+                                <a href="{{ url('detail_cateroom/'. $value->id) }}" class="primary-btn">More Details</a>
                             </div>
                         </div>
                     </div>

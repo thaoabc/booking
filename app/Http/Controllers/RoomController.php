@@ -5,7 +5,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
-use App\Model\Phong;
+use App\Model\room;
 use App\Model\cate_room;
 use DB;
 
@@ -13,16 +13,14 @@ class RoomController extends Controller
 {
     public function view_all()
     {
-       // $phong=new Phong();
-        //$array_phong= $phong->view_all();
-        $array['room']=DB::table('room')->get();
+        $array['room']=room::get();
     	return view('admins.page.room.list',$array);
     }
 
     public function view_insert()
     {	
         if(Gate::allows('insert')){
-            $array['cate_room']=DB::table('cate_room')->get();
+            $array['cate_room']=cate_room::all();
     	return view('admins.page.room.add',$array);
         }
         else{
@@ -52,7 +50,7 @@ class RoomController extends Controller
             // $phong->tinh_trang=1;
             // $phong->save();
             DB::table('room')->insert([
-                'name' => $request->name,
+                'name_room' => $request->name,
                 'cate_id' => $request->cate_id,
                 'slug' =>1,
                 'status' =>1,

@@ -16,9 +16,9 @@
             <div class="input-group">
                 <input type="text" name="q" class="form-control" placeholder="Search...">
                 <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
+                    <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                    </button>
+                </span>
             </div>
         </form>
         <!-- /.search form -->
@@ -29,28 +29,28 @@
                 <a href="#">
                     <i class="fa fa-address-book"></i> <span>Admin</span>
                     <span class="pull-right-container">
-                <small class="label pull-right bg-green">new</small>
-                </span>
+                        <small class="label pull-right bg-green">new</small>
+                    </span>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{route('view_all_admin')}}"><i class="fa fa-list"></i> Danh sách admin</a></li>
                     <li><a href="{{route('view_insert_admin')}}"><i class="fa fa-plus"></i> Thêm admin </a></li>
                 </ul>
             </li>
-             <li>
+            <li>
                 <a href="{{route('view_all_user')}}">
                     <i class="fa fa-address-book"></i> <span>User</span>
                     <span class="pull-right-container">
-                <small class="label pull-right bg-green">new</small>
-                </span>
+                        <small class="label pull-right bg-green">new</small>
+                    </span>
                 </a>
             </li>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-address-book"></i> <span>Loại phòng</span>
                     <span class="pull-right-container">
-                <small class="label pull-right bg-green">new</small>
-                </span>
+                        <small class="label pull-right bg-green">new</small>
+                    </span>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{route('view_all_loai_phong')}}"><i class="fa fa-list"></i> Danh sách loại phòng</a></li>
@@ -61,8 +61,8 @@
                 <a href="#">
                     <i class="fa fa-address-book"></i> <span>Phòng</span>
                     <span class="pull-right-container">
-                <small class="label pull-right bg-green">new</small>
-                </span>
+                        <small class="label pull-right bg-green">new</small>
+                    </span>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{route('view_all_phong')}}"><i class="fa fa-list"></i> Danh sách phòng</a></li>
@@ -73,51 +73,51 @@
                 <a href="#">
                     <i class="fa fa-address-book"></i> <span>Đặt phòng</span>
                     <span class="pull-right-container">
-                <small class="label pull-right bg-green">new</small>
-                </span>
+                        <small class="label pull-right bg-green">new</small>
+                    </span>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{route('view_dat_phong',0)}}"><i class="fa fa-list"></i> Đặt phòng</a></li>
-                    
+
                 </ul>
             </li>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-address-book"></i> <span>Hóa đơn</span>
                     <span class="pull-right-container">
-                <small class="label pull-right bg-green">new</small>
-                </span>
+                        <small class="label pull-right bg-green">new</small>
+                    </span>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{route('chua_nhan_phong')}}"><i class="fa fa-list"></i>Hóa đơn</a></li>
-                    
+
                 </ul>
             </li>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-tty"></i> <span>Liên hệ</span>
                     <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{Route('contact.list')}}"><i class="fa fa-list"></i> Danh sách liên hệ</a></li>
                     <li><a href="{{Route('contact.add')}}"><i class="fa fa-plus"></i> Thêm liên hệ</a></li>
                 </ul>
             </li>
-            {{--  <li class="treeview">
+            <li class="treeview">
                 <a href="#">
                     <i class="fa fa-address-book"></i> <span>Thống kê</span>
                     <span class="pull-right-container">
-                <small class="label pull-right bg-green">new</small>
-                </span>
+                        <small class="label pull-right bg-green">new</small>
+                    </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{route('view_month')}}"><i class="fa fa-list"></i>Thống kê</a></li>
+                    <li><a href="{{route('view_month')}}"><i class="fa fa-plus"></i>Theo tháng</a></li>
                     <li><a href="{{route('view_year')}}"><i class="fa fa-plus"></i> Theo năm </a></li>
                 </ul>
-            </li>  --}}
-            
+            </li>
+
             <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
             <li class="header">LABELS</li>
             <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>

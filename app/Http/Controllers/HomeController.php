@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use App\Model\admin;
 use Illuminate\Support\Str;
+use App;
 use Illuminate\Support\Facades\Validator;
 use Session;
 use DB;
@@ -31,6 +33,15 @@ class HomeController extends Controller
     public function index()
     {
         return view('admins.dashboard');
+    }
+
+    public function changeLanguage($language)
+    {
+        Session::put('admin_language', $language);
+        echo($language);
+        App::setLocale($language);
+        //dd(app()->getLocale());
+        return redirect()->back();
     }
 
     public function view_one($id)

@@ -23,8 +23,10 @@ class CreateBillTable extends Migration
             $table->date('check_in');
             $table->date('check_out');
             $table->integer('day');
+            $table->integer('amount');
             $table->integer('status');
-            $table->integer('total_billed');
+            $table->integer('total_billed_vi');
+            $table->integer('total_billed_en');
         });
     }
 

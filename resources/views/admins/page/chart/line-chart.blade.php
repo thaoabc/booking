@@ -20,11 +20,11 @@ Thống kê theo năm
 
         <section class="content-header">
             <h1>
-                Thống kê theo tháng {{$selectedMonth}} năm {{$selectedYear}}
+                Thống kê theo năm
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Thống kê</li>
+                <li class="active">Hóa đơn</li>
             </ol>
         </section>
         <section class="content">
@@ -42,30 +42,13 @@ Thống kê theo năm
                     <div class="row">
                         <div class="col-md-6">
 
-                            <form role="form" method="get" action="{{ route('view_month') }}" enctype="multipart/form-data">
+                            <form role="form" method="get" action="{{ route('line_chart') }}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
                                     <select class="form-control select2" name="select_year" style="width: 100%;">
                                         @foreach ($listYear as $value)
-
-                                        @if ($value->getYear == $selectedYear)
-                                        <option value="{{$value->getYear}}" selected="selected">{{$value->getYear}}</option>
-                                        @else
                                         <option value="{{$value->getYear}}">{{$value->getYear}}</option>
-                                        @endif
                                         @endforeach
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <select class="form-control select2" name="select_month" style="width: 100%;">
-                                        @for ($i=1;$i<=12;$i++)
-
-                                        @if ($i == $selectedMonth)
-                                        <option value="{{$i}}" selected="selected">{{$i}}</option>
-                                        @else
-                                        <option value="{{$i}}">{{$i}}</option>
-                                        @endif
-                                        @endfor
                                     </select>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Chọn năm</button>
@@ -91,7 +74,7 @@ Thống kê theo năm
                                 </div>
                             </div>
                             <div class="box-body chart-responsive">
-                                <div class="chart" id="bar-chart" data-order="{{ $result}}" style="height: 300px;"></div>
+                                <div class="chart" id="line-chart" data-order="{{ $result}}" style="height: 300px;"></div>
                             </div>
                             <!-- /.box-body -->
                         </div>
@@ -105,38 +88,92 @@ Thống kê theo năm
 
 <script type="text/javascript">
     $(function() {
-        var order = $('#bar-chart').data('order');
-        var $data = [];
+        //Initialize Select2 Elements
+        // $('.select2').select2()
 
+        var order = $('#line-chart').data('order');
+        var $valueOfQuater = [];
+        var $data = [];
         console.log(order);
         order.forEach(function(element) {
-            $data.push([
-                'Ngày ' + element.getDayIn + ' - ' + element.getDayOut + ' : ' + element.value,
-                element.value
-            ]);
+            $valueOfQuater.push({
+                y: element.getYear,
+                q: Math.floor((element.getMonth / 3)),
+                val: Number(element.value)
+            });
+            $data.push({
+                m: (element.getYear) + ' Q' + (Math.floor((element.getMonth / 3))),
+                item1: element.value
+            });
         });
-        var bar_data = {
-            data: $data,
-            color: '#3c8dbc'
-        }
-        $.plot('#bar-chart', [bar_data], {
-            grid: {
-                borderWidth: 1,
-                borderColor: '#f3f3f3',
-                tickColor: '#f3f3f3'
-            },
-            series: {
-                bars: {
-                    show: true,
-                    barWidth: 0.5,
-                    align: 'center'
+        console.log($valueOfQuater);
+        var sum = 0;
+        var listnew = [];
+        var nameQuater = 1;
+        $valueOfQuater.forEach(myFunction);
+
+        function myFunction(item, index) {
+            if (nameQuater == item['q']) {
+                sum += item['val'];
+                if ($valueOfQuater.length - 1 == index) {
+                    listnew.push({
+                        q: item['y'] + ' Q' + nameQuater,
+                        val: sum
+                    });
+                } else {
+                    if (nameQuater != $valueOfQuater[index + 1]['q']) {
+                        listnew.push({
+                            q: item['y'] + ' Q' + nameQuater,
+                            val: sum
+                        });
+                        sum = 0;
+                        nameQuater += 1;
+                        while (nameQuater != $valueOfQuater[index + 1]['q']) {
+                            listnew.push({
+                                q: item['y'] + ' Q' + nameQuater,
+                                val: 0
+                            });
+                            nameQuater += 1;
+                        }
+                    }
                 }
-            },
-            xaxis: {
-                mode: 'categories',
-                tickLength: 0
+            } else {
+                if (index == $valueOfQuater.length - 1) {
+                    listnew.push({
+                        q: item['y'] + ' Q' + nameQuater,
+                        val: item['val']
+                    });
+                } else {
+                    if (nameQuater + 1 != $valueOfQuater[index + 1]['q']) {
+                        listnew.push({
+                            q: item['y'] + ' Q' + nameQuater,
+                            val: 0
+                        });
+                        nameQuater += 1;
+                        while (nameQuater != $valueOfQuater[index + 1]['q']) {
+                            listnew.push({
+                                q: item['y'] + ' Q' + nameQuater,
+                                val: 0
+                            });
+                            nameQuater += 1;
+                        }
+                    } else {
+                        sum += item['val'];
+                    }
+                }
             }
-        })
+        };
+        console.log(listnew);
+        var line = new Morris.Line({
+            element: 'line-chart',
+            resize: true,
+            data: listnew,
+            xkey: 'q',
+            ykeys: ['val'],
+            labels: ['Sum'],
+            lineColors: ['#3c8dbc'],
+            hideHover: 'auto'
+        });
     })
 </script>
 @endsection

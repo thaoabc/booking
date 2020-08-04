@@ -22,7 +22,7 @@ class CreateAdminTable extends Migration
             $table->string('phone');
             $table->bigInteger('level')->unsigned();
             $table->integer('status');
-            $table ->string('remember_token', 100) -> nullable();
+            $table ->string('password_reminder_token', 100) -> nullable();
             $table->timestamps();
 
         });

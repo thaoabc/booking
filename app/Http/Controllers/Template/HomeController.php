@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Template;
 
+use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
@@ -11,12 +12,20 @@ use DB;
 use App\Http\Controllers\Controller;
 use Session;
 
-class HomeController extends Controller
+class HomeController extends BaseController
 {
     public function changeLanguage($language)
-{
-    Session::put('website_language', $language);
+    {
+        Session::put('website_language', $language);
 
-    return redirect()->back();
-}
+        return redirect()->back();
+    }
+    public function welcome()
+    {
+        $array['cate_room'] = cate_room::all();
+        if (empty(Session::has('status_login'))) {
+            Session::put('status_login', 0);
+        }
+        return view('booking.index', $array);
+    }
 }

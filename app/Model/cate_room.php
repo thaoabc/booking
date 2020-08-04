@@ -2,14 +2,18 @@
 
 namespace App\Model;
 
-use Illuminate\Database\Eloquent\Model;
+use Dimsav\Translatable\Translatable;
+use Illuminate\Database\Eloquent\Model as Eloquent;
 
-class cate_room extends Model
+class cate_room extends Eloquent 
 {
+    use Translatable;
     protected $table='cate_room';
     protected $fillable = [
-        'id', 'name', 'price','image','describe',
+        'id','image',
     ];
+
+  public $translatedAttributes = ['name','price','describe'];
 
     public $timestamps = false;
     protected $hidden = [];
