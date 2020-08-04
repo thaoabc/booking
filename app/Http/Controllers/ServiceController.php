@@ -57,11 +57,13 @@ class ServiceController extends Controller
             $request,
             [
                 'name_service' => 'required',
-                'content' => 'required'
+                'content' => 'required',
+                'name_service' => 'required'
             ],
             [
                 'name_service.required' => 'Tên dịch vụ là trường bắt buộc',
                 'content.required' => 'Nội dung là trường bắt buộc',
+                'name_service.required' => 'Tên class không được thiếu'
             ]
         );
 
@@ -75,6 +77,7 @@ class ServiceController extends Controller
         }
         $services->name_service = $request->input('name_service');
         $services->content = $request->input('content');
+        $services->name_class = $request->input('name_class');
         $services->image = $file_name;
 
         //Storage::disk('public')->put('cate_room', '$anh');
@@ -88,11 +91,13 @@ class ServiceController extends Controller
         $image_update = DB::table('services')->where('id', $id)->pluck('image');
         $rules = [
             'name_service' => 'required',
-            'content' => 'required'
+            'content' => 'required',
+            'name_service' => 'required'
         ];
         $messages = [
             'name_service.required' => 'Tên dịch vụ là trường bắt buộc',
             'content.required' => 'Nội dung là trường bắt buộc',
+            'name_service.required' => 'Tên class không được thiếu'
         ];
         $validator = Validator::make($request->all(), $rules, $messages);
 
@@ -119,6 +124,7 @@ class ServiceController extends Controller
             $services = services::where('id', $id)->first();
             $services->name_service = $update['name_service'];
             $services->content = $update['content'];
+            $services->name_class = $update['name_class'];
             $services->image = $file_name;
             $services->save();
             return redirect()->route('view_all_service');

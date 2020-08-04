@@ -1,6 +1,6 @@
 @extends('admins.layout.master-layout')
 @section('title')
-    Thêm dịch vụ
+    Thêm loại phòng
 @endsection
 
 @section('content')
@@ -9,47 +9,47 @@
         <div class="container-fluid">
             <section class="content-header">
                 <h1>
-                    Thêm dịch vụ.
+                    Thêm loại phòng.
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active">Thêm dịch vụ</li>
+                    <li class="active">Thêm loại phòng</li>
                 </ol>
             </section>
             <br>
             <div class="box box-primary">
 
                 <div class="box-header">
-                    <a style="text-align: right;" href="{{route('view_all_service')}}" class="btn btn-primary">Danh sách</a>
+                    <a style="text-align: right;" href="{{route('view_all_loai_phong')}}" class="btn btn-primary">Danh sách</a>
                 </div>
-                <form role="form" method="POST" action="{{route('process_insert_service')}}" enctype="multipart/form-data">
+                <form role="form" method="POST" action="{{route('process_insert_loai_phong')}}" enctype="multipart/form-data">
                     @csrf
                     <div class="box-body">
                         <div class="form-group">
-                        <label for="name">Tên dịch vụ:</label>
-                            <input type="text" class="form-control" id="name" name="name_service">
-                            @if ($errors->has('name_service'))
+                        <label for="name">Tên loại phòng:</label>
+                            <input type="text" class="form-control" id="name" name="name">
+                            @if ($errors->has('name'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('name') }}</strong>
                                 </span>
                             @endif
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Nội dung(*)</label>
-                            <textarea name="content" rows="10" placeholder="Nhập nội dung"
-                                        class="form-control">{{ old('content') }}</textarea>
-                             @if ($errors->has('content'))
+                            <label for="price">Giá:</label>
+                            <input type="text" class="form-control" id="price" name="price">
+                            @if ($errors->has('price'))
                                 <span class="help-block">
-                                    <strong>{{ $errors->first('content') }}</strong>
+                                    <strong>{{ $errors->first('price') }}</strong>
                                 </span>
                             @endif
                         </div>
                         <div class="form-group">
-                        <label for="name_class">Tên class:</label>
-                            <input type="text" class="form-control" id="name" name="name_class">
-                            @if ($errors->has('name_class'))
+                            <label for="exampleInputEmail1">Mô tả(*)</label>
+                            <textarea name="describe" rows="10" placeholder="Nhập nội dung"
+                                        class="form-control">{{ old('content') }}</textarea>
+                             @if ($errors->has('describe'))
                                 <span class="help-block">
-                                    <strong>{{ $errors->first('name_class') }}</strong>
+                                    <strong>{{ $errors->first('describe') }}</strong>
                                 </span>
                             @endif
                         </div>

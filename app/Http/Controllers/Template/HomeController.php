@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 use App\Model\Phong;
 use App\Model\cate_room;
+use App\Model\services;
 use DB;
 use App\Http\Controllers\Controller;
 use Session;
@@ -23,9 +24,10 @@ class HomeController extends BaseController
     public function welcome()
     {
         $array['cate_room'] = cate_room::all();
+        $array_service['services'] = services::all();
         if (empty(Session::has('status_login'))) {
             Session::put('status_login', 0);
         }
-        return view('booking.index', $array);
+        return view('booking.index', $array,$array_service);
     }
 }

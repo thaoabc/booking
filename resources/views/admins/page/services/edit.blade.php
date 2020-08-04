@@ -37,6 +37,10 @@
                             <textarea name="content" rows="10" placeholder="Nhập nội dung" class="form-control">{{$services->content}}</textarea>
                         </div>
                         <div class="form-group">
+                            <label for="exampleInputEmail1">Tên class(*)</label>
+                            <input name="name_class" type="text" class="form-control" placeholder="Nhập class" class="form-control" value="{{$services->name_class}}">
+                        </div>
+                        <div class="form-group">
                             <label for="image">Ảnh nền</label>
                             <input type="file" id="image" name="image" onchange="showIMG()">
                         </div>
