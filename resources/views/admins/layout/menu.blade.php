@@ -95,6 +95,18 @@
             </li>
             <li class="treeview">
                 <a href="#">
+                    <i class="fa fa-address-book"></i> <span>Dịch vụ</span>
+                    <span class="pull-right-container">
+                        <small class="label pull-right bg-green">new</small>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{route('view_all_service')}}"><i class="fa fa-list"></i> Danh sách dịch vụ</a></li>
+                    <li><a href="{{route('view_insert_service')}}"><i class="fa fa-plus"></i> Thêm dịch vụ </a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
                     <i class="fa fa-tty"></i> <span>Liên hệ</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>

@@ -31,9 +31,8 @@ Route::post('signin', 'Template\AuthUser\UserLoginController@postLogin')->name('
 Route::get('logout', 'Template\AuthUser\LogoutController@logout')->name('user.logout');
 
 //Quên mật khẩu
-Route::get('password/reset', 'Template\AuthUser\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
-Route::post('password/email', 'Template\AuthUser\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-Route::get('password/reset/{token}', 'Template\AuthUser\ResetPasswordController@showResetForm')->name('password.reset.token');
+Route::get('password/reset', 'Template\AuthUser\ForgotPasswordController@showLinkRequestForm')->name('password_user.reset');
+Route::get('password/reset/{token}', 'Template\AuthUser\ResetPasswordController@showResetForm')->name('password_user.reset.token');
 Route::post('password/reset', 'Template\AuthUser\ResetPasswordController@reset');
 
 // user đăng kí
@@ -48,6 +47,7 @@ route::get('detail_cateroom/{id}', 'Template\RoomController@detail_cateroom')->n
 route::post('detail_cateroom/{id}', 'Template\BookingController@check_room')->name('room.check_room');
 
 route::get('contact', 'Template\ContactController@view')->name('contact');
+route::post('send_contact', 'Template\ContactController@send')->name('send_contact');
 
 route::get('blog', 'Template@blog')->name('blog');
 
@@ -123,6 +123,15 @@ Route::group(['prefix' => 'admin', 'middleware' => 'CheckAdmin'], function () {
 		Route::post('process_insert_phong', 'RoomController@process_insert_phong')->name('process_insert_phong');
 		Route::get('view_one_phong/{id}', 'RoomController@view_one')->name('view_one_phong');
 		Route::post('process_update_phong/{id}', 'RoomController@update')->name('process_update_phong');
+	});
+
+	Route::group(['prefix' => 'services'], function () {
+		Route::get('view_all_service', 'ServiceController@view_all')->name('view_all_service');
+		Route::get('view_insert_service', 'ServiceController@view_insert')->name('view_insert_service');
+		Route::post('process_insert_service', 'ServiceController@process_insert')->name('process_insert_service');
+		Route::get('delete_service/{id}','ServiceController@delete')->name('delete_service');
+		Route::get('view_one_service/{id}', 'ServiceController@view_one')->name('view_one_service');
+		Route::post('process_update_service/{id}', 'ServiceController@update')->name('process_update_service');
 	});
 
 	Route::group(['prefix' => 'dat_phong'], function () {
