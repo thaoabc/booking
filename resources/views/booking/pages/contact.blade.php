@@ -33,16 +33,17 @@
                     </div>
                 </div>
                 <div class="col-lg-7 offset-lg-1">
-                    <form action="#" class="contact-form">
+                    <form action="{{route('send_contact')}}" method="post" class="contact-form">
+                    @csrf
                         <div class="row">
                             <div class="col-lg-6">
-                                <input type="text" placeholder="Your Name">
+                                <input type="text" name="name_user" placeholder="Your Name">
                             </div>
                             <div class="col-lg-6">
-                                <input type="text" placeholder="Your Email">
+                                <input type="text" name="email" placeholder="Your Email">
                             </div>
                             <div class="col-lg-12">
-                                <textarea placeholder="Your Message"></textarea>
+                                <textarea placeholder="Your Message" name="content"></textarea>
                                 <button type="submit">Submit Now</button>
                             </div>
                         </div>
