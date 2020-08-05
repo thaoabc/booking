@@ -1,15 +1,15 @@
 @extends('booking.layout.master-layout')
 
 @section('content')
-<section class="blog-details-hero set-bg" data-setbg="assets/sona/img/blog/blog-details/blog-details-hero.jpg">
+<section class="blog-details-hero set-bg" data-setbg="{{asset('assets/blog').'/'.$blog->image }}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 offset-lg-1">
                     <div class="bd-hero-text">
-                        <span>Travel Trip & Camping</span>
-                        <h2>Cdc Issues Health Alert Notice For Travelers To Usa From Hon</h2>
+                        <span>{{$blog->name_cateblog}}</span>
+                        <h2>{{$blog->name_blog}}n</h2>
                         <ul>
-                            <li class="b-time"><i class="icon_clock_alt"></i> 15th April, 2019</li>
+                            <li class="b-time"><i class="icon_clock_alt"></i> {{$blog->created_at}}</li>
                             <li><i class="icon_profile"></i> Kerry Jones</li>
                         </ul>
                     </div>
@@ -25,7 +25,10 @@
             <div class="row">
                 <div class="col-lg-10 offset-lg-1">
                     <div class="blog-details-text">
-                        <div class="bd-title">
+                    <div class="bd-title">
+                        <p>{{$blog->content}}</p>
+                    </div>
+                        {{--  <div class="bd-title">
                             <p>Thinking about overseas adventure travel? Have you put any thought into the best places
                                 to go when it comes to overseas adventure travel? Nepal is one of the most popular
                                 places of all, when you visit this magical country you will have the best adventures
@@ -149,7 +152,7 @@
                                     </div>
                                 </div>
                             </form>
-                        </div>
+                        </div>  --}}
                     </div>
                 </div>
             </div>
@@ -168,33 +171,17 @@
                 </div>
             </div>
             <div class="row">
+            @foreach($blogs as $value)
                 <div class="col-md-4">
-                    <div class="blog-item set-bg" data-setbg="assets/sona/img/blog/blog-1.jpg">
+                    <div class="blog-item set-bg" data-setbg="{{asset('assets/blog').'/'.$blog->image }}">
                         <div class="bi-text">
-                            <span class="b-tag">Travel Trip</span>
-                            <h4><a href="#">Tremblant In Canada</a></h4>
-                            <div class="b-time"><i class="icon_clock_alt"></i> 15th April, 2019</div>
+                            <span class="b-tag">{{$value->name_cateblog}}</span>
+                            <h4><a href="#">{{$value->name_blog}}</a></h4>
+                            <div class="b-time"><i class="icon_clock_alt"></i> {{$value->created_at}}</div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="blog-item set-bg" data-setbg="assets/sona/img/blog/blog-2.jpg">
-                        <div class="bi-text">
-                            <span class="b-tag">Camping</span>
-                            <h4><a href="#">Choosing A Static Caravan</a></h4>
-                            <div class="b-time"><i class="icon_clock_alt"></i> 15th April, 2019</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="blog-item set-bg" data-setbg="assets/sona/img/blog/blog-3.jpg">
-                        <div class="bi-text">
-                            <span class="b-tag">Event</span>
-                            <h4><a href="#">Copper Canyon</a></h4>
-                            <div class="b-time"><i class="icon_clock_alt"></i> 21th April, 2019</div>
-                        </div>
-                    </div>
-                </div>
+            @endforeach
             </div>
         </div>
     </section>

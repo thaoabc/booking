@@ -10,6 +10,7 @@ use App\Model\Phong;
 use App\Model\cate_room;
 use App\Model\services;
 use App\Model\blogs;
+use App\Model\cate_blogs;
 use DB;
 use App\Http\Controllers\Controller;
 use Session;

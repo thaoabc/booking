@@ -73,7 +73,7 @@ class UserController extends BaseController
 
 
 
-        $users->name = $request->input('name');
+        $users->name_user = $request->input('name');
         $users->phone = $request->input('phone');
         $users->email = $request->input('email');
         $users->password = bcrypt($request->input('password'));
@@ -115,7 +115,7 @@ class UserController extends BaseController
             if ($email_old == $request->input("email")) {
                 if ($phone_old == $request->input("phone")) {
                     DB::table('users')->where('id', $id)->update([
-                        'name' => $request->name,
+                        'name_user' => $request->name,
                         'phone' => $request->phone,
                         'email' => $request->email,
                         'password' => bcrypt($request->password),
@@ -132,7 +132,7 @@ class UserController extends BaseController
                         }
                     }
                     DB::table('users')->where('id', $id)->update([
-                        'name' => $request->name,
+                        'name_user' => $request->name,
                         'phone' => $request->phone,
                         'email' => $request->email,
                         'password' => bcrypt($request->password),
@@ -152,7 +152,7 @@ class UserController extends BaseController
                 if ($phone_old == $request->input("phone")) {
 
                     DB::table('users')->where('id', $id)->update([
-                        'name' => $request->name,
+                        'name_user' => $request->name,
                         'phone' => $request->phone,
                         'email' => $request->email,
                         'password' => bcrypt($request->password),
@@ -170,7 +170,7 @@ class UserController extends BaseController
                     }
 
                     DB::table('users')->where('id', $id)->update([
-                        'name' => $request->name,
+                        'name_user' => $request->name,
                         'phone' => $request->phone,
                         'email' => $request->email,
                         'password' => bcrypt($request->password),
