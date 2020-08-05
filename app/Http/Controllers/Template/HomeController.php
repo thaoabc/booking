@@ -26,7 +26,8 @@ class HomeController extends BaseController
     {
         $cate_room = cate_room::all();
         $services = services::all();
-        $blogs= blogs::all();
+        $blogs= blogs::join('cate_blogs','cate_blogs.id','=','blogs.cate_id')
+            ->get();
         if (empty(Session::has('status_login'))) {
             Session::put('status_login', 0);
         }
