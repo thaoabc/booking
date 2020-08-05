@@ -134,6 +134,25 @@ Route::group(['prefix' => 'admin', 'middleware' => 'CheckAdmin'], function () {
 		Route::post('process_update_service/{id}', 'ServiceController@update')->name('process_update_service');
 	});
 
+	Route::group(['prefix' => 'cate_blog'], function () {
+		Route::get('', 'CateBlogController@view_all');
+		Route::get('view_all_cate_blog', 'CateBlogController@view_all')->name('view_all_cate_blog');
+		Route::get('view_insert_cate_blog', 'CateBlogController@view_insert')->name('view_insert_cate_blog');
+		Route::post('process_insert_cate_blog', 'CateBlogController@process_insert')->name('process_insert_cate_blog');
+		Route::get('delete_cate_blog/{id}', 'CateBlogController@delete')->name('delete_cate_blog');
+		Route::get('view_one_cate_blog/{id}', 'CateBlogController@view_one')->name('view_one_cate_blog');
+		Route::post('process_update_cate_blog/{id}', 'CateBlogController@update')->name('process_update_cate_blog');
+	});
+
+	Route::group(['prefix' => 'blog'], function () {
+		Route::get('view_all_blog', 'BlogController@view_all')->name('view_all_blog');
+		Route::get('view_insert_blog', 'BlogController@view_insert')->name('view_insert_blog');
+		Route::post('process_insert_blog', 'BlogController@process_insert_blog')->name('process_insert_blog');
+		Route::get('view_one_blog/{id}', 'BlogController@view_one')->name('view_one_blog');
+		Route::post('process_update_blog/{id}', 'BlogController@update')->name('process_update_blog');
+		Route::get('delete_blog/{id}', 'BlogController@delete_blog')->name('delete_blog');
+	});
+
 	Route::group(['prefix' => 'dat_phong'], function () {
 		Route::get('view_dat_phong/{id}', 'BookingController@view_dat_phong')->name('view_dat_phong');
 		Route::post('view_phong', 'BookingController@check_phong')->name('view_phong');

@@ -1,6 +1,6 @@
 @extends('admins.layout.master-layout')
 @section('title')
-    Danh sách loại phòng
+    Danh sách loại tin tức
 @endsection
 
 @section('content')
@@ -17,11 +17,11 @@
 
             <section class="content-header">
                 <h1>
-                    Danh Sách Loại Phòng
+                    Danh Sách loại tin tức
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active">Loại phòng</li>
+                    <li class="active">Loại tin tức</li>
                 </ol>
             </section>
             <section class="content">
@@ -29,7 +29,7 @@
                     <div class="col-xs-12">
                         <div class="box">
                             <div class="box-header">
-                                <a href="{{route('view_insert_loai_phong')}}" class="btn btn-success">Thêm loại phòng</a>
+                                <a href="{{route('view_insert_cate_blog')}}" class="btn btn-success">Thêm loại tin tức</a>
                             </div>
                             <div class="box-header">
 
@@ -39,32 +39,25 @@
                                 <table id="example1" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th>Tên loại phòng</th>
-                                        {{--<th>Tóm tắt</th>--}}
-                                        <th>Ảnh</th>
-                                        <th>Giá</th>
-                                        <th>Mô tả</th>
+                                        <th>Tên loại tin tức</th>
                                         <th class="col-md-3">Hành động</th>
 
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($cate_room as $value)
+                                    @foreach($cate_blog as $value)
                                         <tr class="odd gradeX" align="center">
-                                            <td>{{$value->name}}</td>
-                                            <td><img width="100px" src="{{asset('assets/cate_room').'/'.$value->image }}"></td>
-                                            <td>{{$value->price}}</td>
-                                            <td>{{$value->describe}}</td>
+                                            <td>{{$value->name_cateblog}}</td>
                                             
                                             <td>
                                                 {{--<a class="btn btn-primary" id="bt{{$value->id}}" style="display: block" onclick="thaotac({{$value->id}})" >Thao tác</a>--}}
                                                 <div id="button{{$value->id}}">
                                                     <a class="btn btn-primary" id="edit"
-                                                       href="{{ url('admin/loai_phong/view_one_loai_phong/'.$value->id) }}"
+                                                       href="{{ url('admin/cate_blog/view_one_cate_blog/'.$value->id) }}"
                                                        onclick="">Sửa</a>
                                                     <a class="btn btn-danger"
-                                                       href="{{ url('admin/loai_phong/delete_loai_phong/'.$value->id) }}"
-                                                       onclick="return confirm('Hành động sẽ xóa loại phòng này! bạn có muốn tiếp tục?')">Xóa</a>
+                                                       href="{{ url('admin/cate_blog/delete_cate_blog/'.$value->id) }}"
+                                                       onclick="return confirm('Hành động sẽ xóa loại tin tức này! bạn có muốn tiếp tục?')">Xóa</a>
                                                 </div>
 
 

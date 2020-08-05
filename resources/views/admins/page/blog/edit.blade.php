@@ -1,6 +1,6 @@
 @extends('admins.layout.master-layout')
 @section('title')
-    Sửa phòng
+    Sửa tin tức
 @endsection
 
 @section('content')
@@ -9,34 +9,34 @@
         <div class="container-fluid">
             <section class="content-header">
                 <h1>
-                    Sửa phòng
+                    Sửa tin tức
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active">Sửa phòng</li>
+                    <li class="active">Sửa tin tức</li>
                 </ol>
             </section>
             <br>
             <div class="box box-primary">
 
-                <form role="form" method="POST" action="{{ url('admin/phong/process_update_phong/'.$room->id) }}"
+                <form role="form" method="POST" action="{{ url('admin/blog/process_update_blog/'.$blog->id) }}"
                       enctype="multipart/form-data">
                     @csrf
                     <div class="box-body">
                         <div class="form-group">
-                        <label for="name">Tên phòng:</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Nhập tiêu đề" value="{{ $room->name }}">
-                            @if ($errors->has('name'))
+                        <label for="name">Tên tin tức:</label>
+                            <input type="text" class="form-control" id="name" name="name_blog" placeholder="Nhập tiêu đề" value="{{ $blog->name_blog }}">
+                            @if ($errors->has('name_blog'))
                                 <span class="help-block">
-                                    <strong>{{ $errors->first('name') }}</strong>
+                                    <strong>{{ $errors->first('name_blog') }}</strong>
                                 </span>
                             @endif
                         </div>
                         <div class="form-group">
-                            <label for="cate_id">Loại phòng:</label>
+                            <label for="cate_id">Loại tin tức:</label>
                             <select class="form-control" name="cate_id">
-                                @foreach ($cate_room as $value)
-                                   <option value='{{$value->id}}'>{{$value->name}}</option>
+                                @foreach ($cate_blog as $value)
+                                   <option value='{{$value->id}}'>{{$value->name_cateblog}}</option>
                                 @endforeach
                                
                             </select>
@@ -44,10 +44,25 @@
                         <div class="form-group">
                         <label for="status">Tình trạng:</label>
                             <select class="form-control" name="status">
-                                <option value="1">Hoạt động</option>
-                                <option value="0">Dừng</option>
+                                <option value="1">Đã đăng</option>
+                                <option value="0">Lưu nháp</option>
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Nội dung(*)</label>
+                            <textarea name="content" rows="10" placeholder="Nhập nội dung" class="form-control">{{$blog->content}}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="image">Ảnh nền</label>
+                            <input type="file" id="image" name="image" onchange="showIMG()">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="" style="margin-left: 10px"> Ảnh hiển thị : </label>
+                        <div id="viewImg">
+
+                        </div>
+                    </div>
 
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary">Thêm</button>

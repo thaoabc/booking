@@ -220,15 +220,18 @@
                 </div>
             </div>
             <div class="row">
+                @foreach($blogs as $value)
                 <div class="col-lg-4">
                     <div class="blog-item set-bg" data-setbg="assets/sona/img/blog/blog-1.jpg">
                         <div class="bi-text">
                             <span class="b-tag">Travel Trip</span>
-                            <h4><a href="#">Tremblant In Canada</a></h4>
-                            <div class="b-time"><i class="icon_clock_alt"></i> 15th April, 2019</div>
+                            <h4><a href="{{route('detail_blog')}}">{{$value->name_blog}}</a></h4>
+                            <div class="b-time"><i class="icon_clock_alt"></i> {{$value->created_at}}</div>
                         </div>
                     </div>
                 </div>
+                @endforeach
+                
                 <div class="col-lg-4">
                     <div class="blog-item set-bg" data-setbg="assets/sona/img/blog/blog-2.jpg">
                         <div class="bi-text">

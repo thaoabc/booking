@@ -17,6 +17,7 @@ class CreateBlogsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name_blog');
             $table->string('content');
+            $table->string('image');
             $table->bigInteger('cate_id')->unsigned();
             $table->foreign('cate_id')
                 ->references('id')

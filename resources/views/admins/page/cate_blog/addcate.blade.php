@@ -1,4 +1,4 @@
-@extends('admin.layouts.master-layouts')
+@extends('admins.layout.master-layout')
 @section('title')
     Thêm tin tức
 @endsection
@@ -18,12 +18,12 @@
         <br>
         <div class="box box-primary">
 
-            <form role="form" method="POST" action="{{route('news.storeCate')}}" enctype="multipart/form-data">
+            <form role="form" method="POST" action="{{route('process_insert_cate_blog')}}" enctype="multipart/form-data">
                 @csrf
                 <div class="box-body">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Thêm thể loại  (*)</label>
-                        <input type="text" class="form-control" placeholder="Nhập tiêu đề" name="name"
+                        <input type="text" class="form-control" placeholder="Nhập tiêu đề" name="name_cateblog"
                                value="{{ old('name') }}" required>
                     </div>
                 </div>
@@ -36,7 +36,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header">
-                                    {{--<a class="btn btn-primary" id="btnadd" href="{{ route('add.products') }}" onclick="">Thêm Sản phẩm</a>--}}
+                                    {{--<a class="btn btn-primary" id="btnadd" href="{{ route('view_insert_blog') }}" onclick="">Thêm thể loại</a>--}}
                                 </div>
                                 <!-- /.box-header -->
                                 <div class="box-body">
@@ -50,15 +50,15 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($cate_news as $value)
+                                        @foreach($cate_blog as $value)
                                             <tr class="odd gradeX" align="center">
-                                                <td>{{$value->name}}</td>
+                                                <td>{{$value->name_cateblog}}</td>
                                                 <td>{{$value->created_at}}</td>
 
                                                 <td>
 
-                                                    <a class="btn btn-primary" id="edit{{ $value->id }}" href="{{ url('admincp/news/edit-cate/'.$value->id) }}" onclick="">Sửa</a>
-                                                    <a class="btn btn-danger" href="{{ url('admincp/news/destroy-cate/'.$value->id) }}" onclick="return confirm('Hành động sẽ xóa tin tức này! bạn có muốn tiếp tục?')">Xóa</a>
+                                                    <a class="btn btn-primary" id="edit{{ $value->id }}" href="{{ url('admin/cate_blog/view_one_cate_blog/'.$value->id) }}" onclick="">Sửa</a>
+                                                    <a class="btn btn-danger" href="{{ url('admin/cate_blog/delete_cate_blog/'.$value->id) }}" onclick="return confirm('Hành động sẽ xóa tin tức này! bạn có muốn tiếp tục?')">Xóa</a>
                                             </tr>
                                         @endforeach
                                         </tbody>
