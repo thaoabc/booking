@@ -121,7 +121,7 @@
                     <div class="hp-room-item set-bg" width="360px" height="234px" data-setbg="{{asset('assets/cate_room').'/'.$value->image }}">
                             <div class="hr-text">
                                 <h4>{{$value->name}}</h4>
-                                <h3>{{$value->price}}<span>/Pernight</span></h3>
+                                <h3>{{number_format($value->price)}}<span>/Pernight</span></h3>
                                 <table>
                                     <tbody>
                                         <tr>
@@ -222,7 +222,7 @@
             <div class="row">
                 @foreach($blogs as $value)
                 <div class="col-lg-4">
-                    <div class="blog-item set-bg" data-setbg="assets/sona/img/blog/blog-1.jpg">
+                    <div class="blog-item set-bg" data-setbg="{{asset('assets/blog').'/'.$value->image }}">
                         <div class="bi-text">
                             <span class="b-tag">{{$value->name_cateblog}}</span>
                             <h4><a href="{{ url('detail_blog/'. $value->id) }}">{{$value->name_blog}}</a></h4>

@@ -18,8 +18,8 @@
                 <span>EN <i class="fa fa-angle-down"></i></span>
                 <div class="flag-dropdown">
                     <ul>
-                        <li><a href="{!! route('user.change-language', ['en']) !!}">English</a></li>
-                        <li><a href="{!! route('user.change-language', ['vi']) !!}">Vietnam</a></li>
+                        {{--  <li><a href="{!! route('user.change-language', ['en']) !!}">English</a></li>
+                        <li><a href="{!! route('user.change-language', ['vi']) !!}">Vietnam</a></li>  --}}
                     </ul>
                 </div>
             </div>
@@ -29,12 +29,12 @@
                 <li class="active"><a href="{{route('index')}}"> {{ __('home') }}</a></li>
                 <li><a href="./rooms.html">{{ __('room') }}</a>
                     <ul class="dropdown">
-                        <li><a href="#">Deluxe Room</a></li>
-                        <li><a href="#">Family Room</a></li>
-                        <li><a href="#">Premium Room</a></li>
+                    @foreach($cate_room as $value)
+                        <li><a href="{{ url('detail_cateroom/'. $value->id) }}">{{$value->name_cateroom}}</a></li>
+                    @endforeach
                     </ul>
                 </li>
-                <li><a href="./about-us.html">{{ __('about_us') }}</a></li>
+                {{--  <li><a href="./about-us.html">{{ __('about_us') }}</a></li>  --}}
                 <li><a href="{{route('blog')}}">{{ __('news') }}</a></li>
                 <li><a href="{{route('contact')}}">{{ __('contact') }}</a></li>
             </ul>
@@ -77,8 +77,8 @@
                                 <span>EN <i class="fa fa-angle-down"></i></span>
                                 <div class="flag-dropdown">
                                     <ul>
-                                        <li><a href="{!! route('user.change-language', ['en']) !!}">English</a></li>
-                                        <li><a href="{!! route('user.change-language', ['vi']) !!}">Vietnam</a></li>
+                                        {{--  <li><a href="{!! route('user.change-language', ['en']) !!}">English</a></li>
+                                        <li><a href="{!! route('user.change-language', ['vi']) !!}">Vietnam</a></li>  --}}
                                     </ul>
                                 </div>
                             </div>
@@ -270,17 +270,18 @@
                                     <li class="active"><a href="{{route('index')}}"> {{ __('home') }}</a></li>
                                     <li><a href="{{route('category_room')}}"> {{ __('room') }}</a>
                                         <ul class="dropdown">
-                                            <li><a href="#">Family Room</a></li>
-                                            <li><a href="#">Premium Room</a></li>
+                                             @foreach($cate_room as $value)
+                        <li><a href="{{ url('detail_cateroom/'. $value->id) }}">{{$value->name}}</a></li>
+                    @endforeach
                                         </ul>
                                     </li>
-                                    <li><a href="{{route('about_us')}}">{{ __('about_us') }}</a></li>
+                                    {{--  <li><a href="{{route('about_us')}}">{{ __('about_us') }}</a></li>  --}}
                                     <li><a href="{{route('blog')}}">{{ __('news') }}</a></li>
                                     <li><a href="{{route('contact')}}">{{ __('contact') }}</a></li>
                                 </ul>
                             </nav>
                             <div class="nav-right search-switch">
-                                <i class="icon_search"></i>
+                                {{--  <i class="icon_search"></i>  --}}
                             </div>
                         </div>
                     </div>

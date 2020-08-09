@@ -61,7 +61,7 @@ class bill extends Model
         $bill = DB::table('bill')
         ->join('users','bill.user_id','=','users.id')
         ->where('bill.status',3)
-        ->select('bill.*','users.name')
+        ->select('bill.*','users.name_user')
         ->get();
     return $bill;
     }

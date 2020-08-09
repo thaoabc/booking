@@ -29,9 +29,10 @@ class HomeController extends BaseController
         $services = services::all();
         $blogs= blogs::join('cate_blogs','cate_blogs.id','=','blogs.cate_id')
             ->get();
+        $cate_room=cate_room::all();
         if (empty(Session::has('status_login'))) {
             Session::put('status_login', 0);
         }
-        return view('booking.index', compact('cate_room','services','blogs'));
+        return view('booking.index', compact('cate_room','services','blogs','cate_room'));
     }
 }

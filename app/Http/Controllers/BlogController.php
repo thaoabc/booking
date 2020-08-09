@@ -20,12 +20,8 @@ class BlogController extends Controller
 
     public function view_insert()
     {
-        if (Gate::allows('insert')) {
             $array['cate_blog'] = cate_blogs::all();
             return view('admins.page.blog.add', $array);
-        } else {
-            return view('admins.page.error_level');
-        }
     }
 
     public function process_insert_blog(Request $request)
@@ -70,15 +66,11 @@ class BlogController extends Controller
 
     public function view_one($id)
     {
-        if (Gate::allows('update')) {
             $array_blog['blog'] = DB::table('blogs')->where('id', $id)->first();
 
             $array_cate_blog['cate_blog'] = DB::table('cate_blogs')->get();
             // dd($array_phong);
             return view("admins.page.blog.edit", $array_cate_blog, $array_blog);
-        } else {
-            return view('admins.page.error_level');
-        }
     }
 
     public function update(Request $request, $id)
@@ -113,11 +105,7 @@ class BlogController extends Controller
                     $file->move('assets/blog/', $name);
                     $file_name = $name;
                 } else {
-                    $file = $request->file('image');
-
-                    $name = $file->getClientOriginalName();
-                    $file->move('assets/blog/', $name);
-                    $file_name = $name;
+                    $file_name = DB::table('cate_room')->where('id', $id)->pluck('image')->first();
                 }
                 DB::table('blogs')->where('id', $id)->update([
                     'name_blog' => $request->name_blog,
@@ -132,12 +120,8 @@ class BlogController extends Controller
     }
     public function delete_blog($id)
     {
-        if (Gate::allows('delete')) {
-            $blogs = new blogs();
-            DB::table('blogs')->where('id', $id)->delete();
-            return redirect()->route('view_all_blog');
-        } else {
-            return view('admins.page.error_level');
-        }
+        $blogs = new blogs();
+        DB::table('blogs')->where('id', $id)->delete();
+        return redirect()->route('view_all_blog');
     }
 }

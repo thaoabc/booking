@@ -62,15 +62,12 @@ class LoginController extends Controller
             // Điều kiện dữ liệu không hợp lệ sẽ chuyển về trang đăng nhập và thông báo lỗi
             return redirect('admin/login')->withErrors($validator)->withInput();
         } else {
-            // Nếu dữ liệu hợp lệ sẽ kiểm tra trong csdl
-            $email = $request->input('email');
-            $password = $request->input('password');
-        
-            if( Auth::attempt(['email' => $email, 'password' =>$password])) {
-                // Kiểm tra đúng email và mật khẩu sẽ chuyển trang
-                $user = Auth::user()->id;
-                Session::put('id',$user);
-               // Session::put('cap_do',Auth::user()->cap_do);
+            $arr = [
+                'email' => $request->input('email'),
+                'password' => $request->input('password'),
+            ];
+            if(Auth::guard('admin')->attempt($arr)) {
+                // Session::put('cap_do',Auth::user()->cap_do);
                 return redirect()->route('admin.dashboard');
             } else {
                 // Kiểm tra không đúng sẽ hiển thị thông báo lỗi

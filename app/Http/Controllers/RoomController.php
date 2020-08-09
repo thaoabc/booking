@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Model\room;
 use App\Model\cate_room;
 use DB;
+use Auth;
 
 class RoomController extends Controller
 {
@@ -19,7 +20,8 @@ class RoomController extends Controller
 
     public function view_insert()
     {	
-        if(Gate::allows('insert')){
+        Auth::shouldUse('admin');
+        if (Gate::allows('insert', Auth::guard('admin')->user())) {
             $array['cate_room']=cate_room::all();
     	return view('admins.page.room.add',$array);
         }
@@ -62,11 +64,11 @@ class RoomController extends Controller
 
      public function view_one($id)
     {   
-        if(Gate::allows('update')){
+        Auth::shouldUse('admin');
+        if (Gate::allows('update', Auth::guard('admin')->user())) {
             $array_room['room'] = DB::table('room')->where('id',$id)->first();
         
-            $array_cate_room['cate_room']=DB::table('cate_room')->get();
-            // dd($array_phong);
+            $array_cate_room['cate_room']=cate_room::all();
             return view("admins.page.room.edit",$array_cate_room,$array_room);
         }
         else{
@@ -101,7 +103,7 @@ class RoomController extends Controller
             // $phong->tinh_trang=Request::get('tinh_trang');
             // $phong->update();
             DB::table('room')->where('id',$id)->update([
-                'name' => $request->name,
+                'name_room' => $request->name,
                 'cate_id' => $request->cate_id,
                 'status' => $request->status,
             ]);

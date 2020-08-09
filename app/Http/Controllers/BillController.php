@@ -84,15 +84,6 @@ class BillController extends Controller
             ->where('detailed_invoice.bill_id',$bill_id)
 
             ->first();
-        
-        // $detailed_invoice = bill::find($bill_id)->detailed_invoice->all();
-        // foreach($detailed_invoice as $value){
-            
-        // dd($value->room_id);
-        // }
-        // foreach ($detailed_invoice as $value) {
-        //     dd($value);
-        // }
         $room_id=$a->room_id;
         
         $price=room::find($room_id)->cate_room->first()->price;
@@ -102,7 +93,8 @@ class BillController extends Controller
             'check_in' =>$date1,
             'check_out' =>$date2,
             'status'=>3,
-            'total_billed'=>$price*($interval->d)
+            'total_billed_vi'=>$price*($interval->d),
+            'total_billed_en'=>$price*($interval->d)
         ]);
         return redirect()->route('da_thanh_toan');
     }
@@ -112,5 +104,43 @@ class BillController extends Controller
         bill::where('bill_id',$bill_id)
                 ->update(['status'=>3]);
         return redirect()->route('da_thanh_toan');
+    }
+    public function thue_tiep(Request $request)
+    {
+        $give_inf =  $request->all();
+        $bill_id=$give_inf['bill_id'];
+        $bill=new bill();
+        //date
+        $check_in=bill::find($bill_id)->check_in;
+        $check_out = $give_inf['check_out'];
+        $date1 = new DateTime($check_in);
+        $date2 = new DateTime($check_out);
+        $interval = $date1->diff($date2);
+
+        //price
+
+        $a = DB::table('bill')
+
+            ->select( "detailed_invoice.room_id" )             
+
+            ->join("detailed_invoice", "detailed_invoice.bill_id", "=", "bill.bill_id")
+
+            ->where('detailed_invoice.bill_id',$bill_id)
+
+            ->first();
+        $room_id=$a->room_id;
+        
+        $price=room::find($room_id)->cate_room->first()->price;
+        //amount
+
+        $amount=bill::where('bill_id', $bill_id)->first()->amount;
+        //end
+        $bill = bill::where('bill_id', $bill_id)->first();
+        $bill->check_out = $check_out;
+        $bill->day = $interval->d;
+        $bill->total_billed_vi = $price * ($interval->d) * $amount;
+        // $bill->anh=Storage::disk('public')->put('bill', '$anh');
+        $bill->save();
+        return redirect()->route('dang_su_dung');
     }
 }

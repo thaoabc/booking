@@ -60,9 +60,9 @@
                                                     <a class="btn btn-primary" id="edit"
                                                        href="{{ url('admin/phong/view_one_phong/'.$value->id) }}"
                                                        onclick="">Sửa</a>
-                                                    <a class="btn btn-danger"
+                                                    {{--  <a class="btn btn-danger"
                                                        href="{{ url('admin/phong/delete_phong/'.$value->id) }}"
-                                                       onclick="return confirm('Hành động sẽ xóa phòng này! bạn có muốn tiếp tục?')">Xóa</a>
+                                                       onclick="return confirm('Hành động sẽ xóa phòng này! bạn có muốn tiếp tục?')">Xóa</a>  --}}
                                                 </div>
 
 

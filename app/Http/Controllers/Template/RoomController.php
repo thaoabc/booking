@@ -21,11 +21,12 @@ class RoomController extends BaseController
 
     public function detail_cateroom($id)
     {
-        $array_room['cate_room'] = cate_room::where('id', $id)->first();
-        $amount_room['amount_room'] = room::join('cate_room', 'cate_room.id', '=', 'room.cate_id')
+        $room = cate_room::where('id', $id)->first();
+        $cate_room = cate_room::all();
+        $amount_room = room::join('cate_room', 'cate_room.id', '=', 'room.cate_id')
             ->where('room.cate_id', $id)
             ->where('status', 1)
             ->count();
-        return view("booking.pages.room.detail_cateroom", $array_room, $amount_room);
+        return view("booking.pages.room.detail_cateroom", compact('room','cate_room','amount_room'));
     }
 }

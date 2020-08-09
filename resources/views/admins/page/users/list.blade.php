@@ -49,7 +49,7 @@
                                     @if(isset($users))
                                         @foreach($users as $key => $users )
                                             <tr class="gradeX">
-                                                <td>{{ $users->name }}</td>
+                                                <td>{{ $users->name_user }}</td>
                                                 <td>{{ $users->phone }}</td>
                                                 <td>{{ $users->identity_card }}</td>
                                                 <td>{{ $users->email }}</td>

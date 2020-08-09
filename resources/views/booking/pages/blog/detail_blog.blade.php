@@ -7,7 +7,7 @@
                 <div class="col-lg-10 offset-lg-1">
                     <div class="bd-hero-text">
                         <span>{{$blog->name_cateblog}}</span>
-                        <h2>{{$blog->name_blog}}n</h2>
+                        <h2 style="color:#707079">{{$blog->name_blog}}n</h2>
                         <ul>
                             <li class="b-time"><i class="icon_clock_alt"></i> {{$blog->created_at}}</li>
                             <li><i class="icon_profile"></i> Kerry Jones</li>
@@ -26,7 +26,7 @@
                 <div class="col-lg-10 offset-lg-1">
                     <div class="blog-details-text">
                     <div class="bd-title">
-                        <p>{{$blog->content}}</p>
+                        <p style="color:#232121">{{$blog->content}}</p>
                     </div>
                         {{--  <div class="bd-title">
                             <p>Thinking about overseas adventure travel? Have you put any thought into the best places
@@ -173,10 +173,10 @@
             <div class="row">
             @foreach($blogs as $value)
                 <div class="col-md-4">
-                    <div class="blog-item set-bg" data-setbg="{{asset('assets/blog').'/'.$blog->image }}">
+                    <div class="blog-item set-bg" data-setbg="{{asset('assets/blog').'/'.$value->image }}">
                         <div class="bi-text">
                             <span class="b-tag">{{$value->name_cateblog}}</span>
-                            <h4><a href="#">{{$value->name_blog}}</a></h4>
+                            <h4><a href="{{ url('detail_blog/'. $value->id) }}">{{$value->name_blog}}</a></h4>
                             <div class="b-time"><i class="icon_clock_alt"></i> {{$value->created_at}}</div>
                         </div>
                     </div>

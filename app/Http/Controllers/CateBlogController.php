@@ -30,22 +30,8 @@ class CateBlogController extends Controller
 
     public function view_insert()
     {
-
-        if (Gate::allows('insert')) {
             $array['cate_blog'] = cate_blogs::all();
             return view('admins.page.cate_blog.addcate', $array);
-        } else {
-            return view('admins.page.error_level');
-        }
-        // $user = Auth::user();
-        // return view('admins.page.cate_blog.add');
-        // if ($user->can('create', cate_blog::class)) {
-        //     return view('cate_blog.view_insert');
-        // }
-        // else{
-        //     Session::flash('error','Không có quyền truy cập!');
-        //     return redirect('admin/cate_blog/view_all_cate_blog');
-        // }
 
     }
 
@@ -82,25 +68,17 @@ class CateBlogController extends Controller
 
     public function delete($id)
     {
-        if (Gate::allows('delete')) {
             $cate_blog = new cate_blogs();
             DB::table('cate_blogs')->where('id', $id)->delete();
             return redirect()->route('view_insert_cate_blog');
-        } else {
-            return view('admins.page.error_level');
-        }
     }
 
     public function view_one($id)
     {
-        if (Gate::allows('update')) {
             $cate_blog = new cate_blogs();
             $cate_blog->id = $id;
             $array['cate_blog'] = cate_blogs::find($id);
             return view('admins.page.cate_blog.edit', $array);
-        } else {
-            return view('admins.page.error_level');
-        }
     }
 
     public function update(Request $request, $id)

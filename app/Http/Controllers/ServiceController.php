@@ -20,7 +20,7 @@ class ServiceController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth.admin');
     }
 
     /**
@@ -133,8 +133,8 @@ class ServiceController extends Controller
 
     public function delete($id)
     {
-        $services = new services();
-        if (Gate::allows('delete')) {
+        Auth::shouldUse('admin');
+        if (Gate::allows('delete', Auth::guard('admin')->user())) {
             services::find($id)->delete();
             return redirect()->route('view_all_service');
         } else {

@@ -30,12 +30,13 @@ class UserLoginController extends BaseController
             // Điều kiện dữ liệu không hợp lệ sẽ chuyển về trang đăng nhập và thông báo lỗi
             return redirect()->route('index')->withErrors($validator)->withInput();
         } else {
-            // Nếu dữ liệu hợp lệ sẽ kiểm tra trong csdl
-            $email = $request->input('email');
-            $password = $request->input('password');
-            if( Auth::attempt(['email' => $email, 'password' =>$password])) {
+            $arr = [
+                'email' => $request->input('email'),
+                'password' => $request->input('password'),
+            ];
+            if(Auth::guard('user')->attempt($arr)) {
                 // Kiểm tra đúng email và mật khẩu sẽ chuyển trang
-                $user = Auth::user()->id;
+                $user = Auth::guard('user')->id();
                 Session::put('id',$user);
                 Session::put('status_login',1);
                 Session::flash('succes', 'Đăng nhập thành công!');

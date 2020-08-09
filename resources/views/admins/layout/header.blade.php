@@ -23,13 +23,13 @@
                     </a>
                     <ul class="dropdown-menu" style="right: auto; width: 100%;">
                         <!-- Menu Body -->
-                        <li class="user-body">
+                        {{--  <li class="user-body">
                             <a href="{!! route('admin.change-language', ['en']) !!}">English</a>
                         </li>
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <a href="{!! route('admin.change-language', ['vi']) !!}">Vietnam</a>
-                        </li>
+                        </li>  --}}
                     </ul>
                 </li>
                 <!-- User Account: style can be found in dropdown.less -->
@@ -37,7 +37,7 @@
 
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="{{ asset('') }}/admins/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                        <span class="hidden-xs">{{Auth::user()->name}}</span>
+                        <span class="hidden-xs">{{Auth::guard('admin')->user()->name}}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
@@ -45,7 +45,7 @@
                             <img src="{{ asset('') }}/admins/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                             <p>
-                                {{Auth::user()->name}} - Web Developer
+                                {{Auth::guard('admin')->user()->name}} - Web Developer
                                 <small>Member since Nov. 2012</small>
                             </p>
                         </li>

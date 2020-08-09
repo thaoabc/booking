@@ -25,7 +25,7 @@
             <div class="row">
                 @foreach($blogs as $value)
                 <div class="col-lg-4 col-md-6">
-                    <div class="blog-item set-bg" data-setbg="assets/sona/img/blog/blog-1.jpg">
+                    <div class="blog-item set-bg" data-setbg="{{asset('assets/blog').'/'.$value->image }}">
                         <div class="bi-text">
                             <span class="b-tag">{{$value->name_cateblog}}</span>
                             <h4><a href="{{ url('detail_blog/'. $value->id) }}">{{$value->name_blog}}</a></h4>

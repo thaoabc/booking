@@ -17,13 +17,14 @@ class UserController extends BaseController
 
     public function profile()
     {
-        $users = users::where('id', Auth::user()->id)->first();
+        $users = users::where('id', Auth::guard('user')->id())->first();
         $your_booking=cate_room::join('room','cate_room.id','=','room.cate_id')
         ->join('detailed_invoice','room.id','=','detailed_invoice.room_id')
         ->join('bill','bill.bill_id','=','detailed_invoice.bill_id')
-        ->where('user_id','=',Auth::user()->id)
+        ->where('user_id','=',Auth::guard('user')->id())
         ->get();
-        return view('booking.pages.users.profile', ['users' => $users],['your_booking' => $your_booking]);
+        $cate_room=cate_room::all();
+        return view('booking.pages.users.profile',compact('users','your_booking','cate_room'));
     }
 
     public function process_insert(Request $request)

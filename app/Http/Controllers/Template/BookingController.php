@@ -53,6 +53,11 @@ class BookingController extends BaseController
             // Điều kiện dữ liệu không hợp lệ sẽ chuyển về trang đăng nhập và thông báo lỗi
             return redirect()->route('room.detail_cateroom', $cate_id)->withErrors($validator)->withInput();
         } else {
+            if(Auth::guard('user')->id()==null)
+            {
+                Session::flash('error', 'Đăng nhập trước khi đặt phòng!');
+                return redirect()->back();
+            }
             $give_inf =  $request->all();
             $amount = $give_inf['amount_room'];
             $check_in = $give_inf['check_in'];
@@ -76,7 +81,7 @@ class BookingController extends BaseController
                 App::setLocale("en");
             }
             $value_bill_origin = array(
-                'user_id' => Auth::user()->id,
+                'user_id' => Auth::guard('user')->id(),
                 'check_in' => $date1,
                 'check_out' => $date2,
                 'day' => ($interval->d),
@@ -159,10 +164,10 @@ class BookingController extends BaseController
     public function dat_phong($value_bill_origin, $room_id)
     {
         $bill_id = bill::insertGetId($value_bill_origin);
-        for ($i = 0; $i < $room_id->count(); $i++) {
+        foreach ($room_id as $value) {
             detailed_invoice::insert([
                 'bill_id' => $bill_id,
-                'room_id' => $room_id[$i],
+                'room_id' => $value,
             ]);
         }
     }

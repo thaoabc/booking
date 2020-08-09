@@ -20,7 +20,7 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth.admin');
     }
 
     /**
@@ -31,20 +31,30 @@ class UserController extends Controller
 
     public function view_one($id)
     {
-        $users = users::where('id', $id)->first();
-        return view('admins.page.users.edit', ['users' => $users]);
+        Auth::shouldUse('admin');
+        if (Gate::allows('update', Auth::guard('admin')->user())) {
+            $users = users::where('id', $id)->first();
+            return view('admins.page.users.edit', ['users' => $users]);
+        }
+        else{
+            return view('admins.page.error_level');
+        }
     }
 
     public function view_all()
     {
-
         $array['users'] = users::all();
         return view('admins.page.users.list', $array);
     }
     public function view_insert()
     {
-        return view('admins.page.users.create');
-        //return view('users.view_insert');
+        Auth::shouldUse('admin');
+        if (Gate::allows('insert', Auth::guard('admin')->user())) {
+            return view('admins.page.users.create');
+        }
+        else{
+            return view('admins.page.error_level');
+        }
     }
 
     public function process_insert(Request $request)
@@ -94,7 +104,7 @@ class UserController extends Controller
 
 
 
-        $users->name = $request->input('name');
+        $users->name_user = $request->input('name');
         $users->phone = $request->input('phone');
         $users->email = $request->input('email');
         $users->password = bcrypt($request->input('password'));
@@ -135,7 +145,7 @@ class UserController extends Controller
             if ($email_old == $request->input("email")) {
                 if ($phone_old == $request->input("phone")) {
                     DB::table('users')->where('id', $id)->update([
-                        'name' => $request->name,
+                        'name_user' => $request->name,
                         'phone' => $request->phone,
                         'email' => $request->email,
                         'password' => bcrypt($request->password),
@@ -152,7 +162,7 @@ class UserController extends Controller
                         }
                     }
                     DB::table('users')->where('id', $id)->update([
-                        'name' => $request->name,
+                        'name_user' => $request->name,
                         'phone' => $request->phone,
                         'email' => $request->email,
                         'password' => bcrypt($request->password),
@@ -172,7 +182,7 @@ class UserController extends Controller
                 if ($phone_old == $request->input("phone")) {
 
                     DB::table('users')->where('id', $id)->update([
-                        'name' => $request->name,
+                        'name_user' => $request->name,
                         'phone' => $request->phone,
                         'email' => $request->email,
                         'password' => bcrypt($request->password),
@@ -190,7 +200,7 @@ class UserController extends Controller
                     }
 
                     DB::table('users')->where('id', $id)->update([
-                        'name' => $request->name,
+                        'name_user' => $request->name,
                         'phone' => $request->phone,
                         'email' => $request->email,
                         'password' => bcrypt($request->password),
@@ -206,8 +216,8 @@ class UserController extends Controller
 
     public function delete($id)
     {
-        $users = new users();
-        if (Gate::allows('delete')) {
+        Auth::shouldUse('admin');
+        if (Gate::allows('delete', Auth::guard('admin')->user())) {
             users::find($id)->delete();
             return redirect()->route('view_all_user');
         } else {

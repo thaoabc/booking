@@ -34,6 +34,42 @@
                 </ol>
             </section>
             <section class="content">
+                <div class="box box-default" id="box_thue_tiep" style="display:none">
+                    <div class="box-header with-border">
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-6">
+
+                                <form role="form" method="get" action="{{ route('thue_tiep') }}">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <label for="check_out">Ngày trả phòng:</label>
+                                            <input type='date' class="form-control" name="check_out" />
+                                            @if ($errors->has('check_out'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('check_out') }}</strong>
+                                            </span>
+                                            @endif
+
+                                        </div>
+                                        </select>
+                                    </div>
+                                    <input type='hidden' class="form-control" id="bill_id" name="bill_id" value="" />
+                                    <button type="submit" class="btn btn-primary">Xác nhận</button>
+                                </form>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.box-body -->
+                </div>
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="box">
@@ -69,7 +105,7 @@
                                     <tbody>
                                     @foreach($array_bill as $value)
                                         <tr class="odd gradeX" align="center">
-                                           <td>{{$value->name}}</td>
+                                           <td>{{$value->name_user}}</td>
                                         <td>{{$value->check_in}}</td>
                                         <td>{{$value->check_out}}</td>
                                         <td>{{$value->day}}</td>
@@ -86,6 +122,10 @@
                                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                             <span><strong>Dừng thuê</strong></span>            
                                         </a></td>
+                                         <td><button id="1" onClick="reply_click({{$value->bill_id}})" class="btn btn-success a-btn-slide-text">
+                                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                            <span><strong>Thuê tiếp</strong></span></button>
+                                            </td>
                                         <td><a href="{{route('thanh_toan',['id'=>$value->bill_id])}}" class="btn btn-success a-btn-slide-text">
                                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                             <span><strong>Thanh toán</strong></span>            
@@ -99,20 +139,16 @@
 
                                 </table>
                             </div>
-                            <!-- /.box-body -->
                         </div>
-                        <!-- /.box -->
-                        <!-- /.box -->
                     </div>
-                    <!-- /.col -->
                 </div>
-                <!-- /.row -->`
             </section>
-            <script>
-                {{--function thaotac(id) {--}}
-                {{--document.getElementById("button"+id).style.display = 'block';--}}
-                {{--document.getElementById("bt"+id).style.display = 'none';--}}
-                {{--}--}}
+                <script type="text/javascript">
+                function reply_click(bill_id)
+                {
+                    document.getElementById("box_thue_tiep").style.display = "block";
+                    document.getElementById("bill_id").value = bill_id;
+                }
 
                 function update(id) {
                     var input = document.querySelector('#name' + id);

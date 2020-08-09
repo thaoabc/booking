@@ -7,22 +7,27 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 use App\Model\blogs;
+use App\Model\cate_room;
+use DB;
 
 class BlogController extends BaseController
 {
     public function blog()
     {
-        $array['blogs'] = blogs::join('cate_blogs','cate_blogs.id','=','blogs.cate_id')
-            ->paginate(3);
-        return view('booking.pages.blog.blog', $array);
+        $blogs = blogs::select(DB::raw('blogs.id AS id'),'name_blog','image','name_cateblog')
+        ->join('cate_blogs','cate_blogs.id','=','blogs.cate_id')
+            ->get();
+            $cate_room=cate_room::all();
+        return view('booking.pages.blog.blog', compact('blogs','cate_room'));
     }
 
     public function detail_blog($id)
     {
-        $array_blog['blog'] = blogs::join('cate_blogs','cate_blogs.id','=','blogs.cate_id')
+        $blog = blogs::join('cate_blogs','cate_blogs.id','=','blogs.cate_id')
         ->where('blogs.id', $id)->first();
-        $array_blogs['blogs']=blogs::join('cate_blogs','cate_blogs.id','=','blogs.cate_id')
+        $blogs=blogs::join('cate_blogs','cate_blogs.id','=','blogs.cate_id')
         ->paginate(3);
-        return view("booking.pages.blog.detail_blog", $array_blog,$array_blogs);
+        $cate_room=cate_room::all();
+        return view("booking.pages.blog.detail_blog", compact('blog','blogs','cate_room'));
     }
 }

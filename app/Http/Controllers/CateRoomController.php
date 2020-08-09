@@ -30,8 +30,8 @@ class CateRoomController extends Controller
 
     public function view_insert()
     {
-
-        if (Gate::allows('insert')) {
+        Auth::shouldUse('admin');
+        if (Gate::allows('insert', Auth::guard('admin')->user())) {
             return view('admins.page.cate_room.add');
         } else {
             return view('admins.page.error_level');
@@ -99,7 +99,8 @@ class CateRoomController extends Controller
 
     public function delete($id)
     {
-        if (Gate::allows('delete')) {
+        Auth::shouldUse('admin');
+        if (Gate::allows('delete', Auth::guard('admin')->user())) {
             $cate_room = new cate_room();
             $image_delete = cate_room::find($id)->pluck('image');
             if (file_exists('assets/cate_room/' . $image_delete[0]) && $image_delete[0] != '') {
@@ -114,7 +115,8 @@ class CateRoomController extends Controller
 
     public function view_one($id)
     {
-        if (Gate::allows('update')) {
+        Auth::shouldUse('admin');
+        if (Gate::allows('update', Auth::guard('admin')->user())) {
             $cate_room = new cate_room();
             $cate_room->id = $id;
             $array['cate_room'] = cate_room::find($id);

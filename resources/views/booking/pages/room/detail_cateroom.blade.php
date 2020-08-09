@@ -42,10 +42,10 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="room-details-item">
-                    <img width="750px" height="430px" src="{{asset('assets/cate_room').'/'.$cate_room->image}}" alt="">
+                    <img width="750px" height="430px" src="{{asset('assets/cate_room').'/'.$room->image}}" alt="">
                     <div class="rd-text">
                         <div class="rd-title">
-                            <h3>{{$cate_room->name}}</h3>
+                            <h3>{{$room->name}}</h3>
                             <div class="rdt-right">
                                 <div class="rating">
                                     <i class="icon_star"></i>
@@ -57,7 +57,7 @@
                                 <a href="#">Review</a>
                             </div>
                         </div>
-                        <h2>{{$cate_room->price}}VND<span>/Pernight</span></h2>
+                        <h2>{{number_format ($room->price)}}VND<span>/Pernight</span></h2>
                         <table>
                             <tbody>
                                 <tr>
@@ -78,7 +78,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <p class="f-para">{{$cate_room->describe}}</p>
+                        <p class="f-para">{{$room->describe}}</p>
                     </div>
                 </div>
                 <div class="rd-reviews">
@@ -153,7 +153,7 @@
             <div class="col-lg-4">
                 <div class="room-booking">
                     <h3>Your Reservation</h3>
-                    <form role="form" method="POST" action="{{ url('detail_cateroom/'. $cate_room->id) }}" enctype="multipart/form-data">
+                    <form role="form" method="POST" action="{{ url('detail_cateroom/'. $room->id) }}" enctype="multipart/form-data">
                         @csrf
                         <div class="check-date">
                             <label for="check_in">Check In:</label>

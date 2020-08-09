@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use App\Model\loai_phong;
+use App\Model\admin;
 use App\Policies\LoaiPhongPolicy;
 use Illuminate\Http\Request;
 
@@ -29,8 +29,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::before(function($user) {
-            if($user->level == '1') {
+        Gate::before(function($admin) {
+            if($admin->level == '1') {
                 return true;
                 }
         });
@@ -40,8 +40,8 @@ class AuthServiceProvider extends ServiceProvider
             return $user->level==1;
         });
 
-        Gate::define('update', function ($user) {
-            return $user->level == 1;
+        Gate::define('update', function ($admin) {
+            return $admin->level == 1;
         });
 
         Gate::define('insert', function ($user) {

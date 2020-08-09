@@ -82,7 +82,7 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 
-Route::group(['prefix' => 'admin', 'middleware' => 'CheckAdmin'], function () {
+Route::group(['prefix' => 'admin','middleware' => ['auth.admin']], function () {
 	Route::get('/', 'HomeController@index')->name('admin.dashboard');
 	Route::get('/dashboard', 'HomeController@index');
 
@@ -166,6 +166,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'CheckAdmin'], function () {
 		Route::get('dang_su_dung', 'BillController@dang_su_dung')->name('dang_su_dung');
 		Route::get('xac_nhan/{bill_id}', 'BillController@xac_nhan')->name('xac_nhan');
 		Route::get('dung_thue/{bill_id}', 'BillController@dung_thue')->name('dung_thue');
+		Route::get('thue_tiep', 'BillController@thue_tiep')->name('thue_tiep');
 		Route::get('thanh_toan/{bill_id}', 'BillController@thanh_toan')->name('thanh_toan');
 	});
 
