@@ -168,6 +168,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth.admin']], function () {
 		Route::get('dung_thue/{bill_id}', 'BillController@dung_thue')->name('dung_thue');
 		Route::get('thue_tiep', 'BillController@thue_tiep')->name('thue_tiep');
 		Route::get('thanh_toan/{bill_id}', 'BillController@thanh_toan')->name('thanh_toan');
+		Route::get('chi_tiet/{bill_id}', 'BillController@chi_tiet')->name('chi_tiet');
 	});
 
 	Route::group(['prefix' => 'contact'], function () {

@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 -- Cấu trúc bảng cho bảng `admin`
 --
 
-CREATE TABLE `admin` (
+CREATE TABLE `admins` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -45,7 +45,7 @@ CREATE TABLE `admin` (
 -- Đang đổ dữ liệu cho bảng `admin`
 --
 
-INSERT INTO `admin` (`id`, `name`, `email`, `password`, `phone`, `level`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
+INSERT INTO `admins` (`id`, `name`, `email`, `password`, `phone`, `level`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'admin', 'admin@gmail.com', '$2y$10$gny0ogg42Y54Sn7QFjW61uP5mmsgHVhjosBJEg9JliAcVK8OW/lxC', '0388346413', 1, 1, NULL, '2019-09-17 10:55:01', NULL),
 (2, 'quynh', 'quynhngu10021999@gmail.com', '$2y$10$waxKzbpI6XLVkw03H/IixuNmnuQxiwpKXw4NQfVyKWi9p68hnh8TK', '35416103632', 2, 1, NULL, '2019-09-17 11:00:56', '2019-09-17 11:00:56');
 

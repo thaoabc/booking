@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use App\Model\admin;
+use App\Model\admins;
 use App\Policies\LoaiPhongPolicy;
 use Illuminate\Http\Request;
 

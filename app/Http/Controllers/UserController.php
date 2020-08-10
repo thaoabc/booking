@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 use Session;
 use DB;
+use Auth;
 
 class UserController extends Controller
 {
