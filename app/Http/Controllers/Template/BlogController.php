@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Model\blogs;
 use App\Model\cate_room;
 use DB;
+use App\Model\contact;
 
 class BlogController extends BaseController
 {
@@ -18,7 +19,8 @@ class BlogController extends BaseController
         ->join('cate_blogs','cate_blogs.id','=','blogs.cate_id')
             ->get();
             $cate_room=cate_room::all();
-        return view('booking.pages.blog.blog', compact('blogs','cate_room'));
+            $contact = DB::table('contact')->find(1);
+        return view('booking.pages.blog.blog', compact('blogs','cate_room','contact'));
     }
 
     public function detail_blog($id)

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Model\Phong;
 use App\Model\cate_room;
 use DB;
+use Auth;
 
 class ContactController extends Controller
 {
@@ -67,7 +68,8 @@ class ContactController extends Controller
 
      public function view_one($id)
     {   
-        if(Gate::allows('update')){
+        Auth::shouldUse('admin');
+        if (Gate::allows('update', Auth::guard('admin')->user())) {
             $array_contact['contact'] = DB::table('contact')->where('id',$id)->first();
             // dd($array_phong);
             return view("admins.page.contact.edit",$array_contact);

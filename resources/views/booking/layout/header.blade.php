@@ -12,18 +12,6 @@
         <div class="search-icon  search-switch">
             <i class="icon_search"></i>
         </div>
-        <div class="header-configure-area">
-            <div class="language-option">
-                <img src="assets/sona/img/flag.jpg" alt="">
-                <span>EN <i class="fa fa-angle-down"></i></span>
-                <div class="flag-dropdown">
-                    <ul>
-                        {{--  <li><a href="{!! route('user.change-language', ['en']) !!}">English</a></li>
-                        <li><a href="{!! route('user.change-language', ['vi']) !!}">Vietnam</a></li>  --}}
-                    </ul>
-                </div>
-            </div>
-        </div>
         <nav class="mainmenu mobile-menu">
             <ul>
                 <li class="active"><a href="{{route('index')}}"> {{ __('home') }}</a></li>
@@ -47,8 +35,8 @@
             <a href="#"><i class="fa fa-instagram"></i></a>
         </div>
         <ul class="top-widget">
-            <li><i class="fa fa-phone"></i> (12) 345 67890</li>
-            <li><i class="fa fa-envelope"></i> info.colorlib@gmail.com</li>
+            <li><i class="fa fa-phone"></i>{{$contact->phone}}</li>
+            <li><i class="fa fa-envelope"></i>{{$contact->email}}</li>
         </ul>
     </div>
     <header class="header-section">
@@ -57,8 +45,8 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <ul class="tn-left">
-                            <li><i class="fa fa-phone"></i> (12) 345 67890</li>
-                            <li><i class="fa fa-envelope"></i> info.colorlib@gmail.com</li>
+                            <li><i class="fa fa-phone"></i>{{$contact->phone}}</li>
+                            <li><i class="fa fa-envelope"></i>{{$contact->email}}</li>
                         </ul>
                     </div>
                     <div class="col-lg-6">
@@ -71,16 +59,6 @@
                                 <a href="{{route('user.show_profile')}}">Profile </a>
                                 <a href="{{route('user.logout')}}">Logout</a>
                                 @endif
-                            </div>
-                            <div class="language-option">
-                                <img src="assets/sona/img/flag.jpg" alt="">
-                                <span>EN <i class="fa fa-angle-down"></i></span>
-                                <div class="flag-dropdown">
-                                    <ul>
-                                        {{--  <li><a href="{!! route('user.change-language', ['en']) !!}">English</a></li>
-                                        <li><a href="{!! route('user.change-language', ['vi']) !!}">Vietnam</a></li>  --}}
-                                    </ul>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -135,16 +113,13 @@
                                             }
                                         </script>
                                     </div>
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" value="" checked>Remember me</label>
-                                    </div>
                                     <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
                                 </form>
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
                                 <p>Not a member? <a href="#">Sign Up</a></p>
-                                <p>Forgot <a href="#">Password?</a></p>
+                                <p>Forgot <a href="{{route('password_user')}}">Password?</a></p>
                             </div>
                         </div>
 

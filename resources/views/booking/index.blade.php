@@ -11,34 +11,9 @@
                         <h1>Sona A Luxury Hotel</h1>
                         <p>Here are the best hotel booking sites, including recommendations for international
                             travel and for finding low-priced hotel rooms.</p>
-                        <a href="#" class="primary-btn">Discover Now</a>
+                        <a href="#hp-room-section" class="primary-btn">Discover Now</a>
                     </div>
                 </div>
-                <!-- <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1">
-                    <div class="booking-form">
-                        <h3>Booking Your Hotel</h3>
-                        <form action="#">
-                            <div class="check-date">
-                                <label for="date-in">Check In:</label>
-                                <input type="text" class="date-input" id="date-in">
-                                <i class="icon_calendar"></i>
-                            </div>
-                            <div class="check-date">
-                                <label for="date-out">Check Out:</label>
-                                <input type="text" class="date-input" id="date-out">
-                                <i class="icon_calendar"></i>
-                            </div>
-                            <div class="select-option">
-                                <label for="room">Room:</label>
-                                <select id="room">
-                                    <option value="">1 Room</option>
-                                    <option value="">2 Room</option>
-                                </select>
-                            </div>
-                            <button type="submit">Check Availability</button>
-                        </form>
-                    </div>
-                </div> -->
             </div>
         </div>
         <div class="hero-slider owl-carousel">
@@ -56,15 +31,8 @@
                 <div class="col-lg-6">
                     <div class="about-text">
                         <div class="section-title">
-                            <span>About Us</span>
-                            <h2>Intercontinental LA <br />Westlake Hotel</h2>
+                            {!!$contact->website!!}
                         </div>
-                        <p class="f-para">Sona.com is a leading online accommodation site. We’re passionate about
-                            travel. Every day, we inspire and reach millions of travelers across 90 local websites in 41
-                            languages.</p>
-                        <p class="s-para">So when it comes to booking the perfect hotel, vacation rental, resort,
-                            apartment, guest house, or tree house, we’ve got you covered.</p>
-                        <a href="#" class="primary-btn about-btn">Read More</a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -102,7 +70,7 @@
                     <div class="service-item">
                         <i class="{{$value->name_class}}"></i>
                         <h4>{{$value->name_service}}</h4>
-                        <p>{{$value->content}}</p>
+                        <p>{!!$value->content!!}</p>
                     </div>
                 </div>
                 @endforeach
@@ -112,7 +80,7 @@
     <!-- Services Section End -->
 
     <!-- Home Room Section Begin -->
-    <section class="hp-room-section">
+    <section class="hp-room-section" id="hp-room-section">
         <div class="container-fluid">
             <div class="hp-room-items">
                 <div class="row">

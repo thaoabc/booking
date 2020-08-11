@@ -52,7 +52,7 @@
                                         <tr class="odd gradeX" align="center">
                                             <td>{{$value->name_service}}</td>
                                             <td><img width="100px" src="{{asset('assets/service').'/'.$value->image }}"></td>
-                                            <td>{{$value->content}}</td>
+                                            <td>{!!$value->content!!}</td>
                                             
                                             <td>
                                                 {{--<a class="btn btn-primary" id="bt{{$value->id}}" style="display: block" onclick="thaotac({{$value->id}})" >Thao tác</a>--}}

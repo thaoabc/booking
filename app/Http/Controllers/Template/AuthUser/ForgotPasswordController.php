@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Mail;
 use Session;
 use DB;
-use App\Model\admin;
+use App\Model\users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Password;
@@ -33,20 +33,23 @@ class ForgotPasswordController extends Controller
      *
      * @return void
      */
+    public function showLinkRequestForm()
+    {
+        return view('booking.auth.passwords.email');
+    }
     public function sendResetLinkEmail(Request $request)
     {   
         $input = $request->all();
         $email=$input["email"];
-        $user = admin::where('email', $email)->first();
+        $user = users::where('email', $email)->first();
         $token=Str::random(60);
         if (!empty($user)) {
-            $password=DB::table('password_resets')->insert([
+            DB::table('password_resets')->insert([
                 'email' => $email,
                 'token' => $token,
             ]);
         $password=DB::table('password_resets')->where('email',$email)->select('token')->first();
         $url = url('password/reset/' . $password->token);
-        dd($url);
         $comment='<!DOCTYPE html>
 <html>
 <head>

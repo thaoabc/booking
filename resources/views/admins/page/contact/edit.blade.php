@@ -69,8 +69,10 @@
                             @endif
                         </div>
                         <div class="form-group">
-                        <label for="website">Link website:</label>
-                            <input type="text" class="form-control" id="website" name="website" placeholder="Nhập website" value="{{ $contact->website }}">
+                            <label for="exampleInputEmail1">Mô tả(*)</label>
+                                            <textarea id="content" name="website" rows="10" cols="80" placeholder="Nhập nội dung">
+                            {!! $contact->website !!}
+                        </textarea>
                             @if ($errors->has('website'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('website') }}</strong>

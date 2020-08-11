@@ -10,6 +10,7 @@ use Session;
 use DB;
 use App\Model\bill;
 use App\Model\cate_room;
+use App\Model\contact;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends BaseController
@@ -24,7 +25,8 @@ class UserController extends BaseController
         ->where('user_id','=',Auth::guard('user')->id())
         ->get();
         $cate_room=cate_room::all();
-        return view('booking.pages.users.profile',compact('users','your_booking','cate_room'));
+        $contact = DB::table('contact')->find(1);
+        return view('booking.pages.users.profile',compact('users','your_booking','cate_room','contact'));
     }
 
     public function process_insert(Request $request)
@@ -33,29 +35,29 @@ class UserController extends BaseController
         $users = new users();
         // Kiểm tra dữ liệu nhập vào
 
-        // $this->validate(
-        //     $request,
-        //     [
-        //         'name' => 'required',
-        //         'phone' => 'required|numeric',
-        //         'email' => 'required|email',
-        //         'identity_card' => 'required|numeric',
-        //         'password' => 'required|min:6',
-        //         'password_confirm' => 'required|same:password'
-        //     ],
-        //     [
-        //         'name.required' => 'Tên users là trường bắt buộc',
-        //         'phone.required' => 'Số điện thoại là trường bắt buộc',
-        //         'phone.numeric' => 'Viết sai số điện thoại',
-        //         'email.required' => 'Email là trường bắt buộc',
-        //         'email.email' => 'Email không đúng định dạng',
-        //         'identity_card.required' => 'Số chứng minh là trường bắt buộc',
-        //         'identity_card.numeric' => 'Viết sai số chứng minh',
-        //         'password.required' => 'Mật khẩu là trường bắt buộc',
-        //         'password.min' => 'Mật khẩu phải chứa ít nhất 6 ký tự',
-        //         'password_confirm' => "Mật khẩu nhập lại phải giống mật khẩu trước"
-        //     ]
-        // );
+        $this->validate(
+            $request,
+            [
+                'name' => 'required',
+                'phone' => 'required|numeric',
+                'email' => 'required|email',
+                'identity_card' => 'required|numeric',
+                'password' => 'required|min:6',
+                'password_confirm' => 'required|same:password'
+            ],
+            [
+                'name.required' => 'Tên users là trường bắt buộc',
+                'phone.required' => 'Số điện thoại là trường bắt buộc',
+                'phone.numeric' => 'Viết sai số điện thoại',
+                'email.required' => 'Email là trường bắt buộc',
+                'email.email' => 'Email không đúng định dạng',
+                'identity_card.required' => 'Số chứng minh là trường bắt buộc',
+                'identity_card.numeric' => 'Viết sai số chứng minh',
+                'password.required' => 'Mật khẩu là trường bắt buộc',
+                'password.min' => 'Mật khẩu phải chứa ít nhất 6 ký tự',
+                'password_confirm' => "Mật khẩu nhập lại phải giống mật khẩu trước"
+            ]
+        );
 
         $email = DB::table('users')->pluck('email');
         $phone = DB::table('users')->pluck('phone');

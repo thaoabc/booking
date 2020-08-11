@@ -44,7 +44,7 @@
                                         <th>Địa chỉ</th>
                                         <th>Số điện thoại</th>
                                         <th>Email</th>
-                                        <th>Link website</th>
+                                        <th>Introduce</th>
                                         <th>Tình trạng</th>
                                         <th class="col-md-3">Hành động</th>
 
@@ -58,7 +58,7 @@
                                             <td>{{$value->address}}</td>
                                             <td>{{$value->phone}}</td>
                                             <td>{{$value->email}}</td>
-                                            <td>{{$value->website}}</td>
+                                            <td>{!!$value->website!!}</td>
                                             @if($value->active==1)
                                                 <td>Đang hoạt động</td>
                                             @else

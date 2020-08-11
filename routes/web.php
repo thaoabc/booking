@@ -31,9 +31,10 @@ Route::post('signin', 'Template\AuthUser\UserLoginController@postLogin')->name('
 Route::get('logout', 'Template\AuthUser\LogoutController@logout')->name('user.logout');
 
 //Quên mật khẩu
-Route::get('password/reset', 'Template\AuthUser\ForgotPasswordController@showLinkRequestForm')->name('password_user.reset');
+Route::get('password', 'Template\AuthUser\ForgotPasswordController@showLinkRequestForm')->name('password_user');
+Route::get('password/reset', 'Template\AuthUser\ForgotPasswordController@sendResetLinkEmail')->name('password_user.reset');
 Route::get('password/reset/{token}', 'Template\AuthUser\ResetPasswordController@showResetForm')->name('password_user.reset.token');
-Route::post('password/reset', 'Template\AuthUser\ResetPasswordController@reset');
+Route::post('password/reset', 'Template\AuthUser\ResetPasswordController@reset')->name('reset');
 
 // user đăng kí
 
@@ -53,14 +54,6 @@ route::get('blog', 'Template\BlogController@blog')->name('blog');
 
 route::get('detail_blog/{id}', 'Template\BlogController@detail_blog')->name('detail_blog');
 
-
-route::get('about_us', 'Template@about_us')->name('about_us');
-
-route::post('process_dang_nhap', 'khachhangcontroller@process_dang_nhap')->name('process_dang_nhap');
-
-route::get('dang_xuat', 'khachhangcontroller@process_dang_xuat')->name('dang_xuat');
-
-route::post('process_dang_ky', 'khachhangcontroller@process_dang_ky')->name('process_dang_ky');
 
 
 Route::group(['prefix' => 'admin'], function () {

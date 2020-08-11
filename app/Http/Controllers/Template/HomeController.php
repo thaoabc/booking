@@ -14,6 +14,7 @@ use App\Model\cate_blogs;
 use DB;
 use App\Http\Controllers\Controller;
 use Session;
+use App\Model\contact;
 
 class HomeController extends BaseController
 {
@@ -30,9 +31,10 @@ class HomeController extends BaseController
         $blogs= blogs::join('cate_blogs','cate_blogs.id','=','blogs.cate_id')
             ->get();
         $cate_room=cate_room::all();
+        $contact = DB::table('contact')->find(1);
         if (empty(Session::has('status_login'))) {
             Session::put('status_login', 0);
         }
-        return view('booking.index', compact('cate_room','services','blogs','cate_room'));
+        return view('booking.index', compact('cate_room','services','blogs','cate_room','contact'));
     }
 }

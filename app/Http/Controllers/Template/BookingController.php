@@ -65,28 +65,14 @@ class BookingController extends BaseController
             $date1 = new DateTime($check_in);
             $date2 = new DateTime($check_out);
             $interval = $date1->diff($date2);
-            if (app()->getLocale() == "vi") {
-                $price_vi = cate_room::where('id', $cate_id)
+            $price = cate_room::where('id', $cate_id)
                     ->first()->price;
-                App::setLocale("en");
-                $price_en = cate_room::where('id', $cate_id)
-                    ->first()->price;
-                App::setLocale("vi");
-            } else {
-                $price_en = cate_room::where('id', $cate_id)
-                    ->first()->price;
-                App::setLocale("vi");
-                $price_vi = cate_room::where('id', $cate_id)
-                    ->first()->price;
-                App::setLocale("en");
-            }
             $value_bill_origin = array(
                 'user_id' => Auth::guard('user')->id(),
                 'check_in' => $date1,
                 'check_out' => $date2,
                 'day' => ($interval->d),
-                'total_billed_vi' => $price_vi * ($interval->d) * $amount,
-                'total_billed_en' => $price_en * ($interval->d) * $amount,
+                'total_billed' => $price * ($interval->d) * $amount,
                 'amount' => $amount,
                 'status' => 1
             );

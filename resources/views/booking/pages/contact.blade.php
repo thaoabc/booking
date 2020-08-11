@@ -33,25 +33,11 @@
                     </div>
                 </div>
                 <div class="col-lg-7 offset-lg-1">
-                    <form action="{{route('send_contact')}}" method="post" class="contact-form">
-                    @csrf
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <input type="text" name="name_user" placeholder="Your Name">
-                            </div>
-                            <div class="col-lg-6">
-                                <input type="text" name="email" placeholder="Your Email">
-                            </div>
-                            <div class="col-lg-12">
-                                <textarea placeholder="Your Message" name="content"></textarea>
-                                <button type="submit">Submit Now</button>
-                            </div>
-                        </div>
-                    </form>
+                    <div class="map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.8608087413927!2d105.79189341493274!3d21.038254685993156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab3829364ab7%3A0x3034d069a38bef5b!2zVOG7lSBo4bujcCBuaMOgIMSRYSBuxINuZywgNzIgVHLhuqduIMSQxINuZyBOaW5oLCBE4buLY2ggVuG7jW5nLCBD4bqndSBHaeG6pXksIEjDoCBO4buZaQ!5e0!3m2!1sfr!2s!4v1594290606606!5m2!1sfr!2s" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe> 
+                    </div>
                 </div>
             </div>
-            <div class="map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.8608087413927!2d105.79189341493274!3d21.038254685993156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab3829364ab7%3A0x3034d069a38bef5b!2zVOG7lSBo4bujcCBuaMOgIMSRYSBuxINuZywgNzIgVHLhuqduIMSQxINuZyBOaW5oLCBE4buLY2ggVuG7jW5nLCBD4bqndSBHaeG6pXksIEjDoCBO4buZaQ!5e0!3m2!1sfr!2s!4v1594290606606!5m2!1sfr!2s" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>            </div>
         </div>
     </section>
     <!-- Contact Section End -->
