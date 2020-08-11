@@ -12,7 +12,8 @@ Thêm tin tức
                 Thêm tin tức.
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="{{ Route('admin.dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+                <li><a href="{{ Route('view_all_blog') }}"><i class="fa fa-file-text-o"></i> Danh sách tin tức</a></li>
                 <li class="active">Thêm tin tức</li>
             </ol>
         </section>
@@ -68,38 +69,38 @@ Thêm tin tức
             </form>
         </div>
         <script>
-                {{--  CKEDITOR.replace('describe', {
+        {{-- CKEDITOR.replace('describe', {
                     filebrowserBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html',
-                    filebrowserImageBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html?type=Images',
-                    filebrowserFlashBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html?type=Flash',
-                    filebrowserUploadUrl: '{{asset("")}}ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-                    filebrowserImageUploadUrl: '{{asset("")}}ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-                    filebrowserFlashUploadUrl: '{{asset("")}}ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
-                });  --}}
+        filebrowserImageBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html?type=Images',
+        filebrowserFlashBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html?type=Flash',
+        filebrowserUploadUrl: '{{asset("")}}ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+        filebrowserImageUploadUrl: '{{asset("")}}ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+        filebrowserFlashUploadUrl: '{{asset("")}}ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+        }); --}}
 
 
-                function showIMG() {
-                    var fileInput = document.getElementById('image');
-                    var filePath = fileInput.value; //lấy giá trị input theo id
-                    var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i; //các tập tin cho phép
-                    //Kiểm tra định dạng
-                    if (!allowedExtensions.exec(filePath)) {
-                        alert('Bạn chỉ có thể dùng ảnh dưới định dạng .jpeg/.jpg/.png/.gif extension.');
-                        fileInput.value = '';
-                        return false;
-                    } else {
-                        //Image preview
-                        if (fileInput.files && fileInput.files[0]) {
-                            var reader = new FileReader();
-                            reader.onload = function (e) {
-                                document.getElementById('viewImg').innerHTML = '<img style="width:100px; height: 100px;" src="' + e.target.result + '"/>';
-                            };
-                            reader.readAsDataURL(fileInput.files[0]);
-                        }
-                    }
-                }
+        function showIMG() {
+        var fileInput = document.getElementById('image');
+        var filePath = fileInput.value; //lấy giá trị input theo id
+        var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i; //các tập tin cho phép
+        //Kiểm tra định dạng
+        if (!allowedExtensions.exec(filePath)) {
+        alert('Bạn chỉ có thể dùng ảnh dưới định dạng .jpeg/.jpg/.png/.gif extension.');
+        fileInput.value = '';
+        return false;
+        } else {
+        //Image preview
+        if (fileInput.files && fileInput.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+        document.getElementById('viewImg').innerHTML = '<img style="width:100px; height: 100px;" src="' + e.target.result + '" />';
+        };
+        reader.readAsDataURL(fileInput.files[0]);
+        }
+        }
+        }
 
-            </script>
+        </script>
     </div>
 </div>
 @endsection

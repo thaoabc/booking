@@ -20,8 +20,8 @@
                     Danh Sách Dịch vụ
                 </h1>
                 <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active">Loại phòng</li>
+                <li><a href="{{ Route('admin.dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+                <li class="active">Danh sách dịch vụ</li>
                 </ol>
             </section>
             <section class="content">

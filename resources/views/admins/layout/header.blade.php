@@ -1,10 +1,10 @@
 <header class="main-header">
     <!-- Logo -->
-    <a href="{{route('admin.dashboard')}}" class="logo">
+    <a href="{{route('view_all_admin')}}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>A</b>LT</span>
+        <span class="logo-mini"><b>SO</b>NA</span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>Admin</b>LTE</span>
+        <span class="logo-lg"><b>SONA</b>HOTEL</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -15,23 +15,6 @@
 
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
-                <!-- Language-->
-                <li class="dropdown user user-menu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="assets/sona/img/flag.jpg" alt="">
-                        <span>EN <i class="fa fa-angle-down"></i></span>
-                    </a>
-                    <ul class="dropdown-menu" style="right: auto; width: 100%;">
-                        <!-- Menu Body -->
-                        {{--  <li class="user-body">
-                            <a href="{!! route('admin.change-language', ['en']) !!}">English</a>
-                        </li>
-                        <!-- Menu Footer-->
-                        <li class="user-footer">
-                            <a href="{!! route('admin.change-language', ['vi']) !!}">Vietnam</a>
-                        </li>  --}}
-                    </ul>
-                </li>
                 <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown user user-menu">
 
@@ -46,7 +29,13 @@
 
                             <p>
                                 {{Auth::guard('admin')->user()->name}} - Web Developer
-                                <small>Member since Nov. 2012</small>
+                                <small>
+                                    @if(Auth::guard('admin')->user()->level==1)
+                                    Quản trị viên
+                                    @else
+                                    Nhân viên
+                                    @endif
+                                </small>
                             </p>
                         </li>
                         <!-- Menu Body -->
@@ -63,10 +52,6 @@
                             </div>
                         </li>
                     </ul>
-                </li>
-                <!-- Control Sidebar Toggle Button -->
-                <li>
-                    <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
                 </li>
             </ul>
         </div>

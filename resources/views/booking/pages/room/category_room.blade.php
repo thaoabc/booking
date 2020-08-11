@@ -31,26 +31,7 @@
                             <div class="ri-text">
                                 <h4>{{$value->name}}</h4>
                                 <h3>{{$value->price}}<span>/Pernight</span></h3>
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td class="r-o">Size:</td>
-                                            <td>30 ft</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="r-o">Capacity:</td>
-                                            <td>Max persion 3</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="r-o">Bed:</td>
-                                            <td>King Beds</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="r-o">Services:</td>
-                                            <td>Wifi, Television, Bathroom,...</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                {!! $value->describe !!}
                                 <a href="{{ url('detail_cateroom/'. $value->id) }}" class="primary-btn">More Details</a>
                             </div>
                         </div>
