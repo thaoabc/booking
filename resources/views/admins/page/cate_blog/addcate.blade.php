@@ -1,6 +1,6 @@
 @extends('admins.layout.master-layout')
 @section('title')
-    Thêm tin tức
+Thêm tin tức
 @endsection
 
 @section('content')
@@ -22,66 +22,62 @@
                 @csrf
                 <div class="box-body">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Thêm thể loại  (*)</label>
-                        <input type="text" class="form-control" placeholder="Nhập tiêu đề" name="name_cateblog"
-                               value="{{ old('name') }}" required>
+                        <label for="exampleInputEmail1">Thêm thể loại (*)</label>
+                        <input type="text" class="form-control" placeholder="Nhập tiêu đề" name="name_cateblog" value="{{ old('name') }}" required>
                     </div>
                 </div>
                 <div class="box-footer">
                     <button type="submit" class="btn btn-primary">Thêm</button>
                 </div>
             </form>
-                <section class="content" style="margin-bottom: 50px">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="box">
-                                <div class="box-header">
-                                    {{--<a class="btn btn-primary" id="btnadd" href="{{ route('view_insert_blog') }}" onclick="">Thêm thể loại</a>--}}
-                                </div>
-                                <!-- /.box-header -->
-                                <div class="box-body">
-                                    <table id="example1" class="table table-bordered table-hover">
-                                        <thead>
+            <section class="content" style="margin-bottom: 50px">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="box">
+                            <div class="box-header">
+                                <h4>Danh sách loại tin tức<h4>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <table id="example1" class="table table-bordered table-hover">
+                                    <thead>
                                         <tr>
                                             <th>Tên </th>
                                             <th>Thời gian </th>
                                             <th>Hành động</th>
 
                                         </tr>
-                                        </thead>
-                                        <tbody>
+                                    </thead>
+                                    <tbody>
                                         @foreach($cate_blog as $value)
-                                            <tr class="odd gradeX" align="center">
-                                                <td>{{$value->name_cateblog}}</td>
-                                                <td>{{$value->created_at}}</td>
+                                        <tr class="odd gradeX" align="center">
+                                            <td>{{$value->name_cateblog}}</td>
+                                            <td>{{$value->created_at}}</td>
 
-                                                <td>
+                                            <td>
 
-                                                    <a class="btn btn-primary" id="edit{{ $value->id }}" href="{{ url('admin/cate_blog/view_one_cate_blog/'.$value->id) }}" onclick="">Sửa</a>
-                                                    <a class="btn btn-danger" href="{{ url('admin/cate_blog/delete_cate_blog/'.$value->id) }}" onclick="return confirm('Hành động sẽ xóa tin tức này! bạn có muốn tiếp tục?')">Xóa</a>
-                                            </tr>
+                                                <a class="btn btn-primary" id="edit{{ $value->id }}" href="{{ url('admin/cate_blog/view_one_cate_blog/'.$value->id) }}" onclick="">Sửa</a>
+                                                <a class="btn btn-danger" href="{{ url('admin/cate_blog/delete_cate_blog/'.$value->id) }}" onclick="return confirm('Hành động sẽ xóa tin tức này! bạn có muốn tiếp tục?')">Xóa</a>
+                                        </tr>
                                         @endforeach
-                                        </tbody>
+                                    </tbody>
 
 
-                                    </table>
-                                </div>
-                                <!-- /.box-body -->
+                                </table>
                             </div>
-                            <!-- /.box -->
-                            <!-- /.box -->
+                            <!-- /.box-body -->
                         </div>
-                        <!-- /.col -->
+                        <!-- /.box -->
+                        <!-- /.box -->
                     </div>
-                    <!-- /.row -->
-                </section>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </section>
         </div>
 
-    
-        <script>
 
-    
-    
+        <script>
             function showIMG() {
                 var fileInput = document.getElementById('image');
                 var filePath = fileInput.value; //lấy giá trị input theo id
@@ -95,14 +91,13 @@
                     //Image preview
                     if (fileInput.files && fileInput.files[0]) {
                         var reader = new FileReader();
-                        reader.onload = function (e) {
+                        reader.onload = function(e) {
                             document.getElementById('viewImg').innerHTML = '<img style="width:100px; height: 100px;" src="' + e.target.result + '"/>';
                         };
                         reader.readAsDataURL(fileInput.files[0]);
                     }
                 }
             }
-    
         </script>
     </div>
 </div>

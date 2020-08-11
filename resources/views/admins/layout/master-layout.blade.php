@@ -47,11 +47,12 @@
     <!-- Google Font -->
     <link rel="stylesheet" <href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     {{-- ck --}}
-    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <script src="{{asset('')}}admins/bower_components/ckeditor/ckeditor.js"></script>
+    <script src="{{asset('')}}admins/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
     <script src="https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>
     {{-- tag --}}
-    <link rel="stylesheet" type="text/css" href="{{asset('')}}tag/dist/jquery-tagsinput.min.css" />
-    <script src="{{asset('')}}tag/dist/jquery-tagsinput.min.js" defer></script>
+    <!-- <link rel="stylesheet" type="text/css" href="{{asset('')}}tag/dist/jquery-tagsinput.min.css" />
+    <script src="{{asset('')}}tag/dist/jquery-tagsinput.min.js" defer></script> -->
     {{-- endtag --}}
 </head>
 
@@ -68,7 +69,7 @@
         @yield('content')
         <!-- /.content-wrapper -->
         {{--footer--}}
-        @include('admins.layout.footer')
+        <!-- @include('admins.layout.footer') -->
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark" style="display: none;">
             <!-- Create the tabs -->
@@ -322,7 +323,7 @@
 
     <script src="{{asset('')}}admins/bower_components/Flot/jquery.flot.js"></script>
     <script src="{{asset('')}}admins/bower_components/Flot/jquery.flot.categories.js"></script>
-    
+
     <!-- Morris.js charts -->
     <script src="{{ asset('') }}admins/bower_components/raphael/raphael.min.js"></script>
     <script src="{{ asset('') }}admins/bower_components/morris.js/morris.min.js"></script>
@@ -350,6 +351,15 @@
     <script src="{{ asset('') }}admins/dist/js/pages/dashboard.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('') }}admins/dist/js/demo.js"></script>
+    <script>
+        $(function() {
+            // Replace the <textarea id="editor1"> with a CKEditor
+            // instance, using default configuration.
+            CKEDITOR.replace('content')
+            //bootstrap WYSIHTML5 - text editor
+            $('.textarea').wysihtml5()
+        })
+    </script>
 </body>
 
 </html>

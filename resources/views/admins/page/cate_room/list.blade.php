@@ -20,7 +20,7 @@
                     Danh Sách Loại Phòng
                 </h1>
                 <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li><a href="{{ Route('admin.dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
                     <li class="active">Loại phòng</li>
                 </ol>
             </section>
@@ -40,7 +40,6 @@
                                     <thead>
                                     <tr>
                                         <th>Tên loại phòng</th>
-                                        {{--<th>Tóm tắt</th>--}}
                                         <th>Ảnh</th>
                                         <th>Giá</th>
                                         <th>Mô tả</th>
@@ -54,10 +53,9 @@
                                             <td>{{$value->name}}</td>
                                             <td><img width="100px" src="{{asset('assets/cate_room').'/'.$value->image }}"></td>
                                             <td>{{$value->price}}</td>
-                                            <td>{{$value->describe}}</td>
+                                            <td>{!! $value->describe !!}</td>
                                             
                                             <td>
-                                                {{--<a class="btn btn-primary" id="bt{{$value->id}}" style="display: block" onclick="thaotac({{$value->id}})" >Thao tác</a>--}}
                                                 <div id="button{{$value->id}}">
                                                     <a class="btn btn-primary" id="edit"
                                                        href="{{ url('admin/loai_phong/view_one_loai_phong/'.$value->id) }}"

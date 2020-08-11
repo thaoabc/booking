@@ -12,8 +12,8 @@
                 Đặt phòng.
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Đặt phòng</li>
+            <li><a href="{{ Route('admin.dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+                    <li class="active">Đặt phòng</li>
             </ol>
         </section>
         <section class="content">
@@ -64,7 +64,7 @@
                         </div>
 
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Tìm phòng</button>
+                            <button type="submit" class="btn btn-primary">Xác nhận</button>
                         </div>
                     </div>
                 </form>

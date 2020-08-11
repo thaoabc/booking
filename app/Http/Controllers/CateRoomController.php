@@ -89,7 +89,6 @@ class CateRoomController extends Controller
             $cate_room->describe = $request->input('describe');
             $cate_room->image = $file_name;
             $cate_room->created_at = now();
-            $cate_room->slug = 1;
 
             //Storage::disk('public')->put('cate_room', '$anh');
             $cate_room->save();

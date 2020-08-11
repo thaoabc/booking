@@ -93,11 +93,6 @@ Route::group(['prefix' => 'admin','middleware' => ['auth.admin']], function () {
 	Route::get('view_one_admin/{id}', 'HomeController@view_one')->name('view_one_admin');
 	Route::post('process_update_admin/{id}', 'HomeController@update')->name('process_update_admin');
 
-	Route::group(['middleware' => 'locale'], function () {
-		Route::get('change-language/{language}', 'HomeController@changeLanguage')
-			->name('admin.change-language');
-	});
-
 	Route::group(['prefix' => 'users'], function () {
 		Route::get('view_all_user', 'UserController@view_all')->name('view_all_user');
 		Route::get('view_insert_user', 'UserController@view_insert')->name('view_insert_user');
@@ -108,7 +103,6 @@ Route::group(['prefix' => 'admin','middleware' => ['auth.admin']], function () {
 	});
 
 	Route::group(['prefix' => 'loai_phong'], function () {
-		Route::get('', 'CateRoomController@view_all');
 		Route::get('view_all_loai_phong', 'CateRoomController@view_all')->name('view_all_loai_phong');
 		Route::get('view_insert_loai_phong', 'CateRoomController@view_insert')->name('view_insert_loai_phong');
 		Route::post('process_insert_loai_phong', 'CateRoomController@process_insert')->name('process_insert_loai_phong');
@@ -168,6 +162,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth.admin']], function () {
 		Route::get('dung_thue/{bill_id}', 'BillController@dung_thue')->name('dung_thue');
 		Route::get('thue_tiep', 'BillController@thue_tiep')->name('thue_tiep');
 		Route::get('thanh_toan/{bill_id}', 'BillController@thanh_toan')->name('thanh_toan');
+		Route::get('chi_tiet/{bill_id}', 'BillController@chi_tiet')->name('chi_tiet');
 	});
 
 	Route::group(['prefix' => 'contact'], function () {

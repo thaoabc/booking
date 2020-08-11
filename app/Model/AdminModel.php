@@ -3,10 +3,11 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
-
-class AdminModel extends Model
+use Illuminate\Foundation\Auth\User as Authenticatable;
+class AdminModel extends Authenticatable
 {
 
+    protected $table = 'admins';
     // protected $guard = 'admin';
 
     /**

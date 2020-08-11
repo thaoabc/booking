@@ -20,8 +20,8 @@ Danh sách tin tức
                 Danh Sách tin tức
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">tin tức</li>
+            <li><a href="{{ Route('admin.dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+                <li class="active">Danh sách tin tức</li>
             </ol>
         </section>
         <section class="content">
@@ -50,7 +50,7 @@ Danh sách tin tức
                                     <tr class="odd gradeX" align="center">
                                         <td>{{$value->name_blog}}</td>
                                         <td><img width="100px" src="{{asset('assets/blog').'/'.$value->image }}"></td>
-                                        <td>{{$value->content}}</td>
+                                        <td>{!! $value->content !!}</td>
                                         <td>
                                             {{--<a class="btn btn-primary" id="bt{{$value->id}}" style="display: block" onclick="thaotac({{$value->id}})" >Thao tác</a>--}}
                                             <div id="button{{$value->id}}">

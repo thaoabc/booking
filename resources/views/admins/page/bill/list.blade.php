@@ -97,9 +97,10 @@
                                         
                                         @elseif($day['status']==2)
                                             <th>Dừng thuê</th>
+                                            <th>Thuê tiếp</th>
                                             <th>Thanh toán</th>
-                                        
-                                        @endif			
+                                        @endif	
+                                        <th>Chi tiết</th>		
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -132,6 +133,10 @@
                                         </a></td>
                                         
                                         @endif
+                                        <td><a href="{{route('chi_tiet',['id'=>$value->bill_id])}}" class="btn btn-success a-btn-slide-text">
+                                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                            <span><strong>Chi tiết</strong></span>            
+                                        </a></td>
                                     </tr>
                                     @endforeach
                                     </tbody>

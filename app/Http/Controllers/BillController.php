@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use DateTime;
 use App\Model\bill;
+use App\Model\cate_room;
 use App\Model\room;
 use DB;
 use Session;
@@ -142,5 +143,20 @@ class BillController extends Controller
         // $bill->anh=Storage::disk('public')->put('bill', '$anh');
         $bill->save();
         return redirect()->route('dang_su_dung');
+    }
+
+    public function chi_tiet($bill_id){
+        // $detail_bill=bill::join('users','bill.user_id','=','users.id')
+        // ->join("detailed_invoice", "detailed_invoice.bill_id", "=", "bill.bill_id")
+        // ->join("room",'detailed_invoice.room_id','=','room.id')
+        // ->join("cate_room",'room.cate_id','=','cate_room.id')
+        // ->where('detailed_invoice.bill_id',$bill_id)
+        // ->first();
+        $detail_bill=cate_room::join('room','cate_room.id','=','room.cate_id')
+        ->join('detailed_invoice','room.id','=','detailed_invoice.room_id')
+        ->join('bill','bill.bill_id','=','detailed_invoice.bill_id')
+        ->where('bill.bill_id','=',$bill_id)
+        ->first();
+        return view('admins.page.bill.detail',['detail_bill'=>$detail_bill]);
     }
 }

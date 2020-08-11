@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Mail;
 use Session;
 use DB;
-use App\Model\admin;
+use App\Model\admins;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Password;
@@ -45,13 +45,13 @@ class ForgotPasswordController extends Controller
     {   
         $input = $request->all();
         $email=$input["email"];
-        $user = admin::where('email', $email)->first();
+        $user = admins::where('email', $email)->first();
         $token=Str::random(60);
         if (!empty($user)) {
-            $password=DB::table('admin')->where('email',$email)->update([
+            $password=DB::table('admins')->where('email',$email)->update([
                 'password_reminder_token' => $token,
             ]);
-        $password=DB::table('admin')->where('email',$email)->select('password_reminder_token')->first();
+        $password=DB::table('admins')->where('email',$email)->select('password_reminder_token')->first();
         $url = url('password/reset/' . $password->password_reminder_token);
         $comment='<!DOCTYPE html>
 <html>
