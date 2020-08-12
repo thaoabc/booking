@@ -68,8 +68,8 @@
     {{-- @include('booking.layout.menu')  --}}
     <!-- Content Wrapper. Contains page content -->
     {{--wrapper--}}
-    @yield('content')
-    <!-- /.content-wrapper -->
+
+        @yield('content')
     {{--footer--}}
     @include('booking.layout.footer')
 
@@ -85,7 +85,11 @@
   <script src="{{ asset('assets') }}/sona/js/main.js"></script>
   <script>
     function now() {
-      if({{Session::get('status_login')}}!=1){
+      if ({
+          {
+            Session::get('status_login')
+          }
+        } != 1) {
         $("#myModal").modal();
       }
     }

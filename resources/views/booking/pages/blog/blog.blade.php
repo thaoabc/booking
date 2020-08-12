@@ -34,11 +34,11 @@
                     </div>
                 </div>
                 @endforeach
-                <div class="col-lg-12">
+                <!-- <div class="col-lg-12">
                     <div class="load-more">
                         <a href="#" class="primary-btn">Load More</a>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>

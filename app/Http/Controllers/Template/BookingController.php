@@ -14,23 +14,10 @@ use App\Model\cate_room;
 use App\Model\bill;
 use App\Model\detailed_invoice;
 use App\Model\room;
-use App;
 
 
 class BookingController extends BaseController
 {
-    public function view_dat_phong($user_id)
-    {
-        if ($user_id == 0) {
-            Session::flash('error', 'Hãy chọn khách hàng trước khi đặt phòng!');
-            return redirect('admin/users/view_all_user');
-        } else {
-            Session::put('user_id', $user_id);
-            $array_loai_phong['cate_room'] = DB::table('cate_room')->get();
-            return view('admins.page.booking.view_booking', $array_loai_phong);
-        }
-    }
-
     public function check_room(Request $request, $cate_id)
     {
         $bill = new bill();

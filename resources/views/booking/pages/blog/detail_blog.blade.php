@@ -41,9 +41,9 @@
                         </div>
                         <div class="tag-share">
                             <div class="tags">
-                                <a href="#">Travel Trip</a>
-                                <a href="#">Camping</a>
-                                <a href="#">Event</a>
+                                @foreach($cate_blogs as $value)
+                                <a href="{{ url('type_blog/'. $value->id)}}">{{$value->name_cateblog}}</a>
+                                @endforeach
                             </div>
                         </div>
                     </div>
