@@ -90,7 +90,7 @@ class ResetPasswordController extends Controller
             $user->save();
 
             Session::flash('send_email', 'Mật khẩu đã được thay đổi!');
-            return view('booking.auth.passwords.notice');
+            return redirect()->route('index');
         }
     }
 }

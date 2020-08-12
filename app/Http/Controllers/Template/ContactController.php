@@ -6,17 +6,17 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Model\contact;
-use App\Model\users;
+use App\Model\cate_blogs;
 use App\Model\cate_room;
-use DB;
 
 class ContactController extends BaseController
 {
     public function view()
     {
-        $contact = DB::table('contact')->find(1);
+        $contact = contact::find(1);
         $cate_room=cate_room::all();
-        return view('booking.pages.contact', compact('contact','cate_room'));
+        $cate_blogs=cate_blogs::all();
+        return view('booking.pages.contact', compact('contact','cate_room','cate_blogs'));
     }
 
     public function send(Request $request)

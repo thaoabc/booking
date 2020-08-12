@@ -39,12 +39,12 @@ class UserLoginController extends BaseController
                 $user = Auth::guard('user')->id();
                 Session::put('id',$user);
                 Session::put('status_login',1);
-                Session::flash('succes', 'Đăng nhập thành công!');
+                Session::flash('login_success', 'Đăng nhập thành công!');
                // Session::put('cap_do',Auth::user()->cap_do);
                 return redirect()->route('index');
             } else {
                 // Kiểm tra không đúng sẽ hiển thị thông báo lỗi
-                Session::flash('error', 'Email hoặc mật khẩu không đúng!');
+                Session::flash('login_faile', 'Email hoặc mật khẩu không đúng!');
                 return redirect()->route('index');
             }
         }

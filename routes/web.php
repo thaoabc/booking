@@ -51,6 +51,7 @@ route::get('contact', 'Template\ContactController@view')->name('contact');
 route::post('send_contact', 'Template\ContactController@send')->name('send_contact');
 
 route::get('blog', 'Template\BlogController@blog')->name('blog');
+route::get('type_blog/{id_cateblog}', 'Template\BlogController@blog')->name('cateblog');
 
 route::get('detail_blog/{id}', 'Template\BlogController@detail_blog')->name('detail_blog');
 

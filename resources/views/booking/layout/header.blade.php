@@ -15,15 +15,21 @@
         <nav class="mainmenu mobile-menu">
             <ul>
                 <li class="active"><a href="{{route('index')}}"> {{ __('home') }}</a></li>
-                <li><a href="./rooms.html">{{ __('room') }}</a>
+                <li><a href="{{route('category_room')}}">{{ __('room') }}</a>
                     <ul class="dropdown">
-                    @foreach($cate_room as $value)
+                        @foreach($cate_room as $value)
                         <li><a href="{{ url('detail_cateroom/'. $value->id) }}">{{$value->name_cateroom}}</a></li>
-                    @endforeach
+                        @endforeach
                     </ul>
                 </li>
-                {{--  <li><a href="./about-us.html">{{ __('about_us') }}</a></li>  --}}
-                <li><a href="{{route('blog')}}">{{ __('news') }}</a></li>
+                {{-- <li><a href="./about-us.html">{{ __('about_us') }}</a></li> --}}
+                <li><a href="{{route('blog')}}">{{ __('news') }}</a>
+                    <ul class="dropdown">
+                        @foreach($cate_blogs as $value)
+                        <li><a href="{{ url('type_blog/'. $value->id) }}">{{$value->name_cateblog}}</a></li>
+                        @endforeach
+                    </ul>
+                </li>
                 <li><a href="{{route('contact')}}">{{ __('contact') }}</a></li>
             </ul>
         </nav>
@@ -230,6 +236,7 @@
         </div>
         <div class="menu-item">
             <div class="container">
+
                 <div class="row">
                     <div class="col-lg-2">
                         <div class="logo">
@@ -238,25 +245,83 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-lg-10">
+                    <div class="col-lg-7">
                         <div class="nav-menu">
                             <nav class="mainmenu">
                                 <ul>
                                     <li class="active"><a href="{{route('index')}}"> {{ __('home') }}</a></li>
                                     <li><a href="{{route('category_room')}}"> {{ __('room') }}</a>
                                         <ul class="dropdown">
-                                             @foreach($cate_room as $value)
-                        <li><a href="{{ url('detail_cateroom/'. $value->id) }}">{{$value->name}}</a></li>
-                    @endforeach
+                                            @foreach($cate_room as $value)
+                                            <li><a href="{{ url('detail_cateroom/'. $value->id) }}">{{$value->name}}</a></li>
+                                            @endforeach
                                         </ul>
                                     </li>
-                                    {{--  <li><a href="{{route('about_us')}}">{{ __('about_us') }}</a></li>  --}}
-                                    <li><a href="{{route('blog')}}">{{ __('news') }}</a></li>
+                                    {{-- <li><a href="{{route('about_us')}}">{{ __('about_us') }}</a></li> --}}
+                                    <li><a href="{{route('blog')}}">{{ __('news') }}</a>
+                                        <ul class="dropdown">
+                                            @foreach($cate_blogs as $value)
+                                            <li><a href="{{ url('type_blog/'. $value->id) }}">{{$value->name_cateblog}}</a></li>
+                                            @endforeach
+                                        </ul>
+                                    </li>
+                                    </li>
                                     <li><a href="{{route('contact')}}">{{ __('contact') }}</a></li>
                                 </ul>
                             </nav>
                             <div class="nav-right search-switch">
-                                {{--  <i class="icon_search"></i>  --}}
+                                {{-- <i class="icon_search"></i>  --}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="panel panel-default">
+
+                            <div class="panel-body">
+                                @if (session('status'))
+                                <div class="alert alert-success">
+                                    {{ session('status') }}
+                                </div>
+                                @endif
+
+                                <form class="form-horizontal">
+                                    @if ( Session::has('send_email') )
+                                    <div class="alert alert-success alert-dismissible" role="alert">
+                                        <strong>{{ Session::get('send_email') }}</strong>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    @elseif(Session::has('login_success'))
+                                    <div class="alert alert-success alert-dismissible" role="alert">
+                                        <strong>{{ Session::get('send_email') }}</strong>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    @elseif(Session::has('login_faile'))
+                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                        <strong>{{ Session::get('login_faile') }}</strong>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    @elseif(Session::has('errorRg'))
+                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                        <strong>{{ Session::get('errorRg') }}</strong>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    @elseif(Session::has('successRg'))
+                                    <div class="alert alert-success alert-dismissible" role="alert">
+                                        <strong>{{ Session::get('successRg') }}</strong>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    @endif
+                                </form>
                             </div>
                         </div>
                     </div>
