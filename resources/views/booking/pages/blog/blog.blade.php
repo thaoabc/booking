@@ -7,10 +7,10 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
-                        <h2>Blog</h2>
+                        <h2>Tin tức</h2>
                         <div class="bt-option">
-                            <a href="./home.html">Home</a>
-                            <span>Blog Grid</span>
+                            <a href="{{route('index')}}">Trang chủ</a>
+                            <span>Tin tức</span>
                         </div>
                     </div>
                 </div>
@@ -34,11 +34,6 @@
                     </div>
                 </div>
                 @endforeach
-                <!-- <div class="col-lg-12">
-                    <div class="load-more">
-                        <a href="#" class="primary-btn">Load More</a>
-                    </div>
-                </div> -->
             </div>
         </div>
     </section>

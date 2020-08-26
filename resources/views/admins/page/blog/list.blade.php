@@ -50,7 +50,7 @@ Danh sách tin tức
                                     <tr class="odd gradeX" align="center">
                                         <td>{{$value->name_blog}}</td>
                                         <td><img width="100px" src="{{asset('assets/blog').'/'.$value->image }}"></td>
-                                        <td>{!! $value->content !!}</td>
+                                        <td class="content_blog">{!! $value->content !!}</td>
                                         <td>
                                             {{--<a class="btn btn-primary" id="bt{{$value->id}}" style="display: block" onclick="thaotac({{$value->id}})" >Thao tác</a>--}}
                                             <div id="button{{$value->id}}">

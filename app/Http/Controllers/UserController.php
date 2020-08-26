@@ -32,14 +32,8 @@ class UserController extends Controller
 
     public function view_one($id)
     {
-        Auth::shouldUse('admin');
-        if (Gate::allows('update', Auth::guard('admin')->user())) {
             $users = users::where('id', $id)->first();
             return view('admins.page.users.edit', ['users' => $users]);
-        }
-        else{
-            return view('admins.page.error_level');
-        }
     }
 
     public function view_all()
@@ -49,13 +43,7 @@ class UserController extends Controller
     }
     public function view_insert()
     {
-        Auth::shouldUse('admin');
-        if (Gate::allows('insert', Auth::guard('admin')->user())) {
             return view('admins.page.users.create');
-        }
-        else{
-            return view('admins.page.error_level');
-        }
     }
 
     public function process_insert(Request $request)

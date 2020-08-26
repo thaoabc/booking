@@ -65,8 +65,7 @@ class BookingController extends Controller
 				'check_in' => $date1,
 				'check_out' => $date2,
 				'day' => ($interval->d),
-				'total_billed_vi' => $price * ($interval->d) * $amount,
-				'total_billed_en' => $price * ($interval->d) * $amount,
+				'total_billed' => $price * ($interval->d) * $amount,
 				'amount' => $amount,
 				'status' => 1
 			);

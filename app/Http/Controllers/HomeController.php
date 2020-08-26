@@ -52,11 +52,8 @@ class HomeController extends Controller
             $admin = admins::find($id);
             return view('admins.page.admin.edit', ['admin' => $admin]);
         } else {
-            Session::flash('error', 'Không có quyền truy cập!');
-            return redirect('admin/view_all_admin');
+            return view('admins.page.error_level');
         }
-
-        exit;
     }
 
     public function view_all()

@@ -40,8 +40,6 @@
                                     <thead>
                                     <tr>
                                         <th>Tên dịch vụ</th>
-                                        {{--<th>Tóm tắt</th>--}}
-                                        <th>Ảnh</th>
                                         <th>Nội dung</th>
                                         <th class="col-md-3">Hành động</th>
 
@@ -50,9 +48,7 @@
                                     <tbody>
                                     @foreach($services as $value)
                                         <tr class="odd gradeX" align="center">
-                                            <td>{{$value->name_service}}</td>
-                                            <td><img width="100px" src="{{asset('assets/service').'/'.$value->image }}"></td>
-                                            <td>{!!$value->content!!}</td>
+                                            <td>{{$value->name_service}}</td>                                            <td>{!!$value->content!!}</td>
                                             
                                             <td>
                                                 {{--<a class="btn btn-primary" id="bt{{$value->id}}" style="display: block" onclick="thaotac({{$value->id}})" >Thao tác</a>--}}

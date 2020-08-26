@@ -90,13 +90,22 @@ class BillController extends Controller
         $price=room::find($room_id)->cate_room->first()->price;
         
         //end
-        DB::table('bill')->where('bill_id',$bill_id)->update([
-            'check_in' =>$date1,
-            'check_out' =>$date2,
-            'status'=>3,
-            'total_billed_vi'=>$price*($interval->d),
-            'total_billed_en'=>$price*($interval->d)
-        ]);
+        if(($interval->d)<1){
+            DB::table('bill')->where('bill_id',$bill_id)->update([
+                'check_in' =>$date1,
+                'check_out' =>$date2,
+                'status'=>3,
+                'total_billed'=>$price
+            ]);
+        }
+        else{
+            DB::table('bill')->where('bill_id',$bill_id)->update([
+                'check_in' =>$date1,
+                'check_out' =>$date2,
+                'status'=>3,
+                'total_billed'=>$price*($interval->d)
+            ]);
+        }
         return redirect()->route('da_thanh_toan');
     }
     public function thanh_toan($bill_id)
@@ -139,22 +148,17 @@ class BillController extends Controller
         $bill = bill::where('bill_id', $bill_id)->first();
         $bill->check_out = $check_out;
         $bill->day = $interval->d;
-        $bill->total_billed_vi = $price * ($interval->d) * $amount;
-        // $bill->anh=Storage::disk('public')->put('bill', '$anh');
+        $bill->total_billed = $price * ($interval->d) * $amount;
         $bill->save();
         return redirect()->route('dang_su_dung');
     }
 
     public function chi_tiet($bill_id){
-        // $detail_bill=bill::join('users','bill.user_id','=','users.id')
-        // ->join("detailed_invoice", "detailed_invoice.bill_id", "=", "bill.bill_id")
-        // ->join("room",'detailed_invoice.room_id','=','room.id')
-        // ->join("cate_room",'room.cate_id','=','cate_room.id')
-        // ->where('detailed_invoice.bill_id',$bill_id)
-        // ->first();
-        $detail_bill=cate_room::join('room','cate_room.id','=','room.cate_id')
+        $detail_bill=cate_room::select('name_user','email','phone','name','price','name_room','check_in','check_out','day','amount','total_billed','bill.status as status')
+         ->join('room','cate_room.id','=','room.cate_id')
         ->join('detailed_invoice','room.id','=','detailed_invoice.room_id')
         ->join('bill','bill.bill_id','=','detailed_invoice.bill_id')
+        ->join('users','bill.user_id','=','users.id')
         ->where('bill.bill_id','=',$bill_id)
         ->first();
         return view('admins.page.bill.detail',['detail_bill'=>$detail_bill]);

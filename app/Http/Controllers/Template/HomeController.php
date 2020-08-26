@@ -18,7 +18,7 @@ class HomeController extends BaseController
         $cate_blogs = cate_blogs::all();
         $services = services::all();
         $blogs= blogs::join('cate_blogs','cate_blogs.id','=','blogs.cate_id')
-            ->get();
+        ->paginate(6);
         $cate_room=cate_room::all();
         $contact =contact::find(1);
         if (empty(Session::has('status_login'))) {

@@ -93,9 +93,6 @@ class BlogController extends Controller
         } else {
             
             if ($request->hasFile('image')) {
-                if (file_exists('assets/blog/' . $image_update[0]) && $image_update[0] != '') {
-                    unlink('assets/blog/' . $image_update[0]);
-                }
 
                 $file = $request->file('image');
 

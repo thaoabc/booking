@@ -78,10 +78,10 @@ class ForgotPasswordController extends Controller
 </body>
 </html>';
         Mail::send('mailfb', array('email'=>$input["email"],'content'=>$comment), function($message) use ($email){
-            $message->to($email, 'Visitor')->subject('Visitor Feedback!');
+            $message->to($email, 'Visitor')->subject('Đăng ký lại mật khẩu!');
         });
-        Session::flash('success', 'Hãy xác nhận tin hệ thống đã gửi vào gmail của bạn!');
-        return view('auth.passwords.notice');
+        Session::flash('success_send_email', 'Hãy xác nhận tin hệ thống gửi vào gmail của bạn!');
+        return redirect()->route('index');
         }
         else{
             $rules = [

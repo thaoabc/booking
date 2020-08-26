@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Session;
 use Illuminate\Support\Facades\Validator;
-use App\Model\admin;
+use App\Model\admins;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class ResetPasswordController extends Controller
@@ -43,7 +43,7 @@ class ResetPasswordController extends Controller
 
     public function showResetForm($token)
     {
-        $user = admin::where('password_reminder_token', $token)->first();
+        $user = admins::where('password_reminder_token', $token)->first();
         if(!empty($user)){
             return view('auth.passwords.reset',['token'=>$token]);
         }
@@ -58,8 +58,7 @@ class ResetPasswordController extends Controller
         
         $input = $request->all();
         $token=$input['token'];
-        $passwordReset = admin::where('password_reminder_token', $token)->firstOrFail();
-        dd($passwordReset->updated_at);
+        $passwordReset = admins::where('password_reminder_token', $token)->firstOrFail();
         if (Carbon::parse($passwordReset->updated_at)->addMinutes(720)->isPast()) {
             $passwordReset->delete();
 
@@ -85,12 +84,14 @@ class ResetPasswordController extends Controller
             // Điều kiện dữ liệu không hợp lệ sẽ chuyển về trang đăng nhập và thông báo lỗi
             return redirect()->back()->withErrors($validator)->withInput();
         } else {
-            $user = admin::where('email', $passwordReset->email)->firstOrFail();
+            $user = admins::where('email', $passwordReset->email)->firstOrFail();
             $user->password=bcrypt($input['password']);
             $user->save();
-
+            admins::where('password_reminder_token', $token)->update([
+                'password_reminder_token' => '',
+            ]);
             Session::flash('success', 'Mật khẩu đã được thay đổi!');
-            return view('auth.passwords.notice');
+            return redirect()->route('admin.showFormLogin');
         }
     }
 }

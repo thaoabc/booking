@@ -8,10 +8,10 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb-text">
-                    <h2>Our Rooms</h2>
+                    <h2>Thông tin phòng</h2>
                     <div class="bt-option">
-                        <a href="./home.html">Home</a>
-                        <span>Rooms</span>
+                        <a href="{{route('index')}}">Trang chủ</a>
+                        <span>Loại Phòng</span>
                     </div>
                 </div>
             </div>
@@ -27,12 +27,12 @@
                     @foreach($cate_room as $value)
                     <div class="col-lg-4 col-md-6">
                         <div class="room-item">
-                        <img width="360px" height="234px" src="{{asset('assets/cate_room').'/'.$value->image }}">
+                        <img class="img-fluid" src="{{asset('assets/cate_room').'/'.$value->image }}">
                             <div class="ri-text">
                                 <h4>{{$value->name}}</h4>
-                                <h3>{{$value->price}}<span>/Pernight</span></h3>
+                                <h3>{{number_format($value->price)}}<span>/Đêm</span></h3>
                                 {!! $value->describe !!}
-                                <a href="{{ url('detail_cateroom/'. $value->id) }}" class="primary-btn">More Details</a>
+                                <a href="{{ url('detail_cateroom/'. $value->id) }}" class="primary-btn">Chi tiết hơn</a>
                             </div>
                         </div>
                     </div>

@@ -23,13 +23,26 @@ Chi tiết hóa đơn
             </ol>
         </section>
         <section class="content">
-            <div class="table-responsive">
+            <div class="box box-primary">
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-xs-12">
+                    <div class="box-body" style="padding-left:50px">
                         <div class="contact-text">
                             <h3 style="padding-bottom:50px">Profile Info</h3>
                             <table>
                                 </body>
+                                <tr>
+                                    <td class="c-o">Khách hàng:</td>
+                                    <td>{{$detail_bill->name_user}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="c-o">Email:</td>
+                                    <td>{{$detail_bill->email}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="c-o">Số điện thoại:</td>
+                                    <td>{{$detail_bill->phone}}</td>
+                                </tr>
                                 <tr>
                                     <td class="c-o">Loại phòng:</td>
                                     <td>{{$detail_bill->name}}</td>
@@ -61,11 +74,7 @@ Chi tiết hóa đơn
                                 <tr>
                                     <td class="c-o">Tổng hóa đơn:</td>
                                     <td>
-                                        @if(Session::get('website_language')=="vi")
-                                        {{$detail_bill->total_billed_vi}} VND
-                                        @else
-                                        {{$detail_bill->total_billed_en}} VND
-                                        @endif
+                                        {{$detail_bill->total_billed}} VND
                                     </td>
                                 </tr>
                                 <tr>
@@ -80,6 +89,7 @@ Chi tiết hóa đơn
                                 </tr>
                                 </tbody>
                             </table>
+                        </div>
                         </div>
                     </div>
                 </div>

@@ -7,7 +7,7 @@
                 <div class="col-lg-10 offset-lg-1">
                     <div class="bd-hero-text">
                         <span>{{$blog->name_cateblog}}</span>
-                        <h2 style="color:#707079">{{$blog->name_blog}}n</h2>
+                        <h2 style="color:#e5e5e5">{{$blog->name_blog}}</h2>
                         <ul>
                             <li class="b-time"><i class="icon_clock_alt"></i> {{$blog->created_at}}</li>
                             <li><i class="icon_profile"></i> Kerry Jones</li>

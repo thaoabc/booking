@@ -14,8 +14,8 @@
         </div>
         <nav class="mainmenu mobile-menu">
             <ul>
-                <li class="active"><a href="{{route('index')}}"> {{ __('home') }}</a></li>
-                <li><a href="{{route('category_room')}}">{{ __('room') }}</a>
+                <li class="active"><a href="{{route('index')}}"> TRANG CHỦ</a></li>
+                <li><a href="{{route('category_room')}}">LOẠI PHÒNG</a>
                     <ul class="dropdown">
                         @foreach($cate_room as $value)
                         <li><a href="{{ url('detail_cateroom/'. $value->id) }}">{{$value->name_cateroom}}</a></li>
@@ -23,14 +23,14 @@
                     </ul>
                 </li>
                 {{-- <li><a href="./about-us.html">{{ __('about_us') }}</a></li> --}}
-                <li><a href="{{route('blog')}}">{{ __('news') }}</a>
+                <li><a href="{{route('blog')}}">TIN TỨC</a>
                     <ul class="dropdown">
                         @foreach($cate_blogs as $value)
                         <li><a href="{{ url('type_blog/'. $value->id) }}">{{$value->name_cateblog}}</a></li>
                         @endforeach
                     </ul>
                 </li>
-                <li><a href="{{route('contact')}}">{{ __('contact') }}</a></li>
+                <li><a href="{{route('contact')}}">LIÊN HỆ</a></li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
@@ -59,11 +59,11 @@
                         <div class="tn-right">
                             <div class="top-social">
                                 @if(Session::get('status_login')==0)
-                                <button type="button" class="btn btn-default btn-lg" id="myBtnLg">Login</button>
-                                <button type="button" class="btn btn-default btn-lg" id="myBtnRg">Register</button>
+                                <button type="button" class="btn btn-default btn-lg" id="myBtnLg">Đăng nhập</button>
+                                <button type="button" class="btn btn-default btn-lg" id="myBtnRg">Đăng ký</button>
                                 @elseif(Session::get('status_login')==1)
-                                <a href="{{route('user.show_profile')}}">Profile </a>
-                                <a href="{{route('user.logout')}}">Logout</a>
+                                <a href="{{route('user.show_profile')}}">Tài khoản </a>
+                                <a href="{{route('user.logout')}}">Đăng xuất</a>
                                 @endif
                             </div>
                         </div>
@@ -107,24 +107,12 @@
                                             <strong>{{ $errors->first('password') }}</strong>
                                         </span>
                                         @endif
-                                        <div class="showpass" onclick="showpass()"><i class="fa fa-eye" aria-hidden="true"></i></div>
-                                        <script>
-                                            function showpass() {
-                                                var x = document.getElementById('paswword');
-                                                if (x.type === 'password') {
-                                                    x.type = 'text';
-                                                } else {
-                                                    x.type = 'password';
-                                                }
-                                            }
-                                        </script>
                                     </div>
-                                    <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
+                                    <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Đăng nhập</button>
                                 </form>
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-                                <p>Not a member? <a href="#">Sign Up</a></p>
                                 <p>Forgot <a href="{{route('password_user')}}">Password?</a></p>
                             </div>
                         </div>
@@ -196,17 +184,6 @@
                                             <strong>{{ $errors->first('password') }}</strong>
                                         </span>
                                         @endif
-                                        <div class="showpass" onclick="showpass()"><i class="fa fa-eye" aria-hidden="true"></i></div>
-                                        <script>
-                                            function showpass() {
-                                                var x = document.getElementById('paswword');
-                                                if (x.type === 'password') {
-                                                    x.type = 'text';
-                                                } else {
-                                                    x.type = 'password';
-                                                }
-                                            }
-                                        </script>
                                     </div>
                                     <div class="form-group">
                                         <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password confirm</label>
@@ -217,16 +194,12 @@
                                         </span>
                                         @endif
                                     </div>
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" value="" checked>Remember me</label>
-                                    </div>
-                                    <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
+                                    <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Đăng ký</button>
+                                    
                                 </form>
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-                                <p>Not a member? <a href="#">Sign Up</a></p>
-                                <p>Forgot <a href="#">Password?</a></p>
                             </div>
                         </div>
 
@@ -249,8 +222,8 @@
                         <div class="nav-menu">
                             <nav class="mainmenu">
                                 <ul>
-                                    <li class="active"><a href="{{route('index')}}"> {{ __('home') }}</a></li>
-                                    <li><a href="{{route('category_room')}}"> {{ __('room') }}</a>
+                                    <li class="active"><a href="{{route('index')}}"> TRANG CHỦ</a></li>
+                                    <li><a href="{{route('category_room')}}"> LOẠI PHÒNG</a>
                                         <ul class="dropdown">
                                             @foreach($cate_room as $value)
                                             <li><a href="{{ url('detail_cateroom/'. $value->id) }}">{{$value->name}}</a></li>
@@ -258,7 +231,7 @@
                                         </ul>
                                     </li>
                                     {{-- <li><a href="{{route('about_us')}}">{{ __('about_us') }}</a></li> --}}
-                                    <li><a href="{{route('blog')}}">{{ __('news') }}</a>
+                                    <li><a href="{{route('blog')}}">TIN TỨC</a>
                                         <ul class="dropdown">
                                             @foreach($cate_blogs as $value)
                                             <li><a href="{{ url('type_blog/'. $value->id) }}">{{$value->name_cateblog}}</a></li>
@@ -266,7 +239,7 @@
                                         </ul>
                                     </li>
                                     </li>
-                                    <li><a href="{{route('contact')}}">{{ __('contact') }}</a></li>
+                                    <li><a href="{{route('contact')}}">LIÊN HỆ</a></li>
                                 </ul>
                             </nav>
                             <div class="nav-right search-switch">
@@ -292,9 +265,16 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
+                                    @elseif(Session::has('success_send_email'))
+                                    <div class="alert alert-success alert-dismissible" role="alert">
+                                        <strong>{{ Session::get('success_send_email') }}</strong>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
                                     @elseif(Session::has('login_success'))
                                     <div class="alert alert-success alert-dismissible" role="alert">
-                                        <strong>{{ Session::get('send_email') }}</strong>
+                                        <strong>{{ Session::get('login_success') }}</strong>
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>

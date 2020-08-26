@@ -28,7 +28,7 @@ class ChartController extends BaseController
             ->get();
         $valueSelected = [];
         $orderYear = DB::table('bill')
-            ->select(DB::raw('month(check_out) as getMonth'), DB::raw('day(check_out) as getDayOut'), DB::raw('day(check_in) as getDayIn'), DB::raw('SUM(total_billed_vi) as value'), DB::raw('year(check_out) as getYear'))
+            ->select(DB::raw('month(check_out) as getMonth'), DB::raw('day(check_out) as getDayOut'), DB::raw('day(check_in) as getDayIn'), DB::raw('SUM(total_billed) as value'), DB::raw('year(check_out) as getYear'))
             ->where('status', 3)
             ->groupBy('getMonth')
             ->groupBy('getYear')
@@ -71,7 +71,7 @@ class ChartController extends BaseController
             ->get();
         $selectYear = [];
         $orderYear = DB::table('bill')
-            ->select(DB::raw('month(check_out) as getMonth'), DB::raw('SUM(total_billed_vi) as value'), DB::raw('year(check_out) as getYear'))
+            ->select(DB::raw('month(check_out) as getMonth'), DB::raw('SUM(total_billed) as value'), DB::raw('year(check_out) as getYear'))
             ->where('status', 3)
             ->groupBy('getMonth')
             ->groupBy('getYear')
@@ -109,7 +109,7 @@ class ChartController extends BaseController
             ->get();
         $selectYear = [];
         $orderYear = DB::table('bill')
-            ->select(DB::raw('month(check_out) as getMonth'), DB::raw('SUM(total_billed_vi) as value'), DB::raw('year(check_out) as getYear'))
+            ->select(DB::raw('month(check_out) as getMonth'), DB::raw('SUM(total_billed) as value'), DB::raw('year(check_out) as getYear'))
             ->where('status', 3)
             ->groupBy('getMonth')
             ->groupBy('getYear')

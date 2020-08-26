@@ -41,7 +41,6 @@ Thêm phòng
                             @foreach ($cate_room as $value)
                             <option value='{{$value->id}}'>{{$value->name}}</option>
                             @endforeach
-
                         </select>
                     </div>
 

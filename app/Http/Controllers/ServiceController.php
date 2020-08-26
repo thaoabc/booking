@@ -66,21 +66,9 @@ class ServiceController extends Controller
                 'name_service.required' => 'Tên class không được thiếu'
             ]
         );
-
-        if ($request->hasFile('image')) {
-
-            $file = $request->file('image');
-
-            $name = $file->getClientOriginalName();
-            $file->move('assets/service/', $name);
-            $file_name = $name;
-        }
         $services->name_service = $request->input('name_service');
         $services->content = $request->input('content');
         $services->name_class = $request->input('name_class');
-        $services->image = $file_name;
-
-        //Storage::disk('public')->put('cate_room', '$anh');
         $services->save();
         return redirect()->route('view_all_service');
     }
@@ -88,7 +76,6 @@ class ServiceController extends Controller
     public function update(Request $request, $id)
     {
         $services = new services();
-        $image_update = DB::table('services')->where('id', $id)->pluck('image');
         $rules = [
             'name_service' => 'required',
             'content' => 'required',
@@ -108,24 +95,10 @@ class ServiceController extends Controller
             return redirect()->route('view_one_service', ['id' => $b])->withErrors($validator)->withInput();
         } else {
             $update =  $request->all();
-
-            if ($request->hasFile('image')) {
-                if (file_exists('assets/service/' . $image_update[0]) && $image_update[0] != '') {
-                    unlink('assets/service/' . $image_update[0]);
-                }
-                $file = $request->file('image');
-
-                $name = $file->getClientOriginalName();
-                $file->move('assets/service/', $name);
-                $file_name = $name;
-            } else {
-                $file_name = DB::table('services')->where('id', $id)->pluck('image')->first();
-            }
             $services = services::where('id', $id)->first();
             $services->name_service = $update['name_service'];
             $services->content = $update['content'];
             $services->name_class = $update['name_class'];
-            $services->image = $file_name;
             $services->save();
             return redirect()->route('view_all_service');
         }

@@ -9,12 +9,12 @@
                                     <img src="assets/sona/footer-logo.png" alt="">
                                 </a>
                             </div>
-                            <p>We inspire and reach millions of travelers<br /> across 90 local websites</p>
+                            <p>Chúng tôi truyền cảm hứng và tiếp cận hàng triệu khách du lịch</p>
                         </div>
                     </div>
                     <div class="col-lg-3 offset-lg-1">
                         <div class="ft-contact">
-                            <h6>Contact Us</h6>
+                            <h6>Liên hệ</h6>
                             <ul>
                                 <li>{{$contact->phone}}</li>
                                 <li>{{$contact->email}}</li>
@@ -24,8 +24,8 @@
                     </div>
                     <div class="col-lg-3 offset-lg-1">
                         <div class="ft-newslatter">
-                            <h6>New latest</h6>
-                            <p>Get the latest updates and offers.</p>
+                            <h6>Nhận tin mới nhất</h6>
+                            <p>Nhận các bản cập nhật và ưu đãi mới nhất</p>
                             <form action="#" class="fn-form">
                                 <input type="text" placeholder="Email">
                                 <button type="submit"><i class="fa fa-send"></i></button>

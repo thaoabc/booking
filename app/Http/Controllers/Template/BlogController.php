@@ -17,9 +17,9 @@ class BlogController extends BaseController
     public function blog()
     {
 
-        $blogs = blogs::select(DB::raw('blogs.id AS id'), 'name_blog', 'image', 'name_cateblog')
+        $blogs = blogs::select(DB::raw('blogs.id AS id'),DB::raw('blogs.created_at AS created_at'), 'name_blog', 'image', 'name_cateblog')
             ->join('cate_blogs', 'cate_blogs.id', '=', 'blogs.cate_id')
-            ->get();
+            ->paginate(9);
         $cate_room = cate_room::all();
         $cate_blogs = cate_blogs::all();
         $contact = contact::find(1);
@@ -27,7 +27,7 @@ class BlogController extends BaseController
     }
     public function type_blog($id_cateblog)
     {
-        $blogs = blogs::select(DB::raw('blogs.id AS id'), 'name_blog', 'image', 'name_cateblog')
+        $blogs = blogs::select(DB::raw('blogs.id AS id'),DB::raw('blogs.created_at AS created_at'), 'name_blog', 'image', 'name_cateblog')
             ->join('cate_blogs', 'cate_blogs.id', '=', 'blogs.cate_id')
             ->where('cate_blogs.id', '=', $id_cateblog)
             ->get();
@@ -41,7 +41,8 @@ class BlogController extends BaseController
     {
         $blog = blogs::join('cate_blogs', 'cate_blogs.id', '=', 'blogs.cate_id')
             ->where('blogs.id', $id)->first();
-        $blogs = blogs::join('cate_blogs', 'cate_blogs.id', '=', 'blogs.cate_id')
+        $blogs = blogs::select(DB::raw('blogs.id AS id'),DB::raw('blogs.created_at AS created_at'), 'name_blog', 'image', 'name_cateblog')
+        ->join('cate_blogs', 'cate_blogs.id', '=', 'blogs.cate_id')
             ->paginate(3);
         $cate_room = cate_room::all();
         $cate_blogs = cate_blogs::all();

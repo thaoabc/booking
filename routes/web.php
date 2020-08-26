@@ -51,7 +51,7 @@ route::get('contact', 'Template\ContactController@view')->name('contact');
 route::post('send_contact', 'Template\ContactController@send')->name('send_contact');
 
 route::get('blog', 'Template\BlogController@blog')->name('blog');
-route::get('type_blog/{id_cateblog}', 'Template\BlogController@blog')->name('cateblog');
+route::get('type_blog/{id_cateblog}', 'Template\BlogController@type_blog')->name('cateblog');
 
 route::get('detail_blog/{id}', 'Template\BlogController@detail_blog')->name('detail_blog');
 
@@ -72,7 +72,7 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
 	Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 	Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset.token');
-	Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+	Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('admin.reset');
 });
 
 

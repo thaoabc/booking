@@ -28,14 +28,10 @@
                     <i class="fa fa-building"></i> <span>Loại phòng</span>
                 </a>
             </li>
-            <li class="treeview">
-                <a href="#">
+            <li>
+                <a href="{{route('view_all_phong')}}">
                     <i class="fa fa-address-book"></i> <span>Phòng</span>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{route('view_all_phong')}}"><i class="fa fa-list"></i> Danh sách phòng</a></li>
-                    <li><a href="{{route('view_insert_phong')}}"><i class="fa fa-plus"></i> Thêm phòng </a></li>
-                </ul>
             </li>
             <li>
                 <a href="{{route('view_dat_phong',0)}}">

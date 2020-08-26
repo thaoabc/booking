@@ -47,14 +47,9 @@ class RoomController extends Controller
             // Điều kiện dữ liệu không hợp lệ sẽ chuyển về trang đăng nhập và thông báo lỗi
             return redirect('phong/view_insert_phong')->withErrors($validator)->withInput();
         } else {
-            // $phong->ma_cate_room=$request->input('ma_cate_room');
-            // $phong->ten_phong=$request->input('ten_phong');
-            // $phong->tinh_trang=1;
-            // $phong->save();
             DB::table('room')->insert([
                 'name_room' => $request->name,
                 'cate_id' => $request->cate_id,
-                'slug' =>1,
                 'status' =>1,
             ]);
         

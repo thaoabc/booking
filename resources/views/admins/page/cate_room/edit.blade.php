@@ -52,23 +52,33 @@ Sửa loại phòng
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Mô tả(*)</label>
                                             <textarea id="content" name="describe" rows="10" cols="80" placeholder="Nhập nội dung">
-                            {!! $cate_room->describe !!}
-                        </textarea>
+                                                {!! $cate_room->describe !!}
+                                            </textarea>
                                         </div>
                                         <div class="form-group">
                                             <label for="image">Ảnh nền</label>
                                             <input type="file" id="image" name="image" onchange="showIMG()">
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="" style="margin-left: 10px"> Ảnh hiển thị : </label>
-                                        <div id="viewImg">
+                                        <div class="form-group">
+                                            <label for="" style="margin-left: 10px"> Ảnh hiển thị : </label>
+                                            <div id="viewImg">
 
+                                            </div>
                                         </div>
-                                    </div>
+                                        <div class="form-group">
+                                            <label for="image">Ảnh chi tiết</label>
+                                            <input type="file" id="image_detail" name="image_detail" onchange="showIMGDetail()">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="" style="margin-left: 10px"> Ảnh hiển thị : </label>
+                                            <div id="viewImgDetail">
 
-                                    <div class="box-footer">
-                                        <button type="submit" class="btn btn-primary">Sửa</button>
+                                            </div>
+                                        </div>
+
+                                        <div class="box-footer">
+                                            <button type="submit" class="btn btn-primary">Sửa</button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -78,16 +88,6 @@ Sửa loại phòng
             </div>
         </section>
         <script>
-            CKEDITOR.replace('contentt', {
-                filebrowserBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html',
-                filebrowserImageBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html?type=Images',
-                filebrowserFlashBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html?type=Flash',
-                filebrowserUploadUrl: '{{asset("")}}ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-                filebrowserImageUploadUrl: '{{asset("")}}ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-                filebrowserFlashUploadUrl: '{{asset("")}}ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
-            });
-
-
             function showIMG() {
                 var fileInput = document.getElementById('image');
                 var filePath = fileInput.value; //lấy giá trị input theo id
@@ -103,6 +103,26 @@ Sửa loại phòng
                         var reader = new FileReader();
                         reader.onload = function(e) {
                             document.getElementById('viewImg').innerHTML = '<img style="width:100px; height: 100px;" src="' + e.target.result + '"/>';
+                        };
+                        reader.readAsDataURL(fileInput.files[0]);
+                    }
+                }
+            }
+            function showIMGDetail() {
+                var fileInput = document.getElementById('image_detail');
+                var filePath = fileInput.value; //lấy giá trị input theo id
+                var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i; //các tập tin cho phép
+                //Kiểm tra định dạng
+                if (!allowedExtensions.exec(filePath)) {
+                    alert('Bạn chỉ có thể dùng ảnh dưới định dạng .jpeg/.jpg/.png/.gif extension.');
+                    fileInput.value = '';
+                    return false;
+                } else {
+                    //Image preview
+                    if (fileInput.files && fileInput.files[0]) {
+                        var reader = new FileReader();
+                        reader.onload = function(e) {
+                            document.getElementById('viewImgDetail').innerHTML = '<img style="width:100px; height: 100px;" src="' + e.target.result + '"/>';
                         };
                         reader.readAsDataURL(fileInput.files[0]);
                     }

@@ -4,16 +4,16 @@
 <section class="contact-section spad">
     <div class="container">
         <ul class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#profile">Profile</a></li>
-            <li><a data-toggle="tab" href="#edit_profile">Edit Info</a></li>
-            <li><a data-toggle="tab" href="#booking_history">Booking History</a></li>
+            <li class="active"><a data-toggle="tab" href="#profile">Tài khoản</a></li>
+            <li><a data-toggle="tab" href="#edit_profile">Sửa thông tin tài khoản</a></li>
+            <li><a data-toggle="tab" href="#booking_history">Lịch sử đặt phòng</a></li>
         </ul>
         <div class="tab-content">
             <div id="profile" class="tab-pane fade in active">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="contact-text">
-                            <h3 style="padding-bottom:50px">Profile Info</h3>
+                            <h3 style="padding-bottom:50px">Tài khoản</h3>
                             <table>
                                 <tbody>
                                     <tr>
@@ -40,14 +40,14 @@
                         <div class="box">
                             <div class="box box-info">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Edit Profile</h3>
+                                    <h3 class="box-title">Sửa thông tin tài khoản</h3>
                                 </div>
                                 <div class="box-body chart-responsive" id="box_body_profile">
-                                    <form action="{{ Route('process_update_user',['id' => $users->id]) }}" method="post">
+                                    <form action="{{ Route('user.process_update',['id' => $users->id]) }}" method="post">
                                         @csrf
                                         <div class="form-group">
                                             <p class="text-body custom-control-p">Tên</p>
-                                            <input name="name" class="form-control" type="text" placeholder="Tên" value="{{ $users->name }}">
+                                            <input name="name" class="form-control" type="text" placeholder="Tên" value="{{ $users->name_user }}">
                                             <p style="color:red">{{ $errors->first('name') }}</p>
                                         </div>
 
@@ -99,7 +99,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="contact-text">
-                            <h3 style="padding-bottom:50px">Booking History</h3>
+                            <h3 style="padding-bottom:50px">Lịch sử đặt phòng</h3>
                             @if(empty($your_booking))
                             <div class="form-group">
                                 <p class="text-body custom-control-p">Bạn chưa có thông tin đặt phòng</p>
@@ -140,11 +140,7 @@
                                         <tr>
                                             <td class="c-o">Tổng hóa đơn:</td>
                                             <td>
-                                                @if(Session::get('website_language')=="vi")
-                                                {{$info->total_billed_vi}} VND
-                                                @else
-                                                {{$info->total_billed_en}} VND
-                                                @endif
+                                                {{$info->total_billed}} VND
                                             </td>
                                         </tr>
                                         <tr>

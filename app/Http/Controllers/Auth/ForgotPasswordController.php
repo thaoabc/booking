@@ -52,7 +52,7 @@ class ForgotPasswordController extends Controller
                 'password_reminder_token' => $token,
             ]);
         $password=DB::table('admins')->where('email',$email)->select('password_reminder_token')->first();
-        $url = url('password/reset/' . $password->password_reminder_token);
+        $url = url('admin/password/reset/' . $password->password_reminder_token);
         $comment='<!DOCTYPE html>
 <html>
 <head>
@@ -96,7 +96,7 @@ class ForgotPasswordController extends Controller
             ];
             $validator = Validator::make($request->all(), $rules, $messages);
             Session::flash('error', 'Email này chưa đăng ký tài khoản!');
-            return redirect('password/reset')->withErrors($validator)->withInput();
+            return redirect('admin/password/reset')->withErrors($validator)->withInput();
         }
         
     }

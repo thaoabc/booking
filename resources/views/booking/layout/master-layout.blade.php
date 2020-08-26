@@ -58,7 +58,7 @@
   </style>
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini" onload="now();">
+<body class="hold-transition skin-blue sidebar-mini">
   <div class="wrapper">
 
     {{--header--}}
@@ -84,15 +84,6 @@
   <script src="{{ asset('assets') }}/sona/js/owl.carousel.min.js"></script>
   <script src="{{ asset('assets') }}/sona/js/main.js"></script>
   <script>
-    function now() {
-      if ({
-          {
-            Session::get('status_login')
-          }
-        } != 1) {
-        $("#myModal").modal();
-      }
-    }
     $(document).ready(function() {
       $("#myBtnLg").click(function() {
         $("#myLogin").modal();

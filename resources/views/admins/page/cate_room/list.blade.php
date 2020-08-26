@@ -41,6 +41,7 @@
                                     <tr>
                                         <th>Tên loại phòng</th>
                                         <th>Ảnh</th>
+                                        <th>Ảnh chi tiết</th>
                                         <th>Giá</th>
                                         <th>Mô tả</th>
                                         <th class="col-md-3">Hành động</th>
@@ -51,7 +52,8 @@
                                     @foreach($cate_room as $value)
                                         <tr class="odd gradeX" align="center">
                                             <td>{{$value->name}}</td>
-                                            <td><img width="100px" src="{{asset('assets/cate_room').'/'.$value->image }}"></td>
+                                            <td><img width="100px" height="100px" src="{{asset('assets/cate_room').'/'.$value->image }}"></td>
+                                            <td><img width="100px" height="100px" class="img-fluid" src="{{asset('assets/detail_room').'/'.$value->image_detail }}"></td>
                                             <td>{{$value->price}}</td>
                                             <td>{!! $value->describe !!}</td>
                                             
@@ -73,53 +75,10 @@
 
                                 </table>
                             </div>
-                            <!-- /.box-body -->
                         </div>
-                        <!-- /.box -->
-                        <!-- /.box -->
                     </div>
-                    <!-- /.col -->
                 </div>
-                <!-- /.row -->`
             </section>
-            <script>
-                {{--function thaotac(id) {--}}
-                {{--document.getElementById("button"+id).style.display = 'block';--}}
-                {{--document.getElementById("bt"+id).style.display = 'none';--}}
-                {{--}--}}
-
-                function update(id) {
-                    var input = document.querySelector('#name' + id);
-                    var edit = document.querySelector('#edit' + id);
-                    var active = document.querySelector('#active' + id);
-
-
-                    input.removeAttribute('readonly');
-                    input.classList.remove('input');
-                    input.classList.add('form-control');
-                    edit.classList.add('hide');
-                    active.classList.remove('hide');
-                }
-
-                function huyupdate(id) {
-                    var r = confirm("WARNING! You have unsaved changes that may be lost!");
-                    if (r == true) {
-                        var input = document.querySelector('#name' + id);
-                        var edit = document.querySelector('#edit' + id);
-                        var active = document.querySelector('#active' + id);
-
-
-                        input.classList.add('input');
-                        $('.input').prop('readonly', true);
-                        input.classList.remove('form-control');
-                        edit.classList.remove('hide');
-                        active.classList.add('hide');
-
-                    } else {
-                        return false;
-                    }
-                }
-            </script>
         </div>
     </div>
 

@@ -7,9 +7,9 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb-text">
-                    <h2>Our Rooms</h2>
+                    <h2>Thông tin phòng</h2>
                     <div class="bt-option">
-                        <a href="./home.html">Home</a>
+                        <a href="{{route('index')}}">Trang chủ</a>
                         <span>Rooms</span>
                     </div>
                 </div>
@@ -42,23 +42,23 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="room-details-item">
-                    <img width="750px" height="430px" src="{{asset('assets/cate_room').'/'.$room->image}}" alt="">
+                    <img src="{{asset('assets/detail_room').'/'.$room->image_detail}}" alt="">
                     <div class="rd-text">
                         <div class="rd-title">
                             <h3>{{$room->name}}</h3>
                         </div>
-                        <h2>{{number_format ($room->price)}}VND<span>/Pernight</span></h2>
+                        <h2>{{number_format ($room->price)}}VND<span>/Đêm</span></h2>
                         {!! $room->describe !!}
                     </div>
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="room-booking">
-                    <h3>Your Reservation</h3>
+                    <h3>Đặt phòng cho bạn</h3>
                     <form role="form" method="POST" action="{{ url('detail_cateroom/'. $room->id) }}" enctype="multipart/form-data">
                         @csrf
                         <div class="check-date">
-                            <label for="check_in">Check In:</label>
+                            <label for="check_in">Ngày nhận:</label>
                             <input type="text" class="date-input" name="check_in" id="date-in" autocomplete="off">
                             <i class="icon_calendar"></i>
                         </div>
@@ -68,7 +68,7 @@
                         </span>
                         @endif
                         <div class="check-date">
-                            <label for="check_out">Check Out:</label>
+                            <label for="check_out">Ngày trả:</label>
                             <input type="text" class="date-input" name="check_out" id="date-out" autocomplete="off">
                             <i class="icon_calendar"></i>
                         </div>
@@ -78,14 +78,14 @@
                         </span>
                         @endif
                         <div class="select-option">
-                            <label for="room">Room:</label>
+                            <label for="room">Số phòng:</label>
                             <select name="amount_room">
                                 @for($i=1;$i<=$amount_room;$i++)
-                                    <option value="{{ $i }}">{{ $i }} Room</option>
+                                    <option value="{{ $i }}">{{ $i }} phòng</option>
                                 @endfor
                             </select>
                         </div>
-                        <button type="submit">Booking Now</button>
+                        <button type="submit">Đặt phòng ngay</button>
                     </form>
                 </div>
             </div>

@@ -30,6 +30,35 @@ body {
     overflow-y: auto;
 }
 
+.contact-text h2 {
+    font-size: 44px;
+    color: #19191a;
+    margin-bottom: 24px;
+}
+
+.contact-text p {
+    color: #707079;
+}
+
+.contact-text table tbody tr td {
+    font-size: 16px;
+    color: #19191a;
+    line-height: 36px;
+    font-weight: 500;
+}
+
+.contact-text table tbody tr td.c-o {
+    color: #707079;
+    width: 50%;
+}
+
+.content_blog p{
+    white-space: nowrap;
+    width: 400px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 
 /* Layout */
 

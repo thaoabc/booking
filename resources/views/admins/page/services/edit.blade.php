@@ -40,16 +40,6 @@ Sửa dịch vụ
                         <label for="exampleInputEmail1">Tên class(*)</label>
                         <input name="name_class" type="text" class="form-control" placeholder="Nhập class" class="form-control" value="{{$services->name_class}}">
                     </div>
-                    <div class="form-group">
-                        <label for="image">Ảnh nền</label>
-                        <input type="file" id="image" name="image" onchange="showIMG()">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="" style="margin-left: 10px"> Ảnh hiển thị : </label>
-                    <div id="viewImg">
-
-                    </div>
                 </div>
 
                 <div class="box-footer">
@@ -57,29 +47,6 @@ Sửa dịch vụ
                 </div>
             </form>
         </div>
-
-        <script>
-            function showIMG() {
-                var fileInput = document.getElementById('image');
-                var filePath = fileInput.value; //lấy giá trị input theo id
-                var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i; //các tập tin cho phép
-                //Kiểm tra định dạng
-                if (!allowedExtensions.exec(filePath)) {
-                    alert('Bạn chỉ có thể dùng ảnh dưới định dạng .jpeg/.jpg/.png/.gif extension.');
-                    fileInput.value = '';
-                    return false;
-                } else {
-                    //Image preview
-                    if (fileInput.files && fileInput.files[0]) {
-                        var reader = new FileReader();
-                        reader.onload = function(e) {
-                            document.getElementById('viewImg').innerHTML = '<img style="width:100px; height: 100px;" src="' + e.target.result + '"/>';
-                        };
-                        reader.readAsDataURL(fileInput.files[0]);
-                    }
-                }
-            }
-        </script>
     </div>
 </div>
 

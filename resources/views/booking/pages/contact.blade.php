@@ -7,17 +7,15 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="contact-text">
-                        <h2>Contact Info</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua.</p>
+                        <h2>Thông tin liên hệ</h2>
                         <table>
                             <tbody>
                                 <tr>
-                                    <td class="c-o">Address:</td>
+                                    <td class="c-o">Địa chỉ:</td>
                                     <td>{{$contact->address}}</td>
                                 </tr>
                                 <tr>
-                                    <td class="c-o">Phone:</td>
+                                    <td class="c-o">Số điện thoại:</td>
                                     <td>{{$contact->phone}}</td>
                                 </tr>
                                 <tr>

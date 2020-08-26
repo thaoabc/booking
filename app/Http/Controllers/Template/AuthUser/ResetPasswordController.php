@@ -49,7 +49,7 @@ class ResetPasswordController extends Controller
             return view('booking.auth.passwords.reset',['token'=>$token]);
         }
         else{
-            echo "Không nên nha";
+            echo "Bạn không thể truy cập nữa";
         }
        
     }
@@ -88,7 +88,7 @@ class ResetPasswordController extends Controller
             $user = users::where('email', $passwordReset->email)->firstOrFail();
             $user->password=bcrypt($input['password']);
             $user->save();
-
+            password_resets::where('token', $token)->delete();
             Session::flash('send_email', 'Mật khẩu đã được thay đổi!');
             return redirect()->route('index');
         }

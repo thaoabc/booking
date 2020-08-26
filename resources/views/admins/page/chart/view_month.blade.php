@@ -30,7 +30,7 @@ Thống kê theo năm
         <section class="content">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Chọn năm</h3>
+                    <h3 class="box-title">Chọn tháng</h3>
 
                     <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -68,7 +68,7 @@ Thống kê theo năm
                                         @endfor
                                     </select>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Chọn năm</button>
+                                <button type="submit" class="btn btn-primary">Xác nhận</button>
                             </form>
                         </div>
                         <!-- /.col -->
